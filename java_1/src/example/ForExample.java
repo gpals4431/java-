@@ -56,7 +56,14 @@ public class ForExample {
 		//    50    51    52     53     54     55     56
 		//    57
 		int begin=36, end=57;
+		{
+		for(int i=begin;i<=end;i++) {
+			if(i%7==0) {
+				System.out.println("\t");
+			}
+		}
 }	
+		}
 	
 
 
