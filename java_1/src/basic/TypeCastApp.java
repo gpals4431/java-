@@ -4,7 +4,7 @@ package basic;
 // => 자동 형변환(JVM이 실행할 때 해줌), 강제 형변환(프로그래머) 
 public class TypeCastApp {
 	public static void main(String[] args) {
-		// 자동 형변환 : 자료형이 다른 값을 연산하기 위한 JVM(Java Virtual Machine :
+		// 자동 형변환 : 자료형이 다른 값을 연산하기 위해 JVM(Java Virtual Machine :
 		// Java 프로그램을 실행하기 위한 가상의 플랫폼)이 자료형을 일시적으로 변환
 		// => 표현의 범위가 작은 자료형의 값이 큰 자료형의 값으로 형변환되어 연산 처리된다.
 		// => byte >> short >> char(0~65535) >> int >> long >> float >> double
