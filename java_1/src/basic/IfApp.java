@@ -3,7 +3,7 @@ package basic;
 //제어문(Control Statement) : 프로그램의 흐름(스레드 - Thread)을 바꾸어 주는 명령
 // => 선택문(if, switch), 반복문(for, while), 기타(break, continue, return)
 
-//if : 조건식에 의해 명령을 선택 실행
+//if : 조건식에 의해 명령을 선택 실행, 검증을 위해 참인지 거짓인지
 
 //형식-1) if(조건식) { 명령; 명령; ... }
 // => 조건식의 결과가 참(true)인 경우 블럭({}) 내부에 작성된 명령들을 실행
