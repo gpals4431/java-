@@ -12,13 +12,13 @@ import java.util.Scanner;
 public class TotalOneExample {
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
-		int sum;
+		
 		int tot=0;
 			for(int i=1;i<=5;i++) {
-				System.out.print("정수값 입력[0:종료] >>");
-				sum=scanner.nextInt();	
+				System.out.print(i+"번째 정수값 입력[0:종료] >>");
+				int sum=scanner.nextInt();	
 				if(sum==0)break;
-				tot+=sum;
+				tot+=sum;//입력 값을 tot 변수에 누적하여 저장
 				}
 				System.out.print("[결과]합계="+tot);
 			}

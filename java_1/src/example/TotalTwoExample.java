@@ -12,11 +12,11 @@ import java.util.Scanner;
 public class TotalTwoExample {
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
-		int sum;
+		//int sum;
 		int tot=0;
 		while(true) {
 			System.out.print("정수값 입력[0:종료] >>");
-			sum=scanner.nextInt();	
+			int sum=scanner.nextInt();	
 			if(sum==0)break;
 			
 			tot+=sum;

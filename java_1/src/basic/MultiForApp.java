@@ -16,7 +16,7 @@ public class MultiForApp {
 	//★★★★★★★
 	//★★★★★★★
 	//★★★★★★★
-	//★★★★★★★_
+	//★★★★★★★ 
 	
 	for(int i=1;i<=4;i++) {//행(Row)을 처리하기 위한 반복문
 		for(int j=1; j<=7; j++) {//열(Column)을 처리하기 위한 반복문
@@ -34,13 +34,13 @@ public class MultiForApp {
 	//2★8   3★   4★ .... 8★   9★
 	//2★9   3★   4★ .... 8★   9★
 	
-	for(int j=2; j<=9; j++) {
-	System.out.print(j+"단\t");}
+	for(int k=2; k<=9; k++) {
+	System.out.print(k+"단\t");}
 	System.out.println();
 	
 	for(int i=1;i<=9;i++) {//행(Row)을 처리하기 위한 반복문
 		for(int j=2; j<=9; j++) {//열(Column)을 처리하기 위한 반복문
-			System.out.print(j+"★"+i+"="+j*i+"\t");
+			System.out.print(j+"*"+i+"="+j*i+"\t");
 		}
 		System.out.println();
 	}
