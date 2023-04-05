@@ -14,6 +14,11 @@ public class Example1 {
 		}
 		System.out.println();
 	}
+	
+	int a=8;
+	if(a==7) {
+		System.out.println(true);
+	}
 	}
 	
 }
