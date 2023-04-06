@@ -38,7 +38,7 @@ public class DoubleArrayApp {
 			//int[][] su =new int[][] {{10,20,30},{40,50,60},{70,80,90}};
 			int[][] su = {{10,20,30},{40,50,60},{70,80,90}};
 			
-			for(int [] array:su) {
+			for(int [] array:su) {//?????dㅇ이거왜 굳이 두번 넣음
 				for(int temp: array) {
 					System.out.print(temp+"\t");
 				}
