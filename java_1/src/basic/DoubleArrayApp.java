@@ -28,7 +28,7 @@ public class DoubleArrayApp {
 			System.out.println("==========================================");
 						
 			for(int i=0;i<num.length;i++) {//1차원 배열(행)을 일괄 처리 하기위한 반복문 
-				for(int j=0;j<num[i].length;j++) {//요소를 일괄처리하기 위한 반복문
+				for(int j=0;j<num[i].length;j++) {//요s소를 일괄처리하기 위한 반복문
 					System.out.print(num[i][j]+"\t");
 
 				}
