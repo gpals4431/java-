@@ -3,7 +3,7 @@ package oop;
 public class MemberApp {
 	public static void main(String[] args) {
 		//new 연산자로 Member 클래스의 매개변수가 없는 기본 생성자를 호출하여 객체 생성 
-		// => 생성된 객체의 필드에는 기본값이 초기값으로 자동 저장
+		// => 생성된 객체의 필드에는 기본값이 초기값으로 자동 저장 
 		// => new 연산자로 호출한 생성자가 없는 경우 에러 발생 - 객체 생성 불가능
 		Member member1=new Member();
 		
