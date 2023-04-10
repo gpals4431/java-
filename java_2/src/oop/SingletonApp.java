@@ -17,7 +17,7 @@ public class SingletonApp {
 		
 		//싱글톤 클래스는 생성자가 은닉화 선언되어 있어 new 연산자로 생성자를 호출하여 객체 생성 불가능
 		// => 객체를 반환하는 정적 메소드를 호출하여 참조변수에 반환받은 객체를 저장하여 사용
-		Singleton singleton1=Singleton.getInstance();
+		Singleton singleton1=Singleton.getInstance();//객체 생성 못하기때문에 get으로 객체를 반환해 정적 메소드 호출
 		Singleton singleton2=Singleton.getInstance();
 		
 		System.out.println("singleton1 = "+singleton1);
