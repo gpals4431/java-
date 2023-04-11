@@ -12,7 +12,7 @@ public class AcademyPerson {
 	}
 
 	public AcademyPerson(int num, String name) {
-		super();
+		super();//자바의 모든 클래스는 Object클래스를 상속받고 잇음
 		this.num = num;
 		this.name = name;
 	}
@@ -37,6 +37,4 @@ public class AcademyPerson {
 		System.out.println("이름 ="+name);
 		
 	}
-	
-	
 }
