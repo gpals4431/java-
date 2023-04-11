@@ -25,7 +25,7 @@ public class Car {
 	//엔진 정보를 저장하기 위한 필드 생성 - Engine 클래스를 자료형으로 선언된 필드
 	// => 필드에는 생성자 또는 Setter 메소드를 사용하여 엔진 객체를 제공받아 저장 - 포함 관계(복합적 연관 관계-생명주기가 같은 경우 )
 	
-	private Engine carEngine;
+	private Engine carEngine; // Engine <--- Car
 	
 	public Car() {
 		// TODO Auto-generated constructor stub
@@ -40,13 +40,9 @@ public class Car {
 	}
 
 
-
-
 	public String getModelName() {
 		return modelName;
 	}
-
-
 
 
 	public void setModelName(String modelName) {
@@ -54,13 +50,9 @@ public class Car {
 	}
 
 
-
-
 	public int getProductionYear() {
 		return productionYear;
 	}
-
-
 
 
 	public void setProductionYear(int productionYear) {
@@ -68,20 +60,14 @@ public class Car {
 	}
 
 
-
-
 	public Engine getCarEngine() {
 		return carEngine;
 	}
 
 
-
-
 	public void setCarEngine(Engine carEngine) {
 		this.carEngine = carEngine;
 	}
-
-
 
 
 	//자동차 정보(필드값)를 출력하는 메소드

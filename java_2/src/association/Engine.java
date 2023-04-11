@@ -8,7 +8,7 @@ public class Engine {
 	public Engine() {
 		// TODO Auto-generated constructor stub
 	}
-
+		
 	public Engine(String fualType, int displacement) {
 		super();
 		this.fualType = fualType;

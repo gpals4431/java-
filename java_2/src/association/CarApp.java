@@ -19,7 +19,7 @@ public class CarApp {
 		carOne.setProductionYear(2020);
 		//Setter 메소드를 호출하여 매개변수로 엔진정보(엔진 객체)를 전달받아 필드에 저장
 		// => 인위적인 포함관계 성립
-		carOne.setCarEngine(engine);
+		carOne.setCarEngine(engine);// >> setter를 이용해 engine의 메소드를가져옴
 		
 		carOne.displayCar();
 		System.out.println("=============================================================");
