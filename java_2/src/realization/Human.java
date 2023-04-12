@@ -9,6 +9,7 @@ public class Human {
 	}
 	public void smile() {
 		System.out.println("[인간]활짝 웃을 수 있는 능력이 있다");
+		
 	}
 }
 
