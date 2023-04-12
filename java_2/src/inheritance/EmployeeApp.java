@@ -28,7 +28,7 @@ public class EmployeeApp {
 	
 			/*
 			//사원급여를 반환받아 출력
-			// => 참조변수는 부모클래스의 개겣만 참조 가능하므로 자식클래스의 메소드 호출 불가능
+			// => 참조변수는 부모클래스의 객체만 참조 가능하므로 자식클래스의 메소드 호출 불가능
 			// => 명시적 객체 형변환을 이용하여 참조변수로 자식클래스의 객체를 참조하여 메소드 호출 가능
 			// => instanceof 연산자를 사용하여 자식클래스를 구분하여 객체 형변환 - ClassCastException 방지
 			if(employee instanceof EmployeeRegular) {
@@ -50,4 +50,3 @@ public class EmployeeApp {
 		}
 	}
 }
-
