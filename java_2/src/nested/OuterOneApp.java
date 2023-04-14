@@ -1,6 +1,6 @@
 package nested;
 
-import nested.OuterOne.InnerOne;
+import nested.OuterOne.InnerOne;//반드시 import 사용
 
 public class OuterOneApp {
 	public static void main(String[] args) {
