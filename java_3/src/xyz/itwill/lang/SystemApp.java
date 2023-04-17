@@ -14,8 +14,8 @@ import java.util.Scanner;
 
 //Object 클래스 : 모든 Java 클래스가 반드시 상속받는 부모클래스
 // => 모든 Java 클래스를 대신하여 사용할 수 있는 대표클래스
-//Math 클래스 : 수학 관련 기능을 메소드로 제공하는 클래스
-//Class 클래스 : 메모리(MethodArea)에 저장된 클래스를 관련 정보를 저장하기 위한 클래스
+//Class 클래스 : 메모리(MethodArea)에 저장된 클래스(class 객체 - Clazz)를 관련 기능을 메소드로 제공하기 위한 클래스
+//Math 클래스 : 수학 관련 기능을 메소드로 제공하기 위한 클래스 >> Math.Random > 난수값을 제공하는 메소드 
 
 //System 클래스 : 표준 입출력 스트림을 제공하거나 시스템 관련 기능을 메소드로 제공하는 클래스
 public class SystemApp {
@@ -37,6 +37,9 @@ public class SystemApp {
 		//타임스템프(TimeStamp) : 날짜와 시간을 정수값으로 표현하기 위해 만들어진 시간값
 		// => 1970년 1월 1일 기준으로 1/1000초(1ms)당 1씩 증가된 정수값
 		// => 날짜와 시간을 정수값으로 표현하여 연산(-)하기 위한 사용
+		//System.gc() : 메모리를 청소하는 프로그램(Garbage Collector)을 실행하는 메소드
+		System.gc();
+		
 		long startTime=System.currentTimeMillis();
 		
 		for(int i=1;i<=num;i++) {
@@ -47,8 +50,6 @@ public class SystemApp {
 		
 		System.out.println("실행시간 = "+(endTime-startTime)+"ms");
 		
-		//System.gc() : 메모리를 청소하는 프로그램(Garbage Collector)을 실행하는 메소드
-		System.gc();
 		
 		scanner.close();
 	}
