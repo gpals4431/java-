@@ -30,7 +30,7 @@ public class DateApp {
 		
 		System.out.println("현재 날짜 = "+printDate);
 		
-		//Date.getTime() : Date 객체에 저장된 날짜와 시간에서 대한 타임스템프를 반환하는 메소드
+		//Date.getTime() : Date 객체에 저장된 날짜와 시간에 대한 타임스템프를 반환하는 메소드
 		//타임스템프(TimeStamp) : 1970년 1월 1일을 기준으로 1ms마다 1씩 증가된 정수값
 		// => 날짜와 시간을 정수값(long)으로 표현하여 연산 처리하기 위해 사용
 		//long currentTime=now.getTime();
