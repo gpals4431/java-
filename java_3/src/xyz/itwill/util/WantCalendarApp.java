@@ -1,3 +1,4 @@
+/*0419 숙제*/
 package xyz.itwill.util;
 
 import java.io.WriteAbortedException;
@@ -11,16 +12,20 @@ public class WantCalendarApp {
 	public static void main(String[] args) {
 		int year;
 		int  month;
-		Calendar calendar = Calendar.getInstance();
 		
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("년 ");
-		System.out.print("월 >>");
-		
-		
+		System.out.print("년 >> ");
 		year =scanner.nextInt();
+		System.out.print("월 >> ");
 		month =scanner.nextInt();
-				
+		
+		scanner.close();		
+		
+		//시스템의 현재 날짜와 시간이 저장된 Calendar객체를 반환받아 저장
+		Calendar calendar = Calendar.getInstance();
+		
+		//calendar 객체에 저장된 날짜를 입력받은 년월에 대한 1일로 변경
+		// > 월(0~11), 요일(1~7)  > 월은 입력값에서 1을 감소하여 변경
 		calendar.set(year,month-1, 1);
 		
 		int week = calendar.get(Calendar.DAY_OF_WEEK);

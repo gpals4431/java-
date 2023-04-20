@@ -15,8 +15,7 @@ public class RandomApp {
 		
 		//random.nextInt(int bound) : 0 ~ bound-1 범위의 정수 난수값을 반환하는 메소드
 		for(int i=1;i<=5;i++) {
-			System.out.println(i+"번째 난수값 >>"+random.nextInt(100));//0~99
-
+			System.out.println(i+"번째 난수값 >>"+random.nextInt(100));//0~99//()안에 정수값없으면 -21억~21억 정수값 범위까지 
 		}
 	}
 }  

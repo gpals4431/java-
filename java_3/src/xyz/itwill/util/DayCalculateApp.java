@@ -1,3 +1,4 @@
+/*0419 숙제*/
 package xyz.itwill.util;
 
 import java.text.ParseException;
@@ -12,21 +13,27 @@ import java.util.Set;
 // [결과] 태어난지 <1일> 지났습니다.
 // >> 형식에 맞지않는 생년월일을 입력한 경우 에러메세지 출력 후 프로그램 종료
 public class DayCalculateApp {
-	public static void main(String[] args) {
-	
-		String bday;
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("생년월일 >> ");
-		bday =scanner.nextLine();
-		
-
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
-		//
-		
-		
-		
-		
-		
-		
-	}
-}
+	   public static void main(String[] args) {
+	    
+		   
+		   Scanner scanner = new Scanner(System.in);
+		   SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		   Date birthday = null; 
+	     
+		   try {
+		   System.out.print("생년월일 ex.2000-01-01 >> ");
+	      
+		   birthday =dateFormat.parse(scanner.nextLine());
+	     
+		   }catch(ParseException e) {
+			   System.out.println("error : 형식에 맞게 날짜와 시간을 입력해주세요.");
+			   System.exit(0);
+		   }finally {
+		   scanner.close();
+		   }
+		   
+		   long day = (System.currentTimeMillis()-birthday.getTime())/(1000*86400);
+	      
+		   System.out.println("[결과] 태어난지 <"+day+"일> 지났습니다.");
+	      }
+	   }
