@@ -23,10 +23,8 @@ public class SwingApp extends JFrame{
 	
 	JTextField jTextField;//이벤트처리메소드에서 쓸수 있도록 만들어주려고 field사용
 	JTextArea jTextArea;
-	
 
 	
-
 	public SwingApp(String title) {
 		super(title);
 
