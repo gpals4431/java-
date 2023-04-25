@@ -6,6 +6,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
+//문자데이타 기반의 스트림(Character Stream) : 원시데이타를 가공처리한 문자데이타를 전달하기
+//위한 입출력스트림
+//=> 원시데이타를 인코딩 처리하여 원하는 문자형태(캐릭터셋 - CharSet)의 문자데이타로 변환
+//=> 값을 2Byte 단위로 입력 또는 출력하기 위한 스트림
+//=> Reader 클래스와 Writer 클래스를 최상위 클래스로 관계가 설정된 클래스
+
+//키보드로 문자데이타(2Byte)를 입력받아 모니터에 전달하여 출력하는 프로그램 작성 
+//=> EOF(End Of File : 입력종료 - Ctrl+Z) 신호를 입력하면 프로그램 종료
 public class CharcterStreamApp {
 	public static void main(String[] args) throws IOException {
 		System.out.println("[메세지] 키보드를 눌러 값을 입력해주세요. [프로그램 종료 : ctrl+'Z']");

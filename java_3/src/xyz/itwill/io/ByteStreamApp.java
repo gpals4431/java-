@@ -3,6 +3,17 @@ package xyz.itwill.io;
 
 import java.io.IOException;
 
+//java.io 패키지 : 입력과 출력 관련 클래스가 선언된 패키지
+
+//스트림(Stream) : 값을 전달하기 위한 목적으로 생성된 입력클래스와 출력클래스의 객체
+//=> 시냇물이 흐르는 모양을 모델링하여 만들어 값이 한쪽 방향으로 전달되며 순차적으로 처리
+
+//원시데이타 기반의 스트림(Byte Stream) : 가공되지 않은 원시데이타를 전달하기 위한 입출력스트림
+//=> 값을 1Byte 단위로 입력 또는 출력하기 위한 스트림
+//=> InputStream 클래스와 OutputStream 클래스를 최상위 클래스로 관계가 설정된 클래스
+
+//키보드로 원시데이타(1Byte)를 입력받아 모니터에 전달하여 출력하는 프로그램 작성 
+//=> EOF(End Of File : 입력종료 - Ctrl+Z) 신호를 입력하면 프로그램 종료
 public class ByteStreamApp {
 	public static void main(String[] args) throws IOException{
 		System.out.println("[메세지] 키보드를 눌러 값을 입력해주세요. [프로그램 종료 : ctrl+'Z']");
