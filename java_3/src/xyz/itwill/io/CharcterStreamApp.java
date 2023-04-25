@@ -47,7 +47,7 @@ public class CharcterStreamApp {
 			
 			//Writer.write(int b) : 매개변수로 제공받은 값을 문자데이터(2Byte)로 출력스트림에 전달하는 메소드
 			//>>문자 데이터는 출력스트림에 존재하는 버퍼(=임시메모리)에 일정한 크기만큼 저장하고 한번에 출력스트림으로 전달하여 출력처리
-			out.write(readByte);// 보낼때 1바이트로 보내면 한글 실행 안됨.
+			System.out.write(readByte);// 보낼때 1바이트로 보내면 한글 실행 안됨.
 			
 			//Writer.flush () : 출력스트림의 버퍼에 존재하는 모든 값을 출력스트림으로 전달하는 메소드 
 			out.flush();
