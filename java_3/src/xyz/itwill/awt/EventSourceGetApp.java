@@ -72,8 +72,8 @@ public class EventSourceGetApp extends Frame {
 	}
 	
 	/*
-//컴퍼넌트마다 이벤트를 처리하는 클래스를 다르게 설덩
- * 컴포넌트가 여러개있으면 코드가 너무 많아짐! > 관리 어려움
+  컴퍼넌트마다 이벤트를 처리하는 클래스를 다르게 설정
+  컴포넌트가 여러개있으면 코드가 너무 많아짐! > 관리 어려움
 	public class RedButtonHandle implements ActionListener{
 
 		@Override

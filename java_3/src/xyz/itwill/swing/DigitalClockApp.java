@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 public class DigitalClockApp extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	//날짜와 시간을 출력할 JLabel 컴퍼넌를 저장하기 위한 필드
-	JLabel clockLabel;
+	//날짜와 시간을 출력할 JLabel 컴퍼넌트를 저장하기 위한 필드
+	JLabel clockLabel;//시계정보를 저장할 필드
 	JButton startButton, stopButton;
 	
 	//날짜와 시간을 변경하는 스레드의 실행상태를 저장하기 위한 필드
@@ -38,7 +38,7 @@ public class DigitalClockApp extends JFrame {
 	
 		isRun=true;
 		
-		clockLabel = new JLabel("", JLabel.CENTER);
+		clockLabel = new JLabel("", JLabel.CENTER);//시계에 대한 디자인 클래스
 		clockLabel.setFont(new Font("굴림체", Font.BOLD,30));
 		clockLabel.setForeground(Color.DARK_GRAY);
 		
