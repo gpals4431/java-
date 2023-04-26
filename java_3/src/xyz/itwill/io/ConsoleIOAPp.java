@@ -17,7 +17,7 @@ public class ConsoleIOAPp {
 		>> 입출력 관련 클래스는 스트림의 다단계 연결을 사용하여 스트림 확장 가능 
 		키보드로 문자열을 입력받기 위한 입력스트림 생성
 		*/ 
-		BufferedReader in= new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader in= new BufferedReader(new InputStreamReader(System.in));//시스템인은 원시데이터 1바이트밖에 못읽어드림 그래서 그냥 쓰면 안되고 확장시켜야함
 		 
 		//JAVA 프로그램 개발을 위해 기본적으로 제공되는 모니터 출력스트림(System.out)은
 		//PrintStream 클래스로 생성되어 print() 또는 println() 메소드를 호출하여 매개변수로 전달받은 값을 문자열로

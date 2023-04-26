@@ -26,5 +26,6 @@ public class DataOutputStreamApp {
       out.close();
       
       System.out.println("c:\\data\\data.txt 파일을 확인해 보세요.");
+      
    }
 }

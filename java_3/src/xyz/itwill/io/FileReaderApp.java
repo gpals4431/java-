@@ -31,7 +31,7 @@ public class FileReaderApp {
 		int readByte;
 		
 		while(true) {
-			readByte=in.read();
+			readByte=in.read(); // Load
 			
 			if(readByte==-1) break;
 			
