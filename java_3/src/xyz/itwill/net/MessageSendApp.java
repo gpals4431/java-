@@ -10,6 +10,8 @@ import java.net.InetAddress;
 
 //UDP 프로그램 : DatagramSocket 클래스와 DatagramPacket 클래스를 이용하여 작성
 // >> 값을 전달하는 컴퓨터와 값을 전달받는 컴퓨터로 구분하여 처리
+
+//키보드로 메세지를 입력받아 다른 컴퓨터에게 전달하는 UDP 프로그램 작성
 public class MessageSendApp {
 	public static void main(String[] args) throws IOException {
 		BufferedReader in  = new BufferedReader(new InputStreamReader(System.in));

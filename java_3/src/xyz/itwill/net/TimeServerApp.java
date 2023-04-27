@@ -20,6 +20,8 @@ public class TimeServerApp {
 			//ServerSocket 객체 생성 : 포트를 활성화하여 클라이언트가 접속할 수 있는 환경 제공
 			ntpServer = new ServerSocket(2000);
 			
+			//ServerSocket.toString() : ServerSocket 객체에 저장된 접속 관련 정보를 문자열로
+			//반환하는 메소드
 			//System.out.println("ntpServer = "+ntpServer);
 			
 			System.out.println("[메세지] NTP Server Running...");
