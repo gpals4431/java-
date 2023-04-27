@@ -10,14 +10,14 @@ import java.io.ObjectInputStream;
 //파일에 저장된 회원정보(Member 객체)를 제공받아 출력하는 프로그램 작성
 public class MemberLoadApp {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		ObjectInputStream in=new ObjectInputStream(new FileInputStream("c:/data/member.txt"));
+		ObjectInputStream in=new ObjectInputStream(new FileInputStream("c:/data/member.txt"));// file > object 로 확장
 		
 		System.out.println("<<회원목록>>");
 		while(true) {
 			try {
 				//ObjectInputStream.readObject() 메소드 호출시 파일 커서가 EOF 위치에 있는 
 				//경우 EOFException 발생
-				Member member=(Member)in.readObject();
+				Member member=(Member)in.readObject(); // 객체를 오브젝트 타입으로 반환 >> 명시적 객체 형변환 필요
 				System.out.println(member);
 			} catch (EOFException e) {
 				break;
