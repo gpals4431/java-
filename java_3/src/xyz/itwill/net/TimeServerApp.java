@@ -46,7 +46,7 @@ public class TimeServerApp {
 			 ObjectOutputStream out = new ObjectOutputStream(stream);
 			 
 			 //출력스트림을 이용하여 시스템의 현재 날짜와 시간이 저장된 DATE 객체를 생성하여 전달 - 클라이언트에게 날짜와 시간을 전송
-			 out.writeObject(new Date());
+			 out.writeObject(new Date());f
 			*/
 			 
 			 new ObjectOutputStream(socket.getOutputStream()).writeObject(new Date());// >> 더 효율적
