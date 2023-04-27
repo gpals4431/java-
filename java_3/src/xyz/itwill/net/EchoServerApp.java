@@ -14,12 +14,12 @@ public class EchoServerApp {
 		ServerSocket echoServer =null;
 		
 		try {
-			echoServer=new ServerSocket(3000);
+			echoServer=new ServerSocket(3000);//클라이언트 접속 환경 생성
 			System.out.println("[메세지]Echo Server Running....");
 			
 			
-			while(true) {
-				Socket socket = echoServer.accept();
+			while(true) {//다수의 클라이언트 접속할 수 있도록 반복문 사용
+				Socket socket = echoServer.accept();//소켓 생성>스레드 실행 클라이언트와 연결
 				
 				//소켓의 입력스트림을 제공받아 대량의 문자데이터를 얻어올 수 있는 입력스트림으로 확장
 				BufferedReader in = new BufferedReader

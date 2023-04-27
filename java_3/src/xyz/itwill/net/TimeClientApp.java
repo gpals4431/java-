@@ -1,4 +1,4 @@
-/*0427 04*/
+/*0427 03*/
 package xyz.itwill.net;
 
 import java.io.IOException;
@@ -20,14 +20,14 @@ public class TimeClientApp {
 			 네트워크 식별자(호스트이름 또는 IP주소)와 활성화된 포트번호를 전달하여 Socket객체 생성 - 서버에 접속
 			 >>UnknownHostException 및 IOException 발생 - 일반 예외이므로 반드시 예외처리
 			*/
-			Socket socket = new Socket("192.168.13.4", 2000); // 서버 접속 >> 클라이언트의 소켓이 생성되면 >> 연결
+			Socket socket = new Socket("192.168.13.6", 2000); // 서버 접속 >> 클라이언트의 소켓이 생성되면 >> 연결
 			//System.out.println("Socket ="+socket);
 			
 			//Socket 객체에 저장된 입력스트림(InputStream 객체:원시데이터)을 반환하는 메소드
-			InputStream stream = socket.getInputStream();
+			InputStream stream = socket.getInputStream();//입력스트림 통로 객체를생성
 			
 			//InputStream 객체를 전달받아 객체를 받을 수 있는 입력스트림으로 확장
-			ObjectInputStream in = new ObjectInputStream(stream);
+			ObjectInputStream in = new ObjectInputStream(stream);//통로 학장
 			
 			//입력스트림을 이용하여 서버에서 보내온 DATE객체를 반환받아 저장
 			Date date = (Date)in.readObject();

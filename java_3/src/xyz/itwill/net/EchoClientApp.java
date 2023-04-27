@@ -21,7 +21,7 @@ public class EchoClientApp {
 		
 		
 		try {
-			Socket socket = new Socket("192.168.13.5",3000);
+			Socket socket = new Socket("192.168.13.5",3000);//서버 연결
 			/*
 			//소켓의 출력스트림을 제공받아 대량의 문자데이터를 전달할 수 있는 출력스트림으로 확장
 			BufferedWriter out = new BufferedWriter
@@ -36,7 +36,7 @@ public class EchoClientApp {
 			
 			//소켓의 출력스트림을 제공받아
 			//모든 형식의 값을 문자열로 변환하여 전달할 수 있는 기능의 출력스트림으로 확장
-			PrintWriter out = new PrintWriter(socket.getOutputStream());
+			PrintWriter out = new PrintWriter(socket.getOutputStream());//통로 확장
 			
 			//PrintWriter.println(Object o) : 매개변수로 전달받은 모든 자료형의 값(객체)를 문자열로 변환하여 
 			//전달하는 메소드
