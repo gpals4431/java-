@@ -65,17 +65,19 @@ public class ChatClientApp extends JFrame implements ActionListener{
 		jTextField.addActionListener(this);
 		
 		try {
-			socket = new Socket("192.168.13.5",5000);
+			//socket 객체를 생성하여 필드에 저장 - 서버에 접속
+			socket = new Socket("192.168.13.5",5000);//2. 소켓객체 생성 해당 호스트를 포트(통로)로 연결하겠다
+			
 			// 소켓의 입력스트림을 제공받아 대량의 문자데이터를 읽을 수 있는 입력스트림으로 확장하여 필드에 저장
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream())); // 입력데이터 확장 - 통로확장
 		
 			/* 소켓의  출력스트림을 제공받아 문자열을 전달할 수 있는 출력스트림으로 확장하여 필드에 저장
 			 > PrintWriter클래스의 PrintWriter(OutputStream out, boolean autuFlush) 생성자를 사용하여
-			 PrintWriter 객체 생성
+			 PrintWriter 객체 생성 : 모든 자료형을 문자열로
+			 >BufferedWrite : 문자데이터를 문자열로
 			 > autuFlush 매개변수에 [true]를 전달하면 버퍼를 사용하지 않고 무조건 출력스트림으로 데이타를 전달 */
 			out= new PrintWriter(socket.getOutputStream(),true);
 			
-			//socket 객체를 생성하여 필드에 저장 - 서버에 접속
 		}catch(IOException e) {
 			JOptionPane.showMessageDialog(this, "서버에 접속 불가능", "접속오류", JOptionPane.ERROR_MESSAGE);
 			System.exit(0);

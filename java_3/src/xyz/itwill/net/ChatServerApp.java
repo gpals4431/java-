@@ -22,11 +22,11 @@ public class ChatServerApp {
 	private List<SocketTread> clientList;//10.
 	
 	public ChatServerApp() {//1. 생성자 생성 
-		ServerSocket chatServer = null; // 1-1.초기값 저장
+		ServerSocket chatServer = null; // 1-1.초기값 저장, 초기값을 생성자로 지정해주는것이 좋음
 		
 		try { //2. 소켓객체 생성
 			//포트를 활성화하여 클라이언트가 접속할 수 있는 환경 제공
-			chatServer =new ServerSocket(5000);
+			chatServer =new ServerSocket(5000);//5000짜리 포트 통로를 이용하겠다
 			System.out.println("[메세지] 채팅 서버 동작중 ... ");
 			
 			//필드에 ArrayList 객체를 생성하여 저장
