@@ -21,7 +21,9 @@ public class StaticBlockApp {
 		/*Class.forName(String className) : 문자열로 표현된 패키지가 포함된 클래스를 전달받아 ClassLoade 프로그램을 사용하여 
 		 클래스를 읽어 메모리에 저장하는 메소드 >> Class 객체(Clazz) 반환
 		 >> ClassNotFoundException 발생 : 해당 패키지에 클래스가 없는 경우 발생 - 일반예외 */
-		Class.forName("xyz.itwill.jdbc.StaticBlock");// > 수동으로 클래스를 메모리에 저장, 스태틱 영역 실행은 한번만 이용 가능 > 불필요한 객체 생성이나 호출을 방지 하기위해서 정적 영역안에 객체 생성 후 호출
+		Class.forName("xyz.itwill.jdbc.StaticBlock");
+		// > 수동으로 클래스를 메모리에 저장, 스태틱 영역 실행은 한번만 이용 가능 > 불필요한 객체 생성이나 호출을 방지 하기위해서 정적 영역안에 객체 생성 후 호출
+		
 		//StaticBlock sb= new StaticBlock();
 		//sb.display();
 		
