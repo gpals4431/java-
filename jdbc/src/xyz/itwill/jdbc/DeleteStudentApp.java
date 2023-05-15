@@ -1,4 +1,4 @@
-//7
+//5/12 7
 package xyz.itwill.jdbc;
 
 import java.sql.Connection;
@@ -27,8 +27,13 @@ public class DeleteStudentApp {
 					
 			String sql = "delete from student where no=3000";
 			
-			int row=stmt.executeUpdate(sql);
-			System.out.println("[메세지]\"+rows+\"명의 학생정보를 삭제하였습니다.");
+			int rows=stmt.executeUpdate(sql);
+			
+			if(rows>0) {
+				System.out.println("[메세지]\"+rows+\"명의 학생정보를 삭제하였습니다.");
+			}else {
+				System.out.println("[메세지]삭제할 학생이 없습니다.");
+			}
 			
 			con.commit();
 			

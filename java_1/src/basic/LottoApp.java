@@ -15,13 +15,13 @@ public class LottoApp {
 			//=>새로운 난수값이 기존의 모든 난수값과 다른 경우 반복문 종료
 			while(true) {
 				//1~45 범위의 정수난수를 제공받아 배열 요소에 저장
-				lotto[i]=(int)(Math.random()*45)+1;
+				lotto[i]=(int)(Math.random()*45)+1;//lotto[]에 난수값을 저장함 i=0~6까지의 첨자에 ex>>lotto[0] : 1~45까지 난수 저장 ~~ lotto[5] : 1~45까지의 난수저장
 				
 				//중복상태를 저장하기 위한 변수 -false : 미중복, true : 중복
 				boolean result=false;
 				
-				for(int j=0; j<i;j++) {//기존 난수값이 저장된 요소의 첨자를 표현하기 위한 반복문
-					if(lotto[i]==lotto[j]) {//lotto[i]: 새로운 난수값이 저장된 배열 요소, lotto[j]:기존 난수값이 저장된 배열 요소
+				for(int j=0; j<i;j++) {//기존 난수값이 저장된 요소의 첨자를 표현하기 위한 반복문 >> lotto[0]~[5]까지 반복한다
+					if(lotto[i]==lotto[j]) {//lotto[i]: 새로운 난수값이 저장된 배열 요소, lotto[j]:기존 난수값이 저장된 배열 요소 >> i-1 첨자를 가진 기존의 난수 eX)lotto[0]=1 >i lotto[1]=3>j, 두개의 값을 비교 
 						result = true;
 						break; 
 					}
