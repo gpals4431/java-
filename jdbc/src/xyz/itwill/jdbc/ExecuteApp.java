@@ -29,7 +29,7 @@ public class ExecuteApp {
 		Connection con =ConnectionFactory.getConnection();
 		Statement stmt = con.createStatement();
 		
-		int choice=1;
+		int choice=1;//내가 선택하는 값 select를 사용하고 싶다면 1이 아닌 값으로 저장하면된 
 		String sql="";
 		if(choice==1){
 			 sql="update student set name='임꺽정' where no=2000";
@@ -43,7 +43,7 @@ public class ExecuteApp {
 		 > true 반환 : select 명령을 전달하여 실행된 경우의 반환값
 		 > 전달되어 실행될 SQL 명령이 명확하지 않은 경우 사용하는 메소드
 		*/
-		boolean result= stmt.execute(sql);
+		boolean result= stmt.execute(sql);//>choice = 1이므로 update DML/DDL 명령이 전달되면서 false 값이 result 값에 저장됨 
 		
 		if(result) {//select 명령이 전달되어 실행된 경우
 			//statement.getResultSet() : Statement 객체로 전달되어 실행된 SELECT 명령의 처리 결과를 ResultSet 객체로 반환하는 메소드
