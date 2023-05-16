@@ -43,7 +43,7 @@ public class PreparedStatementApp  {
 		/*
 		Connection.prepareStatement(String sql):Connection 객체로부터 SQL 명령이 저장된 prepareStatement 객체를 반환하는 메소드
 		 >> prepareStatement객체에 저장되는 SQL 명령에는 ?(InParameter) 기호를 사용
-		InParameter : Java 변수값을 제공받아 SQL 명령에 문자값으로 표현하기 위한 기호
+		InParameter : Java 변수값을 제공받아 SQL 명령에 문자값으로 표함하기 위한 기호
 		
 		String sql1="insert into student values(?,?,?,?,?)";//불완전한 sql 명령
 		PreparedStatement pstmt=con.prepareStatement(sql1);//sql 명령을 미리 만들어서 prepareStatement에 저장

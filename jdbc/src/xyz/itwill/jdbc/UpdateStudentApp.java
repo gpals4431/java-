@@ -28,7 +28,8 @@ public class UpdateStudentApp {
 			
 			String sql="update student set name='임걱정',address ='부천시 원미구' where no=2000 ";
 			
-			int rows=stmt.executeUpdate(sql);//오라클에서 UPDATE를 하면 트렌젝션에 학생정보가 조작이 되어서 데이터 락이 걸림 >> 따라서 JDBC에서 명령을 실행할 수 없음 > 커밋이나 롤백 후 명령 실행
+			int rows=stmt.executeUpdate(sql);
+			//오라클에서 UPDATE를 하면 트렌젝션에 학생정보가 조작이 되어서 데이터 락이 걸림 >> 따라서 JDBC에서 명령을 실행할 수 없음 > 커밋이나 롤백 후 명령 실행
 			
 			System.out.println("[메세지]"+rows+"명의 학생정보를 변경하였습니다.");
 			
