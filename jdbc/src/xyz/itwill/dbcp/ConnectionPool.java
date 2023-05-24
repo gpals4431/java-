@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Vector;
-
+//직접 만들진 않음
 //Connection Pooling 기능을 제공한 클래스 - DBCP(DATABASE CONNECTION POOL)클래스 > CONNECTION 여러개 모아놓은 객체
 public final class ConnectionPool {
 	// Singleton

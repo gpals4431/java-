@@ -30,10 +30,10 @@ public class PropertiesApp {
 		// >> Properties 클래스는 Map 인터페이스의 자식클래스 : 이름과 값이 쌍으로 존재함
 		// >> Properties 파일의 이름(Name=Key)과 값(Value)을 하나의 엔트리(Entry)로 저장하기 위한 객체
 		
-		Properties properties = new Properties();
+		Properties properties = new Properties();//다수 엔트리 저장할 수 있는 객체
 		
 		//properties.load(inputStream in) : 입력스트림으로 properties 파일을 제공받아 파일에 저장된 이름과 값으로 properties객체에 엔트리를 추가하는 메소드
-		properties.load(in);
+		properties.load(in);//입력 스트림을 이용해 properties 파일이 가진 이름과 값 =한줄 의 정보를 가져와 3개의 엔트리 자동 추가
 		
 		//properties.get(String Key) : properties 객체에 저장된 엔트리에서 맵키(MapKey)를 전달받아 맵값(Map Value)를 반환하는 메소드 
 		// >> 맵 값은 object 객체로 반환되므로 반드시 명시적 객체 형변환 후 사용 가능

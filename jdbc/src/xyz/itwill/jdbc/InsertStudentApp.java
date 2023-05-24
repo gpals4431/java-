@@ -62,7 +62,7 @@ public class InsertStudentApp {
 		 URL(Uniform Resource Location) : 인터넷에 존재하는 자원의 위치를 표현하는 주소
 		 	형식)Protocol:ServerName:Port:Resource >> http(=웹 서비스 제공 프로토콜)://www.itwill.xyz:80/text/index.html  
 		 Oracle DBMS 서버에 접속하여 데이터베이스에 접근하기 위한 URL 주소
-		 	형식)jdbc:oracle:thin:@ServerName:Port:SID >> 내컴퓨터를 네트워크상에서는 localhost라고 함
+		 	형식)jdbc:oracle:thin:@:Port:SID >> 내컴퓨터를 네트워크상에서는 localhost라고 함
 		 JDBC 관련 클래스의 메소드를 호출한 경우 반드시 SQLException 발생 - 일반 예외 
 		 */
 			String url="jdbc:oracle:thin:@localhost:1521:xe";

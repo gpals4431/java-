@@ -3,7 +3,7 @@
 package xyz.itwill.student;
 
 //DTO(Date Transfer Object)클래스 : DAO 클래스의 메소드에 필요한 정보(값)를 매개변수로 전달하거나
-//또는 메소드에 실행결과를 저장하여 반환하기 위한 클래스 - VO(Value Object=값 저장 목표로 만든 클래스) 클래스
+//또는 메소드에 실행결과를 저장하여 반환하기 위한 클래스 - db연동 안했을 경우 VO(Value Object=값 저장 목표로 만든 클래스) 클래스
 // >> 테이블의 컬럼과 1:1로 매핑되는 필드 선언 - Getter & Setter 
 // >> 필드의 이름은 컬럼의 이름과 동일하게 작성하는 것을 권장
 
@@ -17,7 +17,7 @@ ADDRESS           VARCHAR2(100)
 BIRTHDAY          DATE 
  */
 
-//Student 테이블에 저장된 하나의 행(학생 정보)을 저장하여 전달하기 위한 클래스 - 컬럼값 저장 필드 선언
+//Student 테이블에 저장된 하나의 행(학생 정보)을 저장하여 전달하기 위한 DTO 클래스 - 컬럼값 저장 필드 선언
 public class StudentDTO {
 	private int no;
 	private String name;
@@ -79,6 +79,11 @@ public class StudentDTO {
 		this.birthday = birthday;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return no+"\t"+name+"\t"+phone+"\t"+address+"\t"+birthday+"\t";
+	}
 	
 	
 }

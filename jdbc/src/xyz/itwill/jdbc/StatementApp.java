@@ -8,11 +8,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /*
-statement 객체 : 현재 접속중인 dBMS서버에 sQL 명령을 전달하여 실행하기 위한 기능을 제공하는 객체
+statement 객체 : 현재 접속중인 DBMS서버에 SQL 명령을 전달하여 실행하기 위한 기능을 제공하는 객체
 장점: 하나의 Statement 객체를 사용하여 다수의 SQL 명령을 전달하여 실행 가능
 단점: SQL 명령에 Java 변수값을 포함시킬 경우 문자열 결합 기능 사용 
  >> 문자열 결합을 이용할 경우 가독성 및 유지보수의 효율성이 떨어짐, 코드 지저분해짐
- >> InSQL 해킹 기술(값 대신 부분적인 SQL명령을 포함시키는 해킹 기술)에 취약 
+ >> InSQL 해킹 기술(값 대신 부분적인 SQL명령을 포함시키는 해킹 기술)에 취약- 인증을 통한 권한을 획득할때 위험 
 */
 
 public class StatementApp {

@@ -7,7 +7,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
 
-/*저장 프로시저
+/*저장 프로시저 > 자바에서 호출
 CREATE OR REPLACE PROCEDURE DELETE_STUDENT(VNO IN STUDENT.NO%TYPE >>  IN모드 매개변수 
     ,VNAME OUT STUDENT.NAME%TYPE) IS // >>  OUT모드 매개변수 : 바인딩 변수
 BEGIN
@@ -46,11 +46,11 @@ public class CallableStatementApp {
 		String sql ="{call delete_student(?,?)}";
 		CallableStatement cstmt = con.prepareCall(sql);
 		//CallableStatement.setXXX(int parameterIndex, XXX value) : 저장 프로시저에서 사용한 매개변수 중 in모드의 매개변수에 값을 전달하기 위한 메소드
-		cstmt.setInt(1,no);
+		cstmt.setInt(1,no);//첫번째 inparameter에 값 전달
 		
 		//CallableStatement.registerOutParameter(int parameterIndex, int sqlType) : 저장 프로시저에서 사용한 매개변수 중 out 모드의 매개변수에 저장된 값을 제공받기 위한 메소드
 		// >> sqlType: SQL 자료형 - Types 클래스의 상수 사용
-		cstmt.registerOutParameter(2, Types.NVARCHAR);
+		cstmt.registerOutParameter(2, Types.NVARCHAR);//두번째 inparameter에 값 전달
 		
 		//CallableStatement.execute() : 저장 프로시저를 호출하는 명령을 전달하여 실행하는 메소드, 뭐가 실행될지 모름 > execute 사용
 		cstmt.execute();

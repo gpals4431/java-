@@ -8,6 +8,7 @@ import oracle.ucp.jdbc.PoolDataSource;
 import oracle.ucp.jdbc.PoolDataSourceFactory;
 import oracle.ucp.jdbc.PoolDataSourceImpl;
 
+//DBCP 클래스는 회사에서 배포해줌 그냥 가져다 쓰면됨 = 직접 만들 필요 없음
 //javax.sql.DataSource(인터페이스) : DBCP 클래스를 작성하기 위해 상속받는 인터페이스
 // >> DBCP 클래스의 메소드를 동일한 형식으로 작성하기 위한 규칙 제공
 
@@ -40,7 +41,8 @@ public class DataSourceApp {
 
 		//===============================================================================/
 		
-		//PoolDataSource 객체에 저장될 Connection 객체의 갯수를 제한하기 위한 메소드 호출 > 메소드 호출을 생략할 경우 기본값을 사용하여 Connection 갯수 제한
+		//PoolDataSource 객체에 저장될 Connection 객체의 갯수를 제한하기 위한 메소드 호출 > 메소드 호출을 생략할 경우 기본값을 사용하여 Connection 갯수 제한 >> jdbc에 연결되는 다른 서버의 컨넥션 갯수를 제한>> 너무 많으면 서버가 다운될 수 있어서
+		
 		pds.setInitialPoolSize(2);//최초 생성되는 Connection 객체의 갯수 변경
 		pds.setMaxPoolSize(3);//최대 생성가능한 Connection 객체의 갯수 변경
 		
