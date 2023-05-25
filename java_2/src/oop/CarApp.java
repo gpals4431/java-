@@ -21,6 +21,8 @@ public class CarApp {
 		System.out.println("carOne = "+carOne);
 		System.out.println("carTwo = "+carTwo);
 		System.out.println("carThree = "+carThree);
+		
+
 		System.out.println("==============================================================");
 		//참조변수.필드명 : 참조변수에 저장된 객체가 . 연산자를 사용하여 필드에 접근
 		// => 객체의 필드에는 기본값이 초기값으로 자동 저장

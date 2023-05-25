@@ -1,36 +1,32 @@
 package team_02;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 import java.util.regex.Pattern;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 
-import java.awt.GridLayout;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.SystemColor;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class HondLandGUIApp extends JFrame implements ActionListener {
    private static final long serialVersionUID = 1L;
