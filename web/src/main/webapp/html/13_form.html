@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- 중요!!! -->
+	<!-- !!!중요!!! -->
 	<h1>form 태그</h1>
 	<hr>
 	<!-- form 태그 : 웹프로그램을 요청하여 사용자로부터 입력받은 값을 전달하는 태그  -->
@@ -13,6 +13,8 @@
 	 제출 이벤트(Submit Event)를 발생하는 태그를 반드시 작성 -->
 	<!-- 제출 이벤트 : form 태그를 사용하여 웹프로그램을 요청하기 위한 이벤트 -->
 	<!-- action 속성 : form 태그를 사용하여 요청할 웹프로그램의 URL 주소를 속성값으로 설정 -->	
+	<!-- =>action 속성을 생략한 경우 현재 요청  웹프로그램의 URL 주소를 사용하여 요청 - 자기자신을 요청 -->
+	
 	<!-- method 속성 : 웹프로그램을 요청하는 요청방식(get 또는 post)을 속성값으로 설정 -->	
 	<!-- => 웹프로그램의 요청방식에 따라 사용자 입력값을 전달하는 방법이 다름 -->
 	<!-- get : 사용자 입력값을 URL 주소의 질의문자열으로 전달 (로그인시 아이디 입력)-->
@@ -23,8 +25,8 @@
 	<!-- => 머릿부와 몸체부로 구분 - get 방식은 몸체부가 항상 비어있음-->
 	
 	<!-- enctype 속성 : [application/x-www-form-urlencoded] - 기본, [multipart/form-data], [text/plain] 중 하나를 속성값으로 설정 -->
-	<!-- application/x-www-form-urlencoded : 사용자 입력값을 문자값으로 전달 -->
-	<!-- multipart/form-data : 사용자 입력값을 원시값으로 전달 - 파일을 입력받아 전달 -->
+	<!-- application/x-www-form-urlencoded : 사용자 입력값을 문자값으로 전달 - 보통 파일 입력 제외한 대부분 사용-->
+	<!-- multipart/form-data : 사용자 입력값을 원시값(2진수)으로 전달 - 파일을 입력받아 서버에 전달 -->
 	<!-- text/plain : 사용자 입력값을 문자값으로 전달 - 텍스트 파일을 입력받아 전달(디버깅용으로 사용)-->
 	<form action="13_action.html" method="post" enctype="application/x-www-form-urlencoded">
 		<!-- 입력 태그 : 사용자로부터 값을 입력받기 위한 태그 -input, textarea, select 등 -->			

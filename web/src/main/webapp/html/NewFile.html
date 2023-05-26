@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NEW HTML</title>
+<style type="text/css">
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid black;
+	width: 162px;
+	padding: 20px;
+	text-align: center;
+}
+
+caption {
+	font-size: 24px;
+	line-height: 40px;
+	letter-spacing: 15px;
+}
+</style>
+</head>
+<body>
+	<h1 align="center">숙소예약프로그램</h1>
+	<hr>
+	<h3 align="center">방 선택</h3>
+	<hr>
+	<a title="방1" href="/web/html/room.html">
+		<img alt="room1" src="/web/html/images/방1.jpeg" width="170"></a>
+	<a title="방2" href="room.html">
+		<img alt="room2" src="images/방2.jpeg"width="170"></a>
+	<a title="방3" href="room.html">
+		<img alt="room3" src="images/방3.jpeg"width="170"></a>
+		
+	<table summary="방 안내">
+		<caption>객실표</caption>
+		<thead>
+			<tr>
+				<th>방이름</th><th>크기</th><th>가격</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>방 1</th><th>4인실</th><th rowspan="2">50,000</th>
+			</tr>
+			<tr>
+				<th>방 2</th><th>2인실</th>
+			</tr>
+			<tr>
+				<th>방 3</th><th>6인실</th><th>70,000</th>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="4">바깥채 전체를 독채로 대여합니다.</td>
+			</tr>
+		</tfoot>
+		
+		</table>
+		
+</body>
+</html>
