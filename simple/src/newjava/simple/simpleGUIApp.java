@@ -193,6 +193,14 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		insert_btn.setBackground(Color.DARK_GRAY);
 		panel_4.add(insert_btn);
 		insert_btn.setFont(new Font("굴림", Font.BOLD, 15));
+		insert_btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				clear();
+				
+			}
+		});
 
 		update_btn = new JButton(" 수 정 ");
 		update_btn.setBackground(Color.DARK_GRAY);
@@ -225,14 +233,23 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		aname_TF.setEditable(false);
 		search_TF.setEditable(false);
 		usedate_TF.setEditable(false);
+		inout_TF.setEditable(false);
+		out_TF.setEditable(false);
+		in_TF.setEditable(false);
 	}
 
 	// 모든 TF 컴퍼넌트의 입력값을 초기화하는 메소드
 	public void clear() {
 		amoney_TF.setText("");
 		aname_TF.setText("");
-		search_TF.setText("");
+		inout_TF.setText("");
 		usedate_TF.setText("");
+		out_TF.setText("");
+		in_TF.setText("");
+		
+	}
+	public void clearsearch() {
+		search_TF.setText("");	
 	}
 
 	public void none() {
@@ -261,6 +278,7 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 			rowData.add(account.getAname());
 			rowData.add(account.getAmoney());
 			rowData.add(account.getAinout());
+			rowData.add(account.getUsedate());
 			rowData.add(account.getAin());
 			rowData.add(account.getAout());
 
@@ -272,7 +290,7 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		String name = aname_TF.getText();
 
 		if (name.equals("")) {
-			JOptionPane.showMessageDialog(this, "내역명을 반드시 입력해주세요.");
+			JOptionPane.showMessageDialog(this, "사용처명을 반드시 입력해주세요.");
 			aname_TF.requestFocus();
 			return false;
 		}
