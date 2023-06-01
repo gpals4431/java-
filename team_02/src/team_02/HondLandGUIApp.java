@@ -1,32 +1,39 @@
 package team_02;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+//import xyz.itwill.student.StudentDAOImpl;
+//import xyz.itwill.student.StudentDTO;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 import java.util.regex.Pattern;
-
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
+
+import java.awt.GridLayout;
+import javax.swing.JTable;
+import java.awt.SystemColor;
 
 public class HondLandGUIApp extends JFrame implements ActionListener {
    private static final long serialVersionUID = 1L;
@@ -36,13 +43,21 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
    JScrollPane scrollPane;
    ImageIcon icon;
    private JTable page3_table;
+   private JTable page4_table;
+   private JTable page6_table;
+   private JTable page7_table;
+   private JTable page8_table;
+   private JTable page9_table;
 
    // page_3 JTextField
    private JTextField page3_regno;
    private JTextField page3_gender_text;
-   private JTextField page3_kind_text;
+   private JTextField page3_size_text;
 
-   JButton page3_regno_btn, page3_kind_btn, page3_gender_btn;
+   // JButton 선언
+   JButton page3_regno_btn, page3_size_btn, page3_gender_btn, page4_gender_btn1, page4_gender_btn2, page4_gender_btn3,
+         page4_size_btn1, page4_size_btn2, page4_size_btn3, page4_select_btn, page8_regno_btn, page6_done_btn,
+         page7_insert_btn, page7_delete_btn, page9_insert_btn;
 
    // page_6 JTextField
    private JTextField page6_name_text;
@@ -80,11 +95,8 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
    public static final int UPDATE = 3;
    // 검색처리를 위한 상수
    public static final int SELECT = 4;
-   private JTable page4_table;
-   private JTable page6_table;
-   private JTable page7_table;
-   private JTable page8_table;
-   private JTable page9_table;
+
+   int cmd;
 
    /**
     * Launch the application.
@@ -219,27 +231,29 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       page3_gender_text.setColumns(10);
       panel_36.add(page3_gender_text);
 
-      JButton page3_gender_btn_1 = new JButton("SEARCH");
-      page3_gender_btn_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 24));
-      panel_36.add(page3_gender_btn_1);
+      page3_gender_btn = new JButton("SEARCH");
+      page3_gender_btn.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 24));
+      panel_36.add(page3_gender_btn);
+      page3_gender_btn.addActionListener(this);
 
       JPanel panel_37 = new JPanel();
       panel_1.add(panel_37);
       panel_37.setLayout(new BoxLayout(panel_37, BoxLayout.X_AXIS));
 
-      JLabel page3_kind_label = new JLabel("품종");
-      page3_kind_label.setHorizontalAlignment(SwingConstants.CENTER);
-      page3_kind_label.setFont(new Font("맑은 고딕", Font.BOLD, 24));
-      panel_37.add(page3_kind_label);
+      JLabel page3_size_label = new JLabel("크기");
+      page3_size_label.setHorizontalAlignment(SwingConstants.CENTER);
+      page3_size_label.setFont(new Font("맑은 고딕", Font.BOLD, 24));
+      panel_37.add(page3_size_label);
 
-      page3_kind_text = new JTextField();
-      page3_kind_text.setFont(new Font("돋움", Font.PLAIN, 30));
-      page3_kind_text.setColumns(10);
-      panel_37.add(page3_kind_text);
+      page3_size_text = new JTextField();
+      page3_size_text.setFont(new Font("돋움", Font.PLAIN, 30));
+      page3_size_text.setColumns(10);
+      panel_37.add(page3_size_text);
 
-      JButton page3_kind_btn_1 = new JButton("SEARCH");
-      page3_kind_btn_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 24));
-      panel_37.add(page3_kind_btn_1);
+      page3_size_btn = new JButton("SEARCH");
+      page3_size_btn.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 24));
+      panel_37.add(page3_size_btn);
+      page3_size_btn.addActionListener(this);
 
       // page3 table 객체 생성
       page3_table = new JTable(new DefaultTableModel(title_3, 0));
@@ -272,112 +286,59 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          public void actionPerformed(ActionEvent e) {
             page_1.setVisible(true);
             page_3.setVisible(false);
+            clear3();
          }
 
       });
 
       // page_4===================================================================================
+
+      // page4
+      Object[] title_4 = { "이름", "크기", "품종", "성별", "나이", "병력", "보호시작일", "안락사예정일", "입양여부", "등록번호" };
+
       JPanel page_4 = new JPanel();
       page_4.setBounds(0, 0, 1068, 619);
       contentPane.add(page_4);
       page_4.setLayout(new BorderLayout(0, 0));
 
-      JPanel panel = new JPanel();
-      page_4.add(panel, BorderLayout.WEST);
-      panel.setLayout(new GridLayout(0, 1, 0, 0));
+      JPanel panel_8 = new JPanel();
+      page_4.add(panel_8, BorderLayout.CENTER);
 
-      JPanel panel_3 = new JPanel();
-      panel.add(panel_3);
-      panel_3.setLayout(new BorderLayout(0, 0));
+      page4_table = new JTable();
+      page4_table.setFont(new Font("나눔고딕", Font.PLAIN, 15));
+      panel_8.add(page4_table);
 
-      JPanel panel_6 = new JPanel();
-      panel_3.add(panel_6);
-      panel_6.setLayout(new BoxLayout(panel_6, BoxLayout.Y_AXIS));
+      // page4 table 객체 생성
+      page4_table = new JTable(new DefaultTableModel(title_4, 0));
+      page_4.add(page4_table, BorderLayout.CENTER);
 
-      JButton page4_gender_btn1 = new JButton("  여자 ");
-      page4_gender_btn1.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-      panel_6.add(page4_gender_btn1);
-
-      JButton page4_gender_btn2 = new JButton("  남자 ");
-      page4_gender_btn2.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-      panel_6.add(page4_gender_btn2);
-
-      JButton page4_gender_btn3 = new JButton("중성화");
-      page4_gender_btn3.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-      panel_6.add(page4_gender_btn3);
-
-      JPanel panel_5 = new JPanel();
-      panel_6.add(panel_5);
-      panel_5.setLayout(null);
-
-      JLabel page4_size_label = new JLabel("크기");
-      page4_size_label.setBounds(0, 10, 40, 27);
-      page4_size_label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-      panel_5.add(page4_size_label);
-
-      JButton page4_size_btn1 = new JButton(" 소형 ");
-      page4_size_btn1.setBounds(0, 36, 79, 29);
-      page4_size_btn1.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-      panel_5.add(page4_size_btn1);
-
-      JButton page4_size_btn2 = new JButton(" 중형 ");
-      page4_size_btn2.setBounds(0, 65, 79, 29);
-      page4_size_btn2.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-      panel_5.add(page4_size_btn2);
-
-      JButton page4_size_btn3 = new JButton(" 대형 ");
-      page4_size_btn3.setBounds(0, 94, 79, 29);
-      page4_size_btn3.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-      panel_5.add(page4_size_btn3);
-
-      JPanel panel_2 = new JPanel();
-      panel_2.setBounds(0, 0, 108, 168);
-      panel_5.add(panel_2);
-      panel_2.setLayout(null);
-
-      JLabel page4_gender_label = new JLabel("성별");
-      page4_gender_label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-      panel_3.add(page4_gender_label, BorderLayout.NORTH);
-
-      JPanel panel_39 = new JPanel();
-      panel.add(panel_39);
-      panel_39.setLayout(null);
-
-      JButton page4_select_btn = new JButton("검색");
-      page4_select_btn.setBackground(SystemColor.activeCaption);
-      page4_select_btn.setForeground(SystemColor.inactiveCaptionText);
-      page4_select_btn.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-      page4_select_btn.setBounds(0, -1, 77, 30);
-      panel_39.add(page4_select_btn);
       JScrollPane page4_sp = new JScrollPane(page4_table);
-
-      JPanel panel_38 = new JPanel();
-      page_4.add(panel_38, BorderLayout.SOUTH);
-      panel_38.setLayout(new BorderLayout(0, 0));
-
-      JPanel panel_4 = new JPanel();
-      panel_38.add(panel_4, BorderLayout.EAST);
-
-      JButton btnNewButton_2 = new JButton("초기화");
-      btnNewButton_2.setFont(new Font("나눔고딕", Font.BOLD, 17));
-      panel_4.add(btnNewButton_2);
+      page_4.add(page4_sp, "Center");
 
       JPanel panel_7 = new JPanel();
-      page_4.add(panel_7, BorderLayout.EAST);
+      page_4.add(panel_7, BorderLayout.NORTH);
       panel_7.setLayout(new BorderLayout(0, 0));
 
       JPanel panel_56 = new JPanel();
-      panel_7.add(panel_56);
+      panel_7.add(panel_56, BorderLayout.EAST);
 
       JButton home_btn4 = new JButton("HOME");
       home_btn4.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
-      panel_7.add(home_btn4, BorderLayout.NORTH);
-      
-      JScrollPane page4_sp1 = new JScrollPane(page4_table);
-      page_4.add(page4_sp1, BorderLayout.CENTER);
-      
-      page4_table = new JTable();
-      page_4.add(page4_table, BorderLayout.CENTER);
+      panel_7.add(home_btn4, BorderLayout.EAST);
+
+      // 4페이지 비활성화
+      page_4.setVisible(false);
+
+      // home_btn4을 눌렀을 경우 1페이지 활성화+4페이지 비활성화
+      home_btn4.addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            page_1.setVisible(true);
+            page_4.setVisible(false);
+         }
+
+      });
 
       JPanel page_5 = new JPanel();
       page_5.setBounds(0, 0, 1066, 629);
@@ -420,12 +381,19 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       home_btn5.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 16));
       panel_55.add(home_btn5);
 
+      // page6
+      Object[] title_6 = { "이름", "크기", "품종", "성별", "나이", "병력", "보호시작일", "안락사예정일", "입양여부", "등록번호" };
+
       JPanel page_6 = new JPanel();
       page_6.setBounds(0, 0, 1066, 619);
       contentPane.add(page_6);
       page_6.setLayout(new BorderLayout(0, 0));
-      
-    
+
+      JPanel panel_11 = new JPanel();
+      page_6.add(panel_11, BorderLayout.CENTER);
+
+      page6_table = new JTable();
+      panel_11.add(page6_table);
 
       JPanel panel_12 = new JPanel();
       page_6.add(panel_12, BorderLayout.SOUTH);
@@ -449,12 +417,20 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       panel_12.add(page6_adopt_text);
       page6_adopt_text.setColumns(10);
 
-      JButton page6_done_btn = new JButton("확인");
+      page6_done_btn = new JButton("확인");
       panel_12.add(page6_done_btn);
       page6_done_btn.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+      page6_done_btn.addActionListener(this);
+
+      // page6 table 객체 생성
+      page6_table = new JTable(new DefaultTableModel(title_6, 0));
+      page_6.add(page6_table, BorderLayout.CENTER);
+
+      JScrollPane page6_sp = new JScrollPane(page6_table);
 
       JPanel panel_40 = new JPanel();
       page_6.add(panel_40, BorderLayout.NORTH);
+      page_6.add(page6_sp, "Center");
       panel_40.setLayout(new BorderLayout(0, 0));
 
       JButton home_btn6 = new JButton("HOME");
@@ -464,13 +440,10 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          }
       });
       panel_40.add(home_btn6, BorderLayout.EAST);
-      
-      JScrollPane page6_sp = new JScrollPane(page6_table);
-      page_6.add(page6_sp, BorderLayout.CENTER);
-      
-      page6_table = new JTable();
-      page_6.add(page6_table, BorderLayout.CENTER);
-      
+
+      // page7============================================================================================
+
+      Object[] title_7 = { "이름", "품종", "성별", "나이", "보호 종료 사유" };
 
       JPanel page_7 = new JPanel();
       page_7.setBounds(0, 0, 1066, 617);
@@ -567,16 +540,31 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       JPanel panel_18 = new JPanel();
       page_7.add(panel_18, BorderLayout.SOUTH);
 
-      JButton page7_insert_text = new JButton("삽입");
-      page7_insert_text.setFont(new Font("나눔고딕", Font.BOLD, 18));
-      panel_18.add(page7_insert_text);
+      page7_insert_btn = new JButton("삽입");
+      page7_insert_btn.setFont(new Font("나눔고딕", Font.BOLD, 18));
+      panel_18.add(page7_insert_btn);
+      page7_insert_btn.addActionListener(this);
 
-      JButton page7_delete_text = new JButton("삭제");
-      page7_delete_text.setFont(new Font("나눔고딕", Font.BOLD, 18));
-      panel_18.add(page7_delete_text);
+      page7_delete_btn = new JButton("삭제");
+      page7_delete_btn.setFont(new Font("나눔고딕", Font.BOLD, 18));
+      panel_18.add(page7_delete_btn);
+      page7_delete_btn.addActionListener(this);
+
+      JPanel panel_42 = new JPanel();
+      page_7.add(panel_42, BorderLayout.CENTER);
+
+      page7_table = new JTable();
+      panel_42.add(page7_table);
+
+      // page7 table 객체 생성
+      page7_table = new JTable(new DefaultTableModel(title_7, 0));
+      page_7.add(page7_table, BorderLayout.CENTER);
+
+      JScrollPane page7_sp = new JScrollPane(page7_table);
 
       JPanel panel_44 = new JPanel();
       page_7.add(panel_44, BorderLayout.NORTH);
+      page_7.add(page7_sp, "Center");
       panel_44.setLayout(new BorderLayout(0, 0));
 
       JPanel panel_45 = new JPanel();
@@ -585,12 +573,27 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       JButton home_btn7 = new JButton("HOME");
       home_btn7.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
       panel_45.add(home_btn7);
-      
-      JScrollPane page7_sp = new JScrollPane(page7_table);
-      page_7.add(page7_sp, BorderLayout.CENTER);
-      
-      page7_table = new JTable();
-      page_7.add(page7_table, BorderLayout.CENTER);
+
+      // 7페이지 비활성화
+      page_7.setVisible(false);
+
+      // 7페이지 비활성화
+      page_7.setVisible(false);
+      // home_btn7을 눌렀을 경우 1페이지 활성화+7페이지 비활성화
+      home_btn7.addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            page_1.setVisible(true);
+            page_7.setVisible(false);
+            clear7();
+         }
+
+      });
+
+      // 8페이지========================================================================================
+
+      Object[] title_8 = { "등록번호", "이름", "성별", "소유자", "전화번호", "주소" };
 
       JPanel page_8 = new JPanel();
       page_8.setBounds(0, 0, 1066, 617);
@@ -609,12 +612,26 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       panel_20.add(page8_regno_text);
       page8_regno_text.setColumns(10);
 
-      JButton page8_regno_btn = new JButton("검색");
+      page8_regno_btn = new JButton("검색");
       page8_regno_btn.setFont(new Font("나눔고딕", Font.BOLD, 15));
       panel_20.add(page8_regno_btn);
+      page8_regno_btn.addActionListener(this);
+
+      JPanel panel_21 = new JPanel();
+      page_8.add(panel_21, BorderLayout.CENTER);
+
+      page8_table = new JTable();
+      panel_21.add(page8_table);
+
+      // page8 table 객체 생성
+      page8_table = new JTable(new DefaultTableModel(title_8, 0));
+      page_8.add(page8_table, BorderLayout.CENTER);
+
+      JScrollPane page8_sp = new JScrollPane(page8_table);
 
       JPanel panel_46 = new JPanel();
       page_8.add(panel_46, BorderLayout.SOUTH);
+      page_8.add(page8_sp, "Center");
       panel_46.setLayout(new BorderLayout(0, 0));
 
       JPanel panel_47 = new JPanel();
@@ -623,13 +640,29 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       JButton home_btn8 = new JButton("HOME");
       home_btn8.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
       panel_47.add(home_btn8);
-      
-      JScrollPane page8_sp = new JScrollPane(page8_table);
-      page_8.add(page8_sp, BorderLayout.CENTER);
-      
-      page8_table = new JTable();
-      page_8.add(page8_table, BorderLayout.WEST);
-      
+
+      /*
+       * JButton page9_init_btn = new JButton("초기화"); page9_init_btn.setFont(new
+       * Font("나눔고딕", Font.BOLD, 15)); panel_32.add(page9_init_btn);
+       */
+
+      // 8페이지 비활성화
+      page_8.setVisible(false);
+      // home_btn8을 눌렀을 경우 1페이지 활성화+8페이지 비활성화
+      home_btn8.addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            page_1.setVisible(true);
+            page_8.setVisible(false);
+            clear8();
+         }
+
+      });
+
+      // 페이지9==================================================================================
+
+      Object[] title_9 = { "이름", "크기", "품종", "성별", "나이", "병력", "보호시작일", "안락사예정일", "입양여부", "등록번호" };
 
       JPanel page_9 = new JPanel();
       page_9.setBounds(0, 0, 1068, 619);
@@ -688,9 +721,9 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       panel_50.add(panel_28_1);
       panel_28_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-      JLabel page9_startday_label = new JLabel("보호 시작일 :");
-      page9_startday_label.setFont(new Font("나눔고딕", Font.BOLD, 15));
-      panel_28_1.add(page9_startday_label);
+      JLabel page9_case_label = new JLabel("병력 :");
+      panel_28_1.add(page9_case_label);
+      page9_case_label.setFont(new Font("나눔고딕", Font.BOLD, 15));
 
       JPanel panel_29_1 = new JPanel();
       panel_50.add(panel_29_1);
@@ -720,9 +753,9 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       panel_50.add(panel_27_1_1);
       panel_27_1_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-      JLabel page9_case_label = new JLabel("병력 :");
-      page9_case_label.setFont(new Font("나눔고딕", Font.BOLD, 15));
-      panel_27_1_1.add(page9_case_label);
+      JLabel page9_startday_label = new JLabel("보호 시작일 :");
+      panel_27_1_1.add(page9_startday_label);
+      page9_startday_label.setFont(new Font("나눔고딕", Font.BOLD, 15));
 
       JPanel panel_51 = new JPanel();
       panel_19.add(panel_51);
@@ -776,11 +809,11 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       JPanel panel_27 = new JPanel();
       panel_51.add(panel_27);
 
-      page9_startday_text = new JTextField();
-      page9_startday_text.setHorizontalAlignment(SwingConstants.CENTER);
-      page9_startday_text.setFont(new Font("나눔고딕", Font.PLAIN, 15));
-      page9_startday_text.setColumns(10);
-      panel_27.add(page9_startday_text);
+      page9_case_text = new JTextField();
+      panel_27.add(page9_case_text);
+      page9_case_text.setHorizontalAlignment(SwingConstants.CENTER);
+      page9_case_text.setFont(new Font("나눔고딕", Font.PLAIN, 15));
+      page9_case_text.setColumns(10);
 
       JPanel panel_28 = new JPanel();
       panel_51.add(panel_28);
@@ -812,25 +845,36 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       JPanel panel_31 = new JPanel();
       panel_51.add(panel_31);
 
-      page9_case_text = new JTextField();
-      page9_case_text.setHorizontalAlignment(SwingConstants.CENTER);
-      page9_case_text.setFont(new Font("나눔고딕", Font.PLAIN, 15));
-      page9_case_text.setColumns(10);
-      panel_31.add(page9_case_text);
+      page9_startday_text = new JTextField();
+      panel_31.add(page9_startday_text);
+      page9_startday_text.setHorizontalAlignment(SwingConstants.CENTER);
+      page9_startday_text.setFont(new Font("나눔고딕", Font.PLAIN, 15));
+      page9_startday_text.setColumns(10);
 
       JPanel panel_32 = new JPanel();
       page_9.add(panel_32, BorderLayout.SOUTH);
 
-      JButton page9_select_btn = new JButton("추가");
-      page9_select_btn.setFont(new Font("나눔고딕", Font.BOLD, 15));
-      panel_32.add(page9_select_btn);
+      page9_insert_btn = new JButton("추가");
+      page9_insert_btn.setFont(new Font("나눔고딕", Font.BOLD, 15));
+      panel_32.add(page9_insert_btn);
+      page9_insert_btn.addActionListener(this);
 
-      JButton page9_init_btn = new JButton("초기화");
-      page9_init_btn.setFont(new Font("나눔고딕", Font.BOLD, 15));
-      panel_32.add(page9_init_btn);
+      JPanel panel_33 = new JPanel();
+      page_9.add(panel_33, BorderLayout.CENTER);
+
+      page9_table = new JTable();
+      panel_33.add(page9_table);
+
+      // page 9 객체 생성
+      page9_table = new JTable(new DefaultTableModel(title_9, 0));
+      page_9.add(page9_table, BorderLayout.CENTER);
+
+      JScrollPane page9_sp = new JScrollPane(page9_table);
 
       JPanel panel_48 = new JPanel();
       page_9.add(panel_48, BorderLayout.NORTH);
+      // page9_sp 삽입
+      page_9.add(page9_sp, "Center");
       panel_48.setLayout(new BorderLayout(0, 0));
 
       JPanel panel_49 = new JPanel();
@@ -839,12 +883,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       JButton home_btn9 = new JButton("HOME");
       home_btn9.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
       panel_49.add(home_btn9);
-      
-      JScrollPane page9_sp = new JScrollPane(page9_table);
-      page_9.add(page9_sp, BorderLayout.CENTER);
-      
-      page9_table = new JTable();
-      page_9.add(page9_table, BorderLayout.EAST);
 
       // 9페이지 비활성화
       page_9.setVisible(false);
@@ -856,35 +894,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          public void actionPerformed(ActionEvent e) {
             page_1.setVisible(true);
             page_9.setVisible(false);
-         }
-
-      });
-
-      // 8페이지 비활성화
-      page_8.setVisible(false);
-      // home_btn8을 눌렀을 경우 1페이지 활성화+8페이지 비활성화
-      home_btn8.addActionListener(new ActionListener() {
-
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            page_1.setVisible(true);
-            page_8.setVisible(false);
-         }
-
-      });
-
-      // 7페이지 비활성화
-      page_7.setVisible(false);
-
-      // 7페이지 비활성화
-      page_7.setVisible(false);
-      // home_btn7을 눌렀을 경우 1페이지 활성화+7페이지 비활성화
-      home_btn7.addActionListener(new ActionListener() {
-
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            page_1.setVisible(true);
-            page_7.setVisible(false);
+            clear9();
          }
 
       });
@@ -898,6 +908,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          public void actionPerformed(ActionEvent e) {
             page_1.setVisible(true);
             page_6.setVisible(false);
+            clear6();
          }
 
       });
@@ -912,6 +923,8 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          public void actionPerformed(ActionEvent e) {
             page_6.setVisible(true);
             page_5.setVisible(false);
+
+            displayAdoptAllAnimals();
          }
 
       });
@@ -923,6 +936,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          public void actionPerformed(ActionEvent e) {
             page_7.setVisible(true);
             page_5.setVisible(false);
+            displayEndAnimal();
          }
 
       });
@@ -944,7 +958,9 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          @Override
          public void actionPerformed(ActionEvent e) {
             page_9.setVisible(true);
+
             page_5.setVisible(false);
+            displayAll9Animals();
          }
 
       });
@@ -955,20 +971,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          public void actionPerformed(ActionEvent e) {
             page_1.setVisible(true);
             page_5.setVisible(false);
-         }
-
-      });
-
-      // 4페이지 비활성화
-      page_4.setVisible(false);
-
-      // home_btn4을 눌렀을 경우 1페이지 활성화+4페이지 비활성화
-      home_btn4.addActionListener(new ActionListener() {
-
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            page_1.setVisible(true);
-            page_4.setVisible(false);
          }
 
       });
@@ -992,8 +994,11 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
          @Override
          public void actionPerformed(ActionEvent e) {
+
             page_4.setVisible(true);
             page_2.setVisible(false);
+
+            displayAllAnimals();
          }
 
       });
@@ -1030,11 +1035,58 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          }
 
       });
+
+   }
+
+   // page3 JTextfiled 컴포넌트 초기화
+   public void clear3() {
+      page3_regno.setText("");
+      page3_gender_text.setText("");
+      page3_size_text.setText("");
+
+   }
+
+// page6 JTextfiled 컴포넌트 초기화
+   public void clear6() {
+      page6_adopt_text.setText("");
+      page6_name_text.setText("");
+
+   }
+
+// page7 JTextfiled 컴포넌트 초기화
+   public void clear7() {
+      page7_age_text.setText("");
+      page7_gender_text.setText("");
+      page7_kind_text.setText("");
+      page7_name_text.setText("");
+      page7_reason_text.setText("");
+
+   }
+
+// page8 JTextfiled 컴포넌트 초기화
+   public void clear8() {
+      page8_regno_text.setText("");
+
+   }
+
+   // page9 JTextfiled 컴포넌트 초기화
+   public void clear9() {
+      page9_name_text.setText("");
+      page9_size_text.setText("");
+      page9_kind_text.setText("");
+      page9_gender_text.setText("");
+      page9_age_text.setText("");
+      page9_case_text.setText("");
+      page9_dday_text.setText("");
+      page9_adopt_text.setText("");
+      page9_regno_text.setText("");
+      page9_startday_text.setText("");
+
    }
 
    public void displayProtectRegAllAnimal() {
       System.out.println(page3_regno.getText());
-      ProtectedAnimalsDTO animal = ProtectedAnimalsDAOImpl.getDAO().selectRegNoAnimalsList(page3_regno.getText());
+      ProtectedAnimalsDTO animal = ProtectedAnimalsDAOImpl.getDAO().selectRegNoAnimals(page3_regno.getText());
 
       if (animal == null) {
          JOptionPane.showMessageDialog(this, "저장된 동물정보가 없습니다.");
@@ -1047,7 +1099,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          model.removeRow(0);// JTable 컴퍼넌트의 첫번째 행을 제거
       }
 
-
       // Vector 객체 생성 - JTable 컴퍼넌트에 추가될 하나의 행을 저장하기 위한 객체
       Vector<Object> rowData = new Vector<>();
       // StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
@@ -1065,13 +1116,14 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       // JTable 컴퍼넌트에 행을 추가하여 출력
       model.addRow(rowData);
    }
-   
+
    public void displayProtectGenderAllAnimal() {
       System.out.println(page3_gender_text.getText());
-      List<ProtectedAnimalsDTO> animalList = ProtectedAnimalsDAOImpl.getDAO().selectSizeAnimalsList(page3_gender_text.getText());
+      List<ProtectedAnimalsDTO> animalList = ProtectedAnimalsDAOImpl.getDAO()
+            .selectGenderAnimalsList(page3_gender_text.getText());
 
-      if(animalList.isEmpty()) {
-         JOptionPane.showMessageDialog(this, "검색된 학생정보가 없습니다.");
+      if (animalList.isEmpty()) {
+         JOptionPane.showMessageDialog(this, "검색된 동물정보가 없습니다.");
          return;
       }
 
@@ -1082,30 +1134,59 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       }
 
       // Vector 객체 생성 - JTable 컴퍼넌트에 추가될 하나의 행을 저장하기 위한 객체
-      for(ProtectedAnimalsDTO animal : animalList) {
-      Vector<Object> rowData = new Vector<>();
-      // StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
-      rowData.add(animal.getAnimal_name());
-      rowData.add(animal.getAnimal_size());
-      rowData.add(animal.getAnimal_kind());
-      rowData.add(animal.getGedger());
-      rowData.add(animal.getAge());
-      rowData.add(animal.getCasehistory());
-      rowData.add(animal.getProtection_startday());
-      rowData.add(animal.getEuthanasia_day());
-      rowData.add(animal.getAdopt());
-      rowData.add(animal.getReg_no());
+      for (ProtectedAnimalsDTO animal : animalList) {
+         Vector<Object> rowData = new Vector<>();
+         // StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
+         rowData.add(animal.getAnimal_name());
+         rowData.add(animal.getAnimal_size());
+         rowData.add(animal.getAnimal_kind());
+         rowData.add(animal.getGedger());
+         rowData.add(animal.getAge());
+         rowData.add(animal.getCasehistory());
+         rowData.add(animal.getProtection_startday());
+         rowData.add(animal.getEuthanasia_day());
+         rowData.add(animal.getAdopt());
+         rowData.add(animal.getReg_no());
 
-      // JTable 컴퍼넌트에 행을 추가하여 출력
-      model.addRow(rowData);
+         // JTable 컴퍼넌트에 행을 추가하여 출력
+         model.addRow(rowData);
       }
    }
-   // page3 JTextfiled 컴포넌트 초기화
-   public void clear() {
-      page3_regno.setText("");
-      page3_gender_text.setText("");
-      page3_kind_text.setText("");
 
+   public void displayProtectAllAnimal() {
+      System.out.println(page3_size_text.getText());
+      List<ProtectedAnimalsDTO> animalList = ProtectedAnimalsDAOImpl.getDAO()
+            .selectSizeAnimalsList(page3_size_text.getText());
+
+      if (animalList.isEmpty()) {
+         JOptionPane.showMessageDialog(this, "검색된 동물정보가 없습니다.");
+         return;
+      }
+
+      DefaultTableModel model = (DefaultTableModel) page3_table.getModel();
+
+      for (int i = model.getRowCount(); i > 0; i--) {
+         model.removeRow(0);// JTable 컴퍼넌트의 첫번째 행을 제거
+      }
+
+      // Vector 객체 생성 - JTable 컴퍼넌트에 추가될 하나의 행을 저장하기 위한 객체
+      for (ProtectedAnimalsDTO animal : animalList) {
+         Vector<Object> rowData = new Vector<>();
+         // StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
+         rowData.add(animal.getAnimal_name());
+         rowData.add(animal.getAnimal_size());
+         rowData.add(animal.getAnimal_kind());
+         rowData.add(animal.getGedger());
+         rowData.add(animal.getAge());
+         rowData.add(animal.getCasehistory());
+         rowData.add(animal.getProtection_startday());
+         rowData.add(animal.getEuthanasia_day());
+         rowData.add(animal.getAdopt());
+         rowData.add(animal.getReg_no());
+
+         // JTable 컴퍼넌트에 행을 추가하여 출력
+         model.addRow(rowData);
+      }
    }
 
    // JTextField 컴퍼넌트로 입력된 등록번호 제공받아 protect_animals 테이블에 저장된 해당 등록번호가 포함된
@@ -1138,11 +1219,10 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          page3_gender_text.requestFocus();
          return false;
       }
-      
 
-      // String GenderReg="(041)\\d{9}";
+      // String GenderReg="^[가-힣]{2}|^[가-힣]{3}*$";
       // if(!Pattern.matches(GenderReg, gender)) {
-      if (gender != "여" && gender != "남" && gender != "중성") {
+      if (!gender.equals("여") && !gender.equals("남") && !gender.equals("중성")) {
          JOptionPane.showMessageDialog(this, "성별은 [여],[남],[중성]에서 선택하여 입력해주세요.");
          page3_gender_text.requestFocus();
          return false;
@@ -1152,14 +1232,535 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
    // JTextField 컴퍼넌트로 입력된 품종을 제공받아 protect_animals 테이블에 저장된 해당 품종이 포함된
    // 보호동물정보를 검색하고 JTable 컴퍼넌트에 출력하는 메소드
-   public void searchKind() {
-      String kind = page3_kind_text.getText();
+   public boolean searchKind() {
+      String kind = page3_size_text.getText();
 
       if (kind.equals("")) {
-         JOptionPane.showMessageDialog(this, "품종을 반드시 입력해 주세요.");
-         page3_kind_text.requestFocus();
+         JOptionPane.showMessageDialog(this, "[소형견],[중형견],[대형견] 중 하나를 반드시 입력해 주세요.");
+         page3_size_text.requestFocus();
+         return false;
+      }
+      return true;
+
+   }
+
+   // PROCTEDANIMALS 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
+   public void displayAllAnimals() {
+      List<ProtectedAnimalsDTO> animalList = ProtectedAnimalsDAOImpl.getDAO().selectAllAnimalsList();
+
+      if (animalList.isEmpty()) {
+         JOptionPane.showMessageDialog(this, "저장된 동물정보가 없습니다.");
          return;
       }
+      DefaultTableModel model = (DefaultTableModel) page4_table.getModel();
+
+      for (int i = model.getRowCount(); i > 0; i--) {
+         model.removeRow(0);
+      }
+
+      // Vector 객체 생성 - JTable 컴퍼넌트에 추가될 하나의 행을 저장하기 위한 객체
+      for (ProtectedAnimalsDTO animal : animalList) {
+         Vector<Object> rowData = new Vector<>();
+         // StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
+         rowData.add(animal.getAnimal_name());
+         rowData.add(animal.getAnimal_size());
+         rowData.add(animal.getAnimal_kind());
+         rowData.add(animal.getGedger());
+         rowData.add(animal.getAge());
+         rowData.add(animal.getCasehistory());
+         rowData.add(animal.getProtection_startday());
+         rowData.add(animal.getEuthanasia_day());
+         rowData.add(animal.getAdopt());
+         rowData.add(animal.getReg_no());
+
+         // JTable 컴퍼넌트에 행을 추가하여 출력
+         model.addRow(rowData);
+      }
+
+   }
+
+   // PROCTEDANIMALS 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
+   public void displayAll9Animals() {
+      List<ProtectedAnimalsDTO> animalList = ProtectedAnimalsDAOImpl.getDAO().selectAllAnimalsList();
+
+      if (animalList.isEmpty()) {
+         JOptionPane.showMessageDialog(this, "저장된 동물정보가 없습니다.");
+         return;
+      }
+      DefaultTableModel model = (DefaultTableModel) page9_table.getModel();
+
+      for (int i = model.getRowCount(); i > 0; i--) {
+         model.removeRow(0);
+      }
+
+      // Vector 객체 생성 - JTable 컴퍼넌트에 추가될 하나의 행을 저장하기 위한 객체
+      for (ProtectedAnimalsDTO animal : animalList) {
+         Vector<Object> rowData = new Vector<>();
+         // StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
+         rowData.add(animal.getAnimal_name());
+         rowData.add(animal.getAnimal_size());
+         rowData.add(animal.getAnimal_kind());
+         rowData.add(animal.getGedger());
+         rowData.add(animal.getAge());
+         rowData.add(animal.getCasehistory());
+         rowData.add(animal.getProtection_startday());
+         rowData.add(animal.getEuthanasia_day());
+         rowData.add(animal.getAdopt());
+         rowData.add(animal.getReg_no());
+
+         // JTable 컴퍼넌트에 행을 추가하여 출력
+         model.addRow(rowData);
+      }
+
+   }
+
+   // PROCTEDANIMALS 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
+   public void displayAdoptAllAnimals() {
+      List<ProtectedAnimalsDTO> animalList = ProtectedAnimalsDAOImpl.getDAO().selectAllAnimalsList();
+
+      if (animalList.isEmpty()) {
+         JOptionPane.showMessageDialog(this, "저장된 동물정보가 없습니다.");
+         return;
+      }
+      DefaultTableModel model = (DefaultTableModel) page6_table.getModel();
+
+      for (int i = model.getRowCount(); i > 0; i--) {
+         model.removeRow(0);
+      }
+
+      // Vector 객체 생성 - JTable 컴퍼넌트에 추가될 하나의 행을 저장하기 위한 객체
+      for (ProtectedAnimalsDTO animal : animalList) {
+         Vector<Object> rowData = new Vector<>();
+         // StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
+         rowData.add(animal.getAnimal_name());
+         rowData.add(animal.getAnimal_size());
+         rowData.add(animal.getAnimal_kind());
+         rowData.add(animal.getGedger());
+         rowData.add(animal.getAge());
+         rowData.add(animal.getCasehistory());
+         rowData.add(animal.getProtection_startday());
+         rowData.add(animal.getEuthanasia_day());
+         rowData.add(animal.getAdopt());
+         rowData.add(animal.getReg_no());
+
+         // JTable 컴퍼넌트에 행을 추가하여 출력
+         model.addRow(rowData);
+      }
+
+   }
+
+   // ADMIN >> 등록번호로 동물 찾기
+   public boolean regSearch() {
+      String animal = page8_regno_text.getText();
+
+      if (animal.equals("")) {
+         JOptionPane.showMessageDialog(this, "등록번호를 반드시 입력해 주세요.");
+         page8_regno_text.requestFocus();
+         return false;
+      }
+
+      String animalReg = "(041)\\d{9}";
+      if (!Pattern.matches(animalReg, animal)) {
+         JOptionPane.showMessageDialog(this, "041로 시작하는 12자리 등록번호를 입력해 주세요.");
+         page8_regno_text.requestFocus();
+         return false;
+      }
+      return true;
+   }
+
+   public void displayRegSearchAnimal() {
+      System.out.println(page8_regno_text.getText());
+      Registration_AnimalDTO animal = Registration_AnimalDAOImpl.getDao().selectRegAnimal(page8_regno_text.getText());
+
+      if (animal == null) {
+         JOptionPane.showMessageDialog(this, "저장된 동물정보가 없습니다.");
+         return;
+      }
+
+      DefaultTableModel model = (DefaultTableModel) page8_table.getModel();
+
+      for (int i = model.getRowCount(); i > 0; i--) {
+         model.removeRow(0);// JTable 컴퍼넌트의 첫번째 행을 제거
+      }
+
+      // Vector 객체 생성 - JTable 컴퍼넌트에 추가될 하나의 행을 저장하기 위한 객체
+      Vector<Object> rowData = new Vector<>();
+      // StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
+      rowData.add(animal.getRegNo());
+      rowData.add(animal.getAnimalName());
+      rowData.add(animal.getGender());
+      rowData.add(animal.getMaster());
+      rowData.add(animal.getPhone());
+      rowData.add(animal.getAddress());
+
+      // JTable 컴퍼넌트에 행을 추가하여 출력
+      model.addRow(rowData);
+   }
+
+   // ADMIN >> 입양여부관리변경
+   public boolean adoptUpdate() {
+      String animal_name = page6_name_text.getText();
+      String animal_adopt = page6_adopt_text.getText();
+
+      if (animal_adopt.equals("") || animal_name.equals("")) {
+         JOptionPane.showMessageDialog(this, "이름과 입양여부를 반드시 입력해 주세요.");
+         page6_adopt_text.requestFocus();
+         return false;
+      }
+
+      String animal_nameReg = "^[가-힣]{2,5}$";
+      if (!Pattern.matches(animal_nameReg, animal_name)) {
+         JOptionPane.showMessageDialog(this, "한글 2~5자리로 반드시 입력해 주세요.");
+         page8_regno_text.requestFocus();
+         return false;
+      }
+      String animal_adoptReg = "^[가-힣]{2,10}$";
+      if (!Pattern.matches(animal_adoptReg, animal_adopt)) {
+         JOptionPane.showMessageDialog(this, "한글 2~10자리로 반드시 입력해 주세요.");
+         page8_regno_text.requestFocus();
+         return false;
+      }
+
+      ProtectedAnimalsDTO animal = new ProtectedAnimalsDTO();
+
+      animal.setAnimal_name(animal_name);
+      animal.setAdopt(animal_adopt);
+
+      int rows = ProtectedAnimalsDAOImpl.getDAO().updateProtectedAnimals(animal);
+
+      JOptionPane.showMessageDialog(this, rows + "마리의 입양여부를 변경 하였습니다.");
+
+      displayAdoptAllAnimals();
+
+      return false;
+   }
+
+   public void displayAdoptAnimal() {
+      System.out.println(page6_adopt_text.getText());
+      System.out.println(page6_name_text.getText());
+
+      Registration_AnimalDTO animal_name = Registration_AnimalDAOImpl.getDao()
+            .selectRegAnimal(page6_name_text.getText());
+      Registration_AnimalDTO animal_adopt = Registration_AnimalDAOImpl.getDao()
+            .selectRegAnimal(page6_adopt_text.getText());
+
+      if (animal_name.equals("")) {
+         JOptionPane.showMessageDialog(this, "변경할 동물정보가 없습니다.");
+         return;
+      }
+
+      DefaultTableModel model = (DefaultTableModel) page6_table.getModel();
+
+      for (int i = model.getRowCount(); i > 0; i--) {
+         model.removeRow(0);// JTable 컴퍼넌트의 첫번째 행을 제거
+      }
+
+      // Vector 객체 생성 - JTable 컴퍼넌트에 추가될 하나의 행을 저장하기 위한 객체
+      Vector<Object> rowData = new Vector<>();
+      // StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
+      rowData.add(animal_name.getRegNo());
+      rowData.add(animal_name.getAnimalName());
+      rowData.add(animal_name.getGender());
+      rowData.add(animal_name.getMaster());
+      rowData.add(animal_name.getPhone());
+      rowData.add(animal_name.getAddress());
+
+      // JTable 컴퍼넌트에 행을 추가하여 출력
+      model.addRow(rowData);
+   }
+
+// 페이지 7 ADMIN >> 보호종료 테이블 메소드 호출
+   public boolean endinsert() {
+      String endanimal_name = page7_name_text.getText();
+      String endanimal_age = page7_age_text.getText();
+      String endanimal_kind = page7_kind_text.getText();
+      String endanimal_reason = page7_reason_text.getText();
+      String endanimal_gender = page7_gender_text.getText();
+
+      String endanimal_nameReg = "^[가-힣]{2,5}$";
+      String endanimal_ageReg = "\\d{1,2}";
+      String endanimal_kindReg = "^[가-힣]{1,10}$";
+      String endanimal_reasonReg = "^[가-힣]{2,10}$";
+
+      if (endanimal_name.equals("") || endanimal_age == null || endanimal_kind.equals("")
+            || endanimal_reason.equals("") || endanimal_gender.equals("")) {
+
+         JOptionPane.showMessageDialog(this, "모든 항목을 반드시 입력해 주세요.");
+         page7_name_text.requestFocus();
+         return false;
+      }
+
+      if (!Pattern.matches(endanimal_nameReg, endanimal_name)) {
+         JOptionPane.showMessageDialog(this, "이름은 한글 2~5자리로 반드시 입력해 주세요.");
+         page7_name_text.requestFocus();
+         return false;
+
+      } else if (!Pattern.matches(endanimal_ageReg, endanimal_age)) {
+         JOptionPane.showMessageDialog(this, "나이는 1~2자리 숫자로 반드시 입력해 주세요.");
+         page7_age_text.requestFocus();
+         return false;
+      } else if (!Pattern.matches(endanimal_kindReg, endanimal_kind)) {
+         JOptionPane.showMessageDialog(this, "품종은 한글 1~10자리로 반드시 입력해 주세요.");
+         page7_kind_text.requestFocus();
+         return false;
+      } else if (!Pattern.matches(endanimal_reasonReg, endanimal_reason)) {
+         JOptionPane.showMessageDialog(this, "사유는 한글 2~10자리로 반드시 입력해 주세요.");
+         page7_reason_text.requestFocus();
+         return false;
+      } else if (!endanimal_gender.equals("여") && !endanimal_gender.equals("남") && !endanimal_gender.equals("중성")) {
+         JOptionPane.showMessageDialog(this, "성별은 [여],[남],[중성]에서 선택하여 입력해주세요.");
+         page7_gender_text.requestFocus();
+         return false;
+      }
+
+      ProtectedEndAnimalsDTO endanimal = new ProtectedEndAnimalsDTO();
+
+      endanimal.setAnimalName(endanimal_name);
+      endanimal.setAnimalKind(endanimal_kind);
+      endanimal.setGender(endanimal_gender);
+      endanimal.setAge(Integer.parseInt(endanimal_age));
+      endanimal.setReason(endanimal_reason);
+
+      int rows = ProtectedEndAnimalsDAOImpl.getDAO().insertProtectedEndAnimal(endanimal);
+
+      JOptionPane.showMessageDialog(this, rows + "마리의 동물정보를 삽입 하였습니다.");
+
+      displayEndAnimal();
+
+      enddelete(endanimal_name);
+      return false;
+   }
+
+   public void displayEndAnimal() {
+      List<ProtectedEndAnimalsDTO> animalList = ProtectedEndAnimalsDAOImpl.getDAO().endAnimalList();
+
+      if (animalList.isEmpty()) {
+         JOptionPane.showMessageDialog(this, "저장된 동물 정보가 없습니다.");
+         return;
+      }
+      DefaultTableModel model = (DefaultTableModel) page7_table.getModel();
+
+      for (int i = model.getRowCount(); i > 0; i--) {
+         model.removeRow(0);
+      }
+
+      // Vector 객체 생성 - JTable 컴퍼넌트에 추가될 하나의 행을 저장하기 위한 객체
+      for (ProtectedEndAnimalsDTO animal : animalList) {
+         Vector<Object> rowData = new Vector<>();
+         // StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
+         rowData.add(animal.getAnimalName());
+         rowData.add(animal.getAnimalKind());
+         rowData.add(animal.getGender());
+         rowData.add(animal.getAge());
+         rowData.add(animal.getReason());
+
+         // JTable 컴퍼넌트에 행을 추가하여 출력
+         model.addRow(rowData);
+      }
+   }
+
+   // 보호종료동물관리 페이지에서 삽입 버튼 > 유기동물 테이블(protected animal)에서 delete
+   public void enddelete(String name) {
+
+      System.out.println("aaa");
+      int rows = ProtectedAnimalsDAOImpl.getDAO().deleteProtectedAnimals(name);
+
+      System.out.println("bbb");
+      if (rows > 0) {
+         JOptionPane.showMessageDialog(this, "유기동물 테이블에서" + rows + "마리의 동물정보를 삭제 하였습니다.");
+      } else {
+         JOptionPane.showMessageDialog(this, "삭제할 동물정보가 없습니다.");
+      }
+
+      return;
+
+   }
+
+   // page 7 보호종료동물관리 페이지에서 삭제 버튼 > 보호종료 테이블(protected end animal)에서 삽입 실수시 delete
+   public boolean misenddelete() {
+      String animal_name = page7_name_text.getText();
+
+      if (animal_name.equals("")) {
+         JOptionPane.showMessageDialog(this, "모든 항목을 반드시 입력해 주세요.");
+         page7_name_text.requestFocus();
+         return false;
+      }
+
+      String endanimal_nameReg = "^[가-힣]{2,5}$";
+
+      if (!Pattern.matches(endanimal_nameReg, animal_name)) {
+         JOptionPane.showMessageDialog(this, "이름은 한글 2~5자리로 반드시 입력해 주세요.");
+         page7_name_text.requestFocus();
+         return false;
+      }
+      ProtectedEndAnimalsDTO endanimal = new ProtectedEndAnimalsDTO();
+
+      endanimal.setAnimalName(animal_name);
+
+      int rows = ProtectedEndAnimalsDAOImpl.getDAO().deleteProtectedEndAnimal(endanimal);
+
+      JOptionPane.showMessageDialog(this, "보호 종료 동물 테이블에서 " + rows + "마리의 동물정보를 삭제 하였습니다.");
+
+      displayEndAnimal();
+
+      return false;
+
+   }
+
+   // page9 보호동물 추가 페이지에 >> 유기동물 테이블(protected animal )테이블에 추가
+   public boolean addanimal() {
+      String name = page9_name_text.getText();
+
+      if (name.equals("")) {
+         JOptionPane.showMessageDialog(this, "이름을 반드시 입력해 주세요.");
+         page9_name_text.requestFocus();
+         return false;
+      }
+
+      String nameReg = "^[가-힣]{2,5}$";
+      if (!Pattern.matches(nameReg, name)) {
+         JOptionPane.showMessageDialog(this, "이름은 2~5 범위의 한글로만 입력해 주세요.");
+         page9_name_text.requestFocus();
+         return false;
+      }
+      String size = page9_size_text.getText();
+
+      if (size.equals("")) {
+         JOptionPane.showMessageDialog(this, "동물의 크기를 반드시 입력해 주세요.");
+         page9_size_text.requestFocus();
+         return false;
+      }
+
+      String sizeReg = "^[가-힣]{2,5}$";
+      if (!Pattern.matches(sizeReg, size)) {
+         JOptionPane.showMessageDialog(this, "[소형견],[중형견],[대형견] 중 하나를 반드시 입력해 주세요.");
+         page9_size_text.requestFocus();
+         return false;
+      }
+
+      String kind = page9_kind_text.getText();
+
+      if (kind.equals("")) {
+         JOptionPane.showMessageDialog(this, "동물의 품종을 반드시 입력해 주세요.");
+         page9_kind_text.requestFocus();
+         return false;
+      }
+
+      String kindReg = "^[가-힣]{2,10}$";
+      if (!Pattern.matches(kindReg, kind)) {
+         JOptionPane.showMessageDialog(this, "정확한 품종을 입력해 주세요.");
+         page9_kind_text.requestFocus();
+         return false;
+      }
+
+      String gender = page9_gender_text.getText();
+
+      if (gender.equals("")) {
+         JOptionPane.showMessageDialog(this, "성별을 반드시 입력해 주세요.");
+         page9_gender_text.requestFocus();
+         return false;
+      }
+
+      // String GenderReg="^[가-힣]{2}|^[가-힣]{3}*$";
+      // if(!Pattern.matches(GenderReg, gender)) {
+      if (!gender.equals("여") && !gender.equals("남") && !gender.equals("중성")) {
+         JOptionPane.showMessageDialog(this, "성별은 [여],[남],[중성]에서 선택하여 입력해주세요.");
+         page9_gender_text.requestFocus();
+         return false;
+      }
+
+      String age = page9_age_text.getText();// JTextField 컴퍼넌트의 입력값을 반환받아 저장
+      if (age.equals("")) {
+         JOptionPane.showMessageDialog(this, "나이를 반드시 입력해 주세요.");
+         page9_age_text.requestFocus();// JTextField 컴퍼넌트에 입력촛점을 제공하는 메소드
+         return false;
+      }
+
+      String ageReg = "\\d{1,2}$";
+      if (!Pattern.matches(ageReg, age)) {// 정규표현식과 입력값의 입력패턴이 다른 경우
+         JOptionPane.showMessageDialog(this, "나이는 1~2자리 숫자로만 입력해 주세요.");
+         page9_age_text.requestFocus();
+         return false;
+      }
+
+      String casehistory = page9_case_text.getText();// JTextField 컴퍼넌트의 입력값을 반환받아 저장
+
+      String caseReg = "^[가-힣]{0,10}$";
+      if (!Pattern.matches(caseReg, casehistory)) {// 정규표현식과 입력값의 입력패턴이 다른 경우
+         JOptionPane.showMessageDialog(this, "병력은 한글 2~10자리로 반드시 입력해 주세요.");
+         page9_case_text.requestFocus();
+         return false;
+      }
+
+      String startday = page9_startday_text.getText();
+      if (startday.equals("")) {
+         JOptionPane.showMessageDialog(this, "보호 시작일을 반드시 입력해 주세요.");
+         page9_startday_text.requestFocus();
+         return false;
+      }
+
+      String startdayReg = "(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
+      if (!Pattern.matches(startdayReg, startday)) {
+         JOptionPane.showMessageDialog(this, "보호 시작일을 형식에 맞게 입력해 주세요.");
+         page9_startday_text.requestFocus();
+         return false;
+      }
+
+      String dday = page9_dday_text.getText();
+      if (dday.equals("")) {
+         JOptionPane.showMessageDialog(this, "안락사 예정일을 반드시 입력해 주세요.");
+         page9_dday_text.requestFocus();
+         return false;
+      }
+
+      String ddayReg = "(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
+      if (!Pattern.matches(ddayReg, dday)) {
+         JOptionPane.showMessageDialog(this, "안락사 예정일을 형식에 맞게 입력해 주세요.");
+         page9_dday_text.requestFocus();
+         return false;
+      }
+
+      String adopt = page9_adopt_text.getText();
+      if (adopt.equals("")) {
+         JOptionPane.showMessageDialog(this, "입양 상태를 반드시 입력해 주세요.");
+         page9_adopt_text.requestFocus();
+         return false;
+      }
+
+      String adoptReg = "^[가-힣]{2,10}$";
+      if (!Pattern.matches(adoptReg, adopt)) {
+         JOptionPane.showMessageDialog(this, "입양 상태를 한글 2~10자리로 입력해 주세요.");
+         page9_adopt_text.requestFocus();
+         return false;
+      }
+
+      String regno = page9_regno_text.getText();
+
+      String regnoReg = "(041)\\d{9}||\\d{0,9}";
+      if (!Pattern.matches(regnoReg, regno)) {
+         JOptionPane.showMessageDialog(this, "041로 시작하는 12자리 등록번호를 입력해 주세요.");
+         page9_regno_text.requestFocus();
+         return false;
+      }
+
+      ProtectedAnimalsDTO animal = new ProtectedAnimalsDTO();
+      animal.setAnimal_name(name);
+      animal.setAnimal_size(size);
+      animal.setAnimal_kind(kind);
+      animal.setGedger(gender);
+      animal.setAge(Integer.parseInt(age));
+      animal.setCasehistory(casehistory);
+      animal.setProtection_startday(startday);
+      animal.setEuthanasia_day(dday);
+      animal.setAdopt(adopt);
+      animal.setReg_no(regno);
+
+      int rows = ProtectedAnimalsDAOImpl.getDAO().insertProtectedAnimals(animal);
+
+      JOptionPane.showMessageDialog(this, rows + "마리의 동물정보를 삽입하였습니다.");
+
+      displayAll9Animals();
+      return false;
 
    }
 
@@ -1171,18 +1772,38 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
             if (!searchRegNO())
                return;
             displayProtectRegAllAnimal();
+
          } else if (c == page3_gender_btn) {
             if (!searchGender())
                return;
             displayProtectGenderAllAnimal();
-         } else if (c == page3_kind_btn) {
-            searchKind();
-            displayProtectRegAllAnimal();
+         } else if (c == page3_size_btn) {
+            if (!searchKind())
+               return;
+            displayProtectAllAnimal();
+         } else if (c == page8_regno_btn) {
+            if (!regSearch())
+               return;
+            displayRegSearchAnimal();
+         } else if (c == page6_done_btn) {
+            if (!adoptUpdate())
+               return;
+            adoptUpdate();
+         } else if (c == page7_insert_btn) {
+            if (!endinsert())
+               return;
+            endinsert();
+         } else if (c == page7_delete_btn) {
+            if (!misenddelete())
+               return;
+            misenddelete();
+         } else if (c == page9_insert_btn) {
+            if (!addanimal())
+               return;
+            addanimal();
          }
-
       } catch (Exception e) {
          System.out.println("예외발생" + e.getMessage());
       }
    }
 }
-  
