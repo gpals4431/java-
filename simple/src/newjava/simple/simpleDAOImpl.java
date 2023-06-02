@@ -106,11 +106,11 @@ public int deleteAccountBook(String aname, String usedate) {
 
 
 @Override
-public simpleDTO selectAnameList(String aname) {
+public List<simpleDTO> selectAnameList(String aname) {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	simpleDTO account = null;
+	List<simpleDTO> accountList = new ArrayList<>();
 
 	try {
 		con = getConnection();
@@ -121,8 +121,8 @@ public simpleDTO selectAnameList(String aname) {
 
 		rs = pstmt.executeQuery();// 자바 객체로 만들어 줘야함
 
-		if (rs.next()) {// 검색행이 있는 경우
-			account = new simpleDTO();
+		while (rs.next()) {// 검색행이 있는 경우
+			simpleDTO account = new simpleDTO();
 			// 처리행의 컬럼값을 반환받아 DTO 객체의 필드값으로 변경 > 검색행을 자바객체로 만들어줌 = 매핑
 			account.setAname(rs.getString("aname"));
 			account.setAmoney(rs.getInt("amoney"));
@@ -130,6 +130,8 @@ public simpleDTO selectAnameList(String aname) {
 			account.setUsedate(rs.getString("usedate"));
 			account.setAout(rs.getString("aout"));
 			account.setAin(rs.getString("ain"));
+			
+			accountList.add(account);
 		}
 
 	} catch (SQLException e) {
@@ -138,7 +140,7 @@ public simpleDTO selectAnameList(String aname) {
 		close(con, pstmt, rs);
 	}
 	// 검색행이 없는 경우 null 반환하고 검색행이 있는 경우 DTO 객체 반환 - 검색행 하나를 반환
-	return account;
+	return accountList;
 }
 
 @Override

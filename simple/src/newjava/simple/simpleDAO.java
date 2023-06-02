@@ -14,7 +14,7 @@ public interface simpleDAO {
     public int deleteAccountBook(String aname, String usedate);
    
     //검색창에 이름을 전달받아 PROTECTED_ANIMALS 테이블에 저장된 해당 동물의 동물정보를 검색하여 반환하는 메소드
-    public simpleDTO selectAnameList(String aname);
+    public List<simpleDTO> selectAnameList(String aname);
  
     //account_book 테이블에 저장된 계좌정보를 검색하여 반환하는 메소드
     public List<simpleDTO> selectAllaccountList();

@@ -77,7 +77,6 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-
 		Object[] title = { "내역명", "금액", "입/출금", "사용날짜", "출금내역", "입금내역" };
 		table = new JTable(new DefaultTableModel(title, 0));
 		table.setEnabled(false);
@@ -88,7 +87,6 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		JScrollPane scrollPane = new JScrollPane(table);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 
-		
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 		panel.setLayout(new BorderLayout(0, 0));
@@ -172,10 +170,12 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		panel_3.add(search_TF);
 
 		search_btn = new JButton("검색");
+
 		search_btn.setForeground(new Color(255, 255, 255));
 		search_btn.setBackground(Color.DARK_GRAY);
 		search_btn.setFont(new Font("돋움", Font.BOLD, 15));
 		panel_3.add(search_btn);
+		search_btn.addActionListener(this);
 
 		panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
@@ -188,32 +188,24 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		panel_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		insert_btn = new JButton(" 추 가 ");
-		insert_btn.addActionListener(this);
 		insert_btn.setForeground(Color.WHITE);
 		insert_btn.setBackground(Color.DARK_GRAY);
 		panel_4.add(insert_btn);
 		insert_btn.setFont(new Font("굴림", Font.BOLD, 15));
-		insert_btn.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				clear();
-				
-			}
-		});
+		insert_btn.addActionListener(this);
 
 		update_btn = new JButton(" 수 정 ");
 		update_btn.setBackground(Color.DARK_GRAY);
 		update_btn.setForeground(Color.WHITE);
 		panel_4.add(update_btn);
 		update_btn.setFont(new Font("굴림", Font.BOLD, 15));
+		update_btn.addActionListener(this);
 
 		delete_btn = new JButton(" 삭 제 ");
-		delete_btn.addActionListener(this);
 		delete_btn.setForeground(Color.WHITE);
 		delete_btn.setBackground(Color.DARK_GRAY);
-
 		panel_4.add(delete_btn);
+		delete_btn.addActionListener(this);
 
 		delete_btn.setFont(new Font("굴림", Font.BOLD, 15));
 
@@ -222,8 +214,9 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		clear_btn.setBackground(Color.DARK_GRAY);
 		clear_btn.setFont(new Font("굴림", Font.BOLD, 15));
 		panel_4.add(clear_btn);
+		clear_btn.addActionListener(this);
 
-		displayAllStudentList();
+		displayAllaccountList();
 
 	}
 
@@ -246,10 +239,11 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		usedate_TF.setText("");
 		out_TF.setText("");
 		in_TF.setText("");
-		
+
 	}
+
 	public void clearsearch() {
-		search_TF.setText("");	
+		search_TF.setText("");
 	}
 
 	public void none() {
@@ -258,7 +252,7 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 
 	}
 
-	private void displayAllStudentList() {
+	private void displayAllaccountList() {
 		List<simpleDTO> accountList = simpleDAOImpl.getDao().selectAllaccountList();
 
 		if (accountList.isEmpty()) {
@@ -291,6 +285,12 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 
 		if (name.equals("")) {
 			JOptionPane.showMessageDialog(this, "사용처명을 반드시 입력해주세요.");
+			aname_TF.requestFocus();
+			return false;
+		}
+		String nameReg = "^[0-9a-zA-Zㄱ-ㅎ가-힣]*$";
+		if (!Pattern.matches(nameReg, name)) {
+			JOptionPane.showMessageDialog(this, "1자리 이상 입력해주세요.");
 			aname_TF.requestFocus();
 			return false;
 		}
@@ -355,16 +355,105 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		account.setUsedate(date);
 		account.setAout(out);
 		account.setAin(in);
-		
-		
+
 		int rows = simpleDAOImpl.getDao().insertAccountBook(account);
 
 		JOptionPane.showMessageDialog(this, rows + "개의 정보를 삽입하였습니다.");
 
-		displayAllStudentList();
+		displayAllaccountList();
+		
+		//TF 컴포넌트 초기화
+		aname_TF.setText("");
+		amoney_TF.setText("");
+		inout_TF.setText("");
+		usedate_TF.setText("");
+		out_TF.setText("");
+		in_TF.setText("");
 
 		return false;
 
+	}
+
+	// 이름과 날짜를 입력받아 정보를 변경하는 메소드
+	private boolean updateaccount() {
+		String name = aname_TF.getText();
+		if (name.equals("")) {
+			JOptionPane.showMessageDialog(this, "사용처명을 반드시 입력해주세요.");
+			aname_TF.requestFocus();
+			return false;
+		}
+		String nameReg = "^[0-9a-zA-Zㄱ-ㅎ가-힣]*$";
+		if (!Pattern.matches(nameReg, name)) {
+			JOptionPane.showMessageDialog(this, "1자리 이상 입력해주세요.");
+			aname_TF.requestFocus();
+			return false;
+		}
+
+		String date = usedate_TF.getText();
+		if (date.equals("")) {
+			JOptionPane.showMessageDialog(this, "사용날짜를 반드시 입력해주세요.");
+			usedate_TF.requestFocus();
+			return false;
+		}
+
+		String dateReg = "(2[0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
+		if (!Pattern.matches(dateReg, date)) {// 정규표현식과 입력값의 입력패턴이 다른 경우
+			JOptionPane.showMessageDialog(this, "[yy-mm-dd] 형식에 맞게 입력해주세요.");
+			usedate_TF.requestFocus();
+			return false;
+		}
+
+		simpleDTO account = new simpleDTO();
+		account.setAname(name);
+		account.setUsedate(date);
+
+		int rows = simpleDAOImpl.getDao().insertAccountBook(account);
+
+		JOptionPane.showMessageDialog(this, rows + "개의 정보를 변경하였습니다.");
+
+		displayAllaccountList();
+
+		return false;
+	}
+
+	// 이름을 입력받아 검색하는 메소드
+	public boolean searchname() {
+		String name = search_TF.getText();
+		if (name.equals("")) {
+			JOptionPane.showMessageDialog(this, "사용처명을 입력해주세요.");
+			search_TF.requestFocus();
+			return false;
+		}
+		String nameReg = "^[0-9a-zA-Zㄱ-ㅎ가-힣]*$";
+		if (!Pattern.matches(nameReg, name)) {
+			JOptionPane.showMessageDialog(this, "1자리 이상 입력해주세요.");
+			search_TF.requestFocus();
+			return false;
+		}
+
+		List<simpleDTO> accountList=simpleDAOImpl.getDao().selectAnameList(name);
+		
+		if(accountList.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "저장된 정보가 없습니다.");
+			return false;
+		}
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		
+		for (int i = model.getRowCount(); i > 0; i--) { 
+			model.removeRow(0);
+		}
+		for(simpleDTO account : accountList) {
+			Vector<Object> rowData = new Vector<>();
+			rowData.add(account.getAname());
+			rowData.add(account.getAmoney());
+			rowData.add(account.getAinout());
+			rowData.add(account.getUsedate());
+			rowData.add(account.getAout());
+			rowData.add(account.getAin());
+			
+			model.addRow(rowData);
+		}
+		return true;
 	}
 
 	@Override
@@ -374,7 +463,14 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 			if (c == insert_btn) {
 				if (!insertaccount())
 					return;
-				displayAllStudentList();
+				displayAllaccountList();
+			} else if (c == update_btn) {
+				if (!updateaccount())
+					return;
+				updateaccount();
+			} else if (c == search_btn) {
+				if (!searchname())
+					return;
 			}
 		} catch (Exception e) {
 			System.out.println("예외발생" + e.getMessage());
