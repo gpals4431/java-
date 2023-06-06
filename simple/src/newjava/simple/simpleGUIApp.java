@@ -231,6 +231,8 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		inout_TF.setEditable(false);
 		out_TF.setEditable(false);
 		in_TF.setEditable(false);
+		aname_TF.setEditable(true);
+		usedate_TF.setEditable(true);
 	}
 	public void update_change_initialize() {
 		amoney_TF.setEditable(true);
@@ -389,10 +391,19 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		return false;
 	}
 
-	// 이름과 날짜를 입력받아 정보를 변경하는 메소드
+	// 이름과 날짜를 입력받아 정보를 변경하는 메소드 첫번째 버튼을 눌렀을 때 이름과 날짜를 검색하여 출력하는 메소드 호출
+	// >> 두번재 눌렀을때 이름과 날자를 제외한 변경값을 받아 테이블에 저장된 정보를 변경하는 메소드
 	private boolean updateaccount() {
+		
 		updateinitialize();
 
+	
+		return false;
+		}
+		
+		
+		
+	private boolean update_change_account() {
 		String name = aname_TF.getText();
 
 		if (name.equals("")) {
@@ -407,6 +418,20 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 			return false;
 		}
 
+		String date = usedate_TF.getText();
+		if (date.equals("")) {
+			JOptionPane.showMessageDialog(this, "사용날짜를 반드시 입력해주세요.");
+			usedate_TF.requestFocus();
+			return false;
+		}
+
+		String dateReg = "(2[0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
+		if (!Pattern.matches(dateReg, date)) {// 정규표현식과 입력값의 입력패턴이 다른 경우
+			JOptionPane.showMessageDialog(this, "[yy-mm-dd] 형식에 맞게 입력해주세요.");
+			usedate_TF.requestFocus();
+			return false;
+		}
+		
 		String money = amoney_TF.getText();
 		if (money.equals("")) {
 			JOptionPane.showMessageDialog(this, "금액을 반드시 입력해주세요.");
@@ -428,19 +453,7 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 
 		}
 
-		String date = usedate_TF.getText();
-		if (date.equals("")) {
-			JOptionPane.showMessageDialog(this, "사용날짜를 반드시 입력해주세요.");
-			usedate_TF.requestFocus();
-			return false;
-		}
-
-		String dateReg = "(2[0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
-		if (!Pattern.matches(dateReg, date)) {// 정규표현식과 입력값의 입력패턴이 다른 경우
-			JOptionPane.showMessageDialog(this, "[yy-mm-dd] 형식에 맞게 입력해주세요.");
-			usedate_TF.requestFocus();
-			return false;
-		}
+	
 
 		String out = out_TF.getText();
 		if (!out.equals("") && !out.equals("식사") && !out.equals("교통비") && !out.equals("생활") && !out.equals("의료/건강")
@@ -602,7 +615,8 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 				if (!updateaccount()) {
 					return;
 				}else {
-					updateaccount();
+					update_change_initialize();
+					update_change_account();
 				}
 				displayAllaccountList();
 			} else if (c == search_btn) {
