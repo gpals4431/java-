@@ -60,16 +60,16 @@ public class simpleDAOImpl extends JdbcDAO implements simpleDAO{
       try {
          con = getConnection();
          
-         String sql = "update account_book set  ";
+         String sql = "update account_book set amoney=?, ainout=?, aout=?, ain=? where aname=? and usedate=? ";
          
          pstmt = con.prepareStatement(sql);
          
-         pstmt.setString(1, account.getAname());
-         pstmt.setInt(2, account.getAmoney());
-         pstmt.setString(3, account.getAinout());
-         pstmt.setString(4, account.getUsedate());
-         pstmt.setString(5, account.getAout());
-         pstmt.setString(6, account.getAin());
+         pstmt.setInt(1, account.getAmoney());
+         pstmt.setString(2, account.getAinout());
+         pstmt.setString(3, account.getAout());
+         pstmt.setString(4, account.getAin());
+         pstmt.setString(5, account.getAname());
+         pstmt.setString(6, account.getUsedate());
          
          rows = pstmt.executeUpdate();
       }catch(SQLException e) {
@@ -80,7 +80,7 @@ public class simpleDAOImpl extends JdbcDAO implements simpleDAO{
    }
 
 @Override
-public int deleteAccountBook(String aname, String usedate) {
+public int deleteAccountBook(simpleDTO account) {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	int rows = 0;
@@ -90,8 +90,8 @@ public int deleteAccountBook(String aname, String usedate) {
 
 		String sql = "delete from account_book where aname=? and usedate=? ";
 		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, aname);
-		pstmt.setString(2, usedate);
+		pstmt.setString(1, account.getAname());
+		pstmt.setString(2, account.getUsedate());
 
 		rows = pstmt.executeUpdate();
 
@@ -115,7 +115,7 @@ public List<simpleDTO> selectAnameList(String aname) {
 	try {
 		con = getConnection();
 
-		String sql = "select * from account_book where aname=? order by usedate";
+		String sql = "select aname, amoney, ainout, to_char(usedate,'yyyy-mm-dd') usedate, aout, ain from account_book where aname=? order by usedate";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, aname);
 
