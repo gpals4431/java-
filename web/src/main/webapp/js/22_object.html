@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+	/*
+	var student = new Object();//object 객체 생성 - Empty Object
+	//alert(student);//[object Object]
+	
+	//object 객체에 요소 추가
+	student.num=1000;//요소에 값을 저장 - 프로퍼티 추가 
+	student.name="홍길동";
+	student.address="서울시 강남구";
+	
+	//alert("학번 = " + student.num + ", 이름 = " + student.name + ", 주소 = "+ student.address);
+	
+	//object 객체에 요소 추가
+	student.display = function(){//객체 요소에 함수를 저장 - 메소드 추가
+		alert("학번 = " + this.num + ", 이름 = " + this.name + ", 주소 = "+ this.address);
+
+	}
+	student.display();
+	*/
+	/*
+	//자바스크립트에서는 object 객체를 보다 쉽게 생성하기 위해 JSON 기능 제공
+	//>JSON(JavaScript Object Notation): 자바 스크립트 객체 표기법
+	var student={};
+	//alert(student);//[object Object]
+	
+	student.num=1000;//프로퍼티 추가 
+	student.name="홍길동";
+	student.address="서울시 강남구";
+	student.display = function(){//메소드 추가
+		alert("학번 = " + this.num + ", 이름 = " + this.name + ", 주소 = "+ this.address);
+	}
+	*/
+	var student={"num":1000,"name":"홍길동","address":"서울시 강남구"
+		,"display":function(){
+			alert("학번 = " + this.num + ", 이름 = " + this.name + ", 주소 = "+ this.address);
+		}
+	};
+	student.display();
+	
+	
+	
+	</script>
+</body>
+</html>
