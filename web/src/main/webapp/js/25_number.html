@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+	//매개변수에 전달된 숫자값이 저장된 Number 객체를 생성하여 변수에 저장
+	//var num = new Number(100);	
+	var num = new Number("100");//매개변수에 문자값을 전달해도 숫자값으로 변환되어 저장
+	/*
+	//alert("변수의 자료형 = "+ typeof(num));//변수의 자료형 = object
+	
+	//Number.toString() : number 객체에 저장된 숫자값을 문자값으로 변환하여 반환하는 메소드
+	alert(num.toString());
+	alert(num);
+	*/
+	alert(num.toString(16));//16진수
+	
+	</script>
+</body>
+</html>

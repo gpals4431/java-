@@ -36,14 +36,21 @@
 	student.display = function(){//메소드 추가
 		alert("학번 = " + this.num + ", 이름 = " + this.name + ", 주소 = "+ this.address);
 	}
-	*/
+	*//*
 	var student={"num":1000,"name":"홍길동","address":"서울시 강남구"
 		,"display":function(){
 			alert("학번 = " + this.num + ", 이름 = " + this.name + ", 주소 = "+ this.address);
 		}
 	};
 	student.display();
-	
+	*/
+	//ES6 에서는 object 객체에 메소드를 간결하게 표현하여 저장 가능
+	var student={"num":1000,"name":"홍길동","address":"서울시 강남구"
+		,display(){
+			alert("학번 = " + this.num + ", 이름 = " + this.name + ", 주소 = "+ this.address);
+		}
+	};
+	student.display();
 	
 	
 	</script>
