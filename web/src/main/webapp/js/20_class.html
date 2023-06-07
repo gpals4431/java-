@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+	/*
+	function Student(num, name, addres) {
+		this.num=num;
+		this.name=name;
+		this.address=address;
+		
+		this.display=function(){
+			alert("학번 ="+this.num+", 이름 ="+this.name+", 주소 ="+this.address);
+		}
+			
+		student.phone="010-1234-5678";
+		alert("전화번호 ="+Student.phone);
+
+		
+		student.display=function(){
+			alert("학번 ="+this.num+", 이름 ="+this.name+", 주소 ="+this.address+", 전화번호 ="+this.phone);
+
+		}
+		//Student.display();
+		
+		delete(student.phone);
+		*/
+		class Human{
+			constructor(num){//constructor 키워드로 생성자선언
+				this.num = num;
+			}
+			
+				
+			
+
+		}
+		
+		//extends키워드로 부모클래스를 상속받아 클래스 작성 가능
+class Student extends Human {
+
+constructor(num, name, address){
+	super(num);
+	this.name = name;
+	this.address = adFdress;
+	}
+
+display(){
+	alert("학번 ="+this.num+", 이름 ="+this.name+", 주소 ="+this.address+", 전화번호 ="+this.phone);
+
+}
+}
+let student = new Student(1000,"홍길동", "서울시 강남구")	;
+
+
+
+	
+	</script>
+</body>
+</html>
