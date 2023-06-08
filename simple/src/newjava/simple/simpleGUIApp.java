@@ -224,7 +224,11 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 
 	}// GUI 메소드 호출
 
+<<<<<<< HEAD
 	// 수정 버튼 누른 후 TF에 컴퍼넌트를 비활성화 처리하는 메소드
+=======
+	// 모든 TF에 컴퍼넌트를 비활성화 처리하는 메소드
+>>>>>>> refs/remotes/origin/main
 	public void updateinitialize() {
 		amoney_TF.setEditable(false);
 		search_TF.setEditable(false);
@@ -233,6 +237,18 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		in_TF.setEditable(false);
 		aname_TF.setEditable(true);
 		usedate_TF.setEditable(true);
+<<<<<<< HEAD
+=======
+	}
+	public void update_change_initialize() {
+		amoney_TF.setEditable(true);
+		search_TF.setEditable(true);
+		inout_TF.setEditable(true);
+		out_TF.setEditable(true);
+		in_TF.setEditable(true);
+		aname_TF.setEditable(true);
+		usedate_TF.setEditable(true);
+>>>>>>> refs/remotes/origin/main
 	}
 	//TF 컴퍼넌트 활성화
 	public void initialize() {
@@ -270,7 +286,11 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 	public void none() {
 		clear();
 		displayAllaccountList();
+<<<<<<< HEAD
 		initialize();
+=======
+		update_change_initialize();
+>>>>>>> refs/remotes/origin/main
 	}
 
 
@@ -389,11 +409,18 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 
 		JOptionPane.showMessageDialog(this, rows + "개의 정보를 삽입하였습니다.");
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/main
 		// 모든 테이블을 보여주는 메소드 호출
 		displayAllaccountList();
 
+<<<<<<< HEAD
 		/* TF 컴포넌트 초기화
+=======
+		// TF 컴포넌트 초기화
+>>>>>>> refs/remotes/origin/main
 		aname_TF.setText("");
 		amoney_TF.setText("");
 		inout_TF.setText("");
@@ -405,10 +432,26 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		return false;
 	}
 
+<<<<<<< HEAD
 	// 이름과 날짜를 입력받아 정보를 변경하는 메소드 첫번째 버튼을 눌렀을 때 이름과 날짜를 검색하여 테이블에 출력하는 메소드 호출
 	public boolean updateaccount() {
 		updateinitialize();
 		
+=======
+	// 이름과 날짜를 입력받아 정보를 변경하는 메소드 첫번째 버튼을 눌렀을 때 이름과 날짜를 검색하여 출력하는 메소드 호출
+	// >> 두번재 눌렀을때 이름과 날자를 제외한 변경값을 받아 테이블에 저장된 정보를 변경하는 메소드
+	private boolean updateaccount() {
+		
+		updateinitialize();
+
+	
+		return false;
+		}
+		
+		
+		
+	private boolean update_change_account() {
+>>>>>>> refs/remotes/origin/main
 		String name = aname_TF.getText();
 
 		if (name.equals("")) {
@@ -438,15 +481,69 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		
 		}
 		
+<<<<<<< HEAD
 		simpleDTO account = simpleDAOImpl.getDao().update_changeAccountBook(aname_TF.getText(), usedate_TF.getText());
+=======
+		String money = amoney_TF.getText();
+		if (money.equals("")) {
+			JOptionPane.showMessageDialog(this, "금액을 반드시 입력해주세요.");
+			amoney_TF.requestFocus();
+			return false;
+		}
+		String moneyReg = "\\d{1,10}$";
+		if (!Pattern.matches(moneyReg, money)) {// 정규표현식과 입력값의 입력패턴이 다른 경우
+			JOptionPane.showMessageDialog(this, "금액은 숫자로만 입력해 주세요.");
+			amoney_TF.requestFocus();
+			return false;
+		}
+>>>>>>> refs/remotes/origin/main
 
+<<<<<<< HEAD
 		if(account == null) {
 			JOptionPane.showMessageDialog(this, "저장된 정보가 없습니다.");
 			return false;
 		
 		}
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
+=======
+		String inout = inout_TF.getText();
+		if (!inout.equals("입금") && !inout.equals("출금")) {
+			JOptionPane.showMessageDialog(this, "입금과 출금 중 하나를 선택하여 입력해주세요.");
+			inout_TF.requestFocus();
+			return false;
 
+		}
+
+	
+
+		String out = out_TF.getText();
+		if (!out.equals("") && !out.equals("식사") && !out.equals("교통비") && !out.equals("생활") && !out.equals("의료/건강")
+				&& !out.equals("문화/여가") && !out.equals("주거/통신") && !out.equals("저금/투자")) {
+			JOptionPane.showMessageDialog(this, " 지출 내역은 식사, 교통비, 생활, 의료/건강, 문화/여가, 주거/통신,저금/투자" + " 하나를 선택하여 입력해주세요.");
+			out_TF.requestFocus();
+			return false;
+
+		}
+
+		String in = in_TF.getText();
+		if (!in.equals("") && !(in.equals("급여")) && !(in.equals("용돈")) && !(in.equals("사업수익"))
+				&& !(in.equals("금융수익"))) {
+			JOptionPane.showMessageDialog(this, " 수입 내역은 급여, 용돈, 사업수익, 금융수익" + "중 하나를 선택하여 입력해주세요.");
+			in_TF.requestFocus();
+			return false;
+
+		}
+		simpleDTO account = new simpleDTO();
+		
+		account.setAmoney(Integer.parseInt(money));
+		account.setAinout(inout);
+		account.setAout(out);
+		account.setAin(in);
+		account.setAname(name);
+		account.setUsedate(date);
+>>>>>>> refs/remotes/origin/main
+
+<<<<<<< HEAD
 		for (int i = model.getRowCount(); i > 0; i--) {
 			model.removeRow(0);
 		}
@@ -458,16 +555,36 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 			rowData.add(account.getUsedate());
 			rowData.add(account.getAout());
 			rowData.add(account.getAin());
+=======
+		int rows = simpleDAOImpl.getDao().updateAccountBook(account);
+>>>>>>> refs/remotes/origin/main
 
+<<<<<<< HEAD
 			model.addRow(rowData);
 		
 		
+=======
+		JOptionPane.showMessageDialog(this, rows + "개의 정보를 변경하였습니다.");
+
+		// 모든 테이블을 보여주는 메소드 호출
+>>>>>>> refs/remotes/origin/main
 		displayAllaccountList();
 		// TF 컴포넌트 초기화
 		//aname_TF.setText("");
 		//usedate_TF.setText("");
 
+<<<<<<< HEAD
 		none();
+=======
+		// TF 컴포넌트 초기화
+		aname_TF.setText("");
+		amoney_TF.setText("");
+		inout_TF.setText("");
+		usedate_TF.setText("");
+		out_TF.setText("");
+		in_TF.setText("");
+
+>>>>>>> refs/remotes/origin/main
 		return false;
 	}
 	// 이름과 날짜를 입력받아 정보를 변경하는 메소드 첫번째 버튼을 눌렀을 때 이름과 날짜를 검색하여 테이블에 출력하는 메소드 호출
@@ -570,7 +687,10 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 
 	// 이름을 입력받아 검색하는 메소드
 	public boolean searchname() {
+<<<<<<< HEAD
 		
+=======
+>>>>>>> refs/remotes/origin/main
 		search_TF.requestFocus();
 		String name = search_TF.getText();
 		if (name.equals("")) {
@@ -615,6 +735,7 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 
 	// 이름과 날짜를 입력받아 삭제버튼을 눌러 테이블의 정보를 삭제하는 메소드
 	public boolean deleteaccount() {
+<<<<<<< HEAD
 		updateinitialize();
 
 		String name = aname_TF.getText();
@@ -668,6 +789,59 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		//usedate_TF.setText("");
 
 		none();
+=======
+
+		String name = aname_TF.getText();
+		String date = usedate_TF.getText();
+
+		if (name.equals("") && date.equals("")) {
+			JOptionPane.showMessageDialog(this, "이름과 날짜를 반드시 입력해 주세요.");
+			aname_TF.requestFocus();
+			return false;
+		}
+		if (name.equals("")) {
+			JOptionPane.showMessageDialog(this, "사용처명을 입력해주세요.");
+			aname_TF.requestFocus();
+			return false;
+		}
+		String nameReg = "^[0-9a-zA-Zㄱ-ㅎ가-힣]*$";
+		if (!Pattern.matches(nameReg, name)) {
+			JOptionPane.showMessageDialog(this, "1자리 이상 입력해주세요.");
+			aname_TF.requestFocus();
+			return false;
+		}
+
+		if (date.equals("")) {
+			JOptionPane.showMessageDialog(this, "사용날짜를 반드시 입력해주세요.");
+			usedate_TF.requestFocus();
+			return false;
+		}
+
+		String dateReg = "(2[0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
+		if (!Pattern.matches(dateReg, date)) {// 정규표현식과 입력값의 입력패턴이 다른 경우
+			JOptionPane.showMessageDialog(this, "[yy-mm-dd] 형식에 맞게 입력해주세요.");
+			usedate_TF.requestFocus();
+			return false;
+		}
+
+		simpleDTO account = new simpleDTO();
+
+		account.setAname(name);
+		account.setUsedate(date);
+
+		int rows = simpleDAOImpl.getDao().deleteAccountBook(account);
+
+		if (rows > 0) {
+			JOptionPane.showMessageDialog(this, "계좌 테이블에서" + rows + "개의 정보를 삭제하였습니다.");
+		} else {
+			JOptionPane.showMessageDialog(this, "계좌 테이블에 삭제할 정보가 없습니다.");
+		}
+		displayAllaccountList();
+		// TF 컴포넌트 초기화
+		aname_TF.setText("");
+		usedate_TF.setText("");
+
+>>>>>>> refs/remotes/origin/main
 		return false;
 	}
 
@@ -682,6 +856,7 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 			} else if (c == delete_btn) {
 				if (!deleteaccount())
 					return;
+<<<<<<< HEAD
 				//deleteaccount();
 			//처음 수정 버튼을 눌렀을 때 -> 이름과 날짜를 제외한 TF 컴퍼넌트를 비활성화 
 			//-> 이름과 날짜 입력 수정버튼-> 해당 정보 테이블에 표시
@@ -691,6 +866,15 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 					return;
 				}else {
 					initialize();
+=======
+				deleteaccount();
+			} else if (c == update_btn) {
+				if (!updateaccount()) {
+					return;
+				}else {
+					update_change_initialize();
+					update_change_account();
+>>>>>>> refs/remotes/origin/main
 				}
 				displayAllaccountList();
 			} else if (c == search_btn) {

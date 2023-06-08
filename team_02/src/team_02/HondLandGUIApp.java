@@ -6,11 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
-//import xyz.itwill.student.StudentDAOImpl;
-//import xyz.itwill.student.StudentDTO;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,16 +19,12 @@ import java.util.Vector;
 import java.util.regex.Pattern;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-
 import java.awt.GridLayout;
 import javax.swing.JTable;
-import java.awt.SystemColor;
 
 public class HondLandGUIApp extends JFrame implements ActionListener {
    private static final long serialVersionUID = 1L;
@@ -41,7 +32,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
    private JPanel contentPane;
    private JPanel page_1;
    JScrollPane scrollPane;
-   ImageIcon icon;
    private JTable page3_table;
    private JTable page4_table;
    private JTable page6_table;
@@ -49,15 +39,15 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
    private JTable page8_table;
    private JTable page9_table;
 
-   // page_3 JTextField
-   private JTextField page3_regno;
-   private JTextField page3_gender_text;
-   private JTextField page3_size_text;
-
    // JButton 선언
    JButton page3_regno_btn, page3_size_btn, page3_gender_btn, page4_gender_btn1, page4_gender_btn2, page4_gender_btn3,
          page4_size_btn1, page4_size_btn2, page4_size_btn3, page4_select_btn, page8_regno_btn, page6_done_btn,
          page7_insert_btn, page7_delete_btn, page9_insert_btn;
+
+   // page_3 JTextField
+   private JTextField page3_regno;
+   private JTextField page3_gender_text;
+   private JTextField page3_size_text;
 
    // page_6 JTextField
    private JTextField page6_name_text;
@@ -84,19 +74,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
    private JTextField page9_adopt_text;
    private JTextField page9_regno_text;
    private JTextField page9_case_text;
-
-   // 초기화처리를 위한 상수
-   public static final int NONE = 0;
-   // 삽입처리를 위한 상수
-   public static final int INSERT = 1;
-   // 삭제처리를 위한 상수
-   public static final int DELETE = 2;
-   // 변경처리를 위한 상수
-   public static final int UPDATE = 3;
-   // 검색처리를 위한 상수
-   public static final int SELECT = 4;
-
-   int cmd;
 
    /**
     * Launch the application.
@@ -132,6 +109,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       setContentPane(contentPane);
       contentPane.setLayout(null);
 
+      // page1======================================================================================================
       page_1 = new JPanel();
       page_1.setBounds(-1, 0, 1087, 641);
       contentPane.add(page_1);
@@ -163,6 +141,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       lblNewLabel_6.setBounds(0, 115, 1064, 187);
       page_1.add(lblNewLabel_6);
 
+      // page2======================================================================================================
       JPanel page_2 = new JPanel();
       page_2.setBounds(-11, -41, 1097, 660);
       contentPane.add(page_2);
@@ -186,7 +165,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       home_btn2.setBounds(977, 49, 85, 29);
       page_2.add(home_btn2);
 
-      // page3
+      // page3======================================================================================================
       Object[] title_3 = { "이름", "크기", "품종", "성별", "나이", "병력", "보호시작일", "안락사예정일", "입양여부", "등록번호" };
 
       JPanel page_3 = new JPanel();
@@ -292,8 +271,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       });
 
       // page_4===================================================================================
-
-      // page4
       Object[] title_4 = { "이름", "크기", "품종", "성별", "나이", "병력", "보호시작일", "안락사예정일", "입양여부", "등록번호" };
 
       JPanel page_4 = new JPanel();
@@ -340,6 +317,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
       });
 
+      // page5 ========================================================================================================
       JPanel page_5 = new JPanel();
       page_5.setBounds(0, 0, 1066, 629);
       contentPane.add(page_5);
@@ -381,7 +359,18 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       home_btn5.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 16));
       panel_55.add(home_btn5);
 
-      // page6
+      // home_btn5을 눌렀을 경우 1페이지 활성화+5페이지 비활성화
+      home_btn5.addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            page_1.setVisible(true);
+            page_5.setVisible(false);
+         }
+
+      });
+
+      // page6 ========================================================================================================
       Object[] title_6 = { "이름", "크기", "품종", "성별", "나이", "병력", "보호시작일", "안락사예정일", "입양여부", "등록번호" };
 
       JPanel page_6 = new JPanel();
@@ -441,8 +430,21 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       });
       panel_40.add(home_btn6, BorderLayout.EAST);
 
-      // page7============================================================================================
+      // 6페이지 비활성화
+      page_6.setVisible(false);
+      // home_btn6을 눌렀을 경우 1페이지 활성화+6페이지 비활성화
+      home_btn6.addActionListener(new ActionListener() {
 
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            page_1.setVisible(true);
+            page_6.setVisible(false);
+            clear6();
+         }
+
+      });
+
+      // page7============================================================================================
       Object[] title_7 = { "이름", "품종", "성별", "나이", "보호 종료 사유" };
 
       JPanel page_7 = new JPanel();
@@ -592,7 +594,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       });
 
       // 8페이지========================================================================================
-
       Object[] title_8 = { "등록번호", "이름", "성별", "소유자", "전화번호", "주소" };
 
       JPanel page_8 = new JPanel();
@@ -661,7 +662,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       });
 
       // 페이지9==================================================================================
-
       Object[] title_9 = { "이름", "크기", "품종", "성별", "나이", "병력", "보호시작일", "안락사예정일", "입양여부", "등록번호" };
 
       JPanel page_9 = new JPanel();
@@ -899,20 +899,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
       });
 
-      // 6페이지 비활성화
-      page_6.setVisible(false);
-      // home_btn6을 눌렀을 경우 1페이지 활성화+6페이지 비활성화
-      home_btn6.addActionListener(new ActionListener() {
-
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            page_1.setVisible(true);
-            page_6.setVisible(false);
-            clear6();
-         }
-
-      });
-
       // 5페이지 비활성화
       page_5.setVisible(false);
 
@@ -961,16 +947,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
             page_5.setVisible(false);
             displayAll9Animals();
-         }
-
-      });
-      // home_btn5을 눌렀을 경우 1페이지 활성화+5페이지 비활성화
-      home_btn5.addActionListener(new ActionListener() {
-
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            page_1.setVisible(true);
-            page_5.setVisible(false);
          }
 
       });
@@ -1084,6 +1060,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
    }
 
+   // page3 USER >> 실종 동물 찾기
    public void displayProtectRegAllAnimal() {
       System.out.println(page3_regno.getText());
       ProtectedAnimalsDTO animal = ProtectedAnimalsDAOImpl.getDAO().selectRegNoAnimals(page3_regno.getText());
@@ -1223,7 +1200,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       // String GenderReg="^[가-힣]{2}|^[가-힣]{3}*$";
       // if(!Pattern.matches(GenderReg, gender)) {
       if (!gender.equals("여") && !gender.equals("남") && !gender.equals("중성")) {
-         JOptionPane.showMessageDialog(this, "성별은 [여],[남],[중성]에서 선택하여 입력해주세요.");
+         JOptionPane.showMessageDialog(this, "성별은 [여],[남],[중성]에서 선택하여 반드시 입력해주세요.");
          page3_gender_text.requestFocus();
          return false;
       }
@@ -1236,7 +1213,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       String kind = page3_size_text.getText();
 
       if (kind.equals("")) {
-         JOptionPane.showMessageDialog(this, "[소형견],[중형견],[대형견] 중 하나를 반드시 입력해 주세요.");
+         JOptionPane.showMessageDialog(this, "크기는 [소형견],[중형견],[대형견]에서 선택하여 반드시 입력해 주세요.");
          page3_size_text.requestFocus();
          return false;
       }
@@ -1244,7 +1221,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
    }
 
-   // PROCTEDANIMALS 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
+   // PROCTEDANIMALS 테이블에 저장된 모든 동물정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
    public void displayAllAnimals() {
       List<ProtectedAnimalsDTO> animalList = ProtectedAnimalsDAOImpl.getDAO().selectAllAnimalsList();
 
@@ -1279,7 +1256,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
    }
 
-   // PROCTEDANIMALS 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
+   // PROCTEDANIMALS 테이블에 저장된 모든 동물정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
    public void displayAll9Animals() {
       List<ProtectedAnimalsDTO> animalList = ProtectedAnimalsDAOImpl.getDAO().selectAllAnimalsList();
 
@@ -1314,7 +1291,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
    }
 
-   // PROCTEDANIMALS 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
+   // PROCTEDANIMALS 테이블에 저장된 모든 동물정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
    public void displayAdoptAllAnimals() {
       List<ProtectedAnimalsDTO> animalList = ProtectedAnimalsDAOImpl.getDAO().selectAllAnimalsList();
 
@@ -1428,7 +1405,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
       int rows = ProtectedAnimalsDAOImpl.getDAO().updateProtectedAnimals(animal);
 
-      JOptionPane.showMessageDialog(this, rows + "마리의 입양여부를 변경 하였습니다.");
+      JOptionPane.showMessageDialog(this, rows + "마리의 입양여부를 변경하였습니다.");
 
       displayAdoptAllAnimals();
 
@@ -1494,7 +1471,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          JOptionPane.showMessageDialog(this, "이름은 한글 2~5자리로 반드시 입력해 주세요.");
          page7_name_text.requestFocus();
          return false;
-
       } else if (!Pattern.matches(endanimal_ageReg, endanimal_age)) {
          JOptionPane.showMessageDialog(this, "나이는 1~2자리 숫자로 반드시 입력해 주세요.");
          page7_age_text.requestFocus();
@@ -1581,7 +1557,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       String animal_name = page7_name_text.getText();
 
       if (animal_name.equals("")) {
-         JOptionPane.showMessageDialog(this, "모든 항목을 반드시 입력해 주세요.");
+         JOptionPane.showMessageDialog(this, "이름을 반드시 입력해 주세요.");
          page7_name_text.requestFocus();
          return false;
       }
@@ -1626,7 +1602,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       String size = page9_size_text.getText();
 
       if (size.equals("")) {
-         JOptionPane.showMessageDialog(this, "동물의 크기를 반드시 입력해 주세요.");
+         JOptionPane.showMessageDialog(this, "크기를 반드시 입력해 주세요.");
          page9_size_text.requestFocus();
          return false;
       }
@@ -1641,7 +1617,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
       String kind = page9_kind_text.getText();
 
       if (kind.equals("")) {
-         JOptionPane.showMessageDialog(this, "동물의 품종을 반드시 입력해 주세요.");
+         JOptionPane.showMessageDialog(this, "품종을 반드시 입력해 주세요.");
          page9_kind_text.requestFocus();
          return false;
       }
@@ -1764,6 +1740,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
 
    }
 
+   // JButton 이벤트 처리
    @Override
    public void actionPerformed(ActionEvent ev) {
       Component c = (Component) ev.getSource();
@@ -1772,7 +1749,6 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
             if (!searchRegNO())
                return;
             displayProtectRegAllAnimal();
-
          } else if (c == page3_gender_btn) {
             if (!searchGender())
                return;
