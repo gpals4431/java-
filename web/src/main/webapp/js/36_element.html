@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - Element 객체</h1>
+	<hr>
+	<h2 id="headline">h2태그에 의해 출력되는 내용</h2>
+	<ul>
+		<li>li태그에 의해 출력되는 내용-1</li>
+		<li>li태그에 의해 출력되는 내용-2</li>
+		<li>li태그에 의해 출력되는 내용-3</li>
+	</ul>
+	<p class="text">p 태그에 의해 출력되는 내용</p>
+	
+	<script type="text/javascript">
+	//document.getElementById(id): 태그의 id 속성값(=고유값)으로 하나의 태그를 검색하여 검색된 태그를 Element로 반환하는 메소드
+	var h2E=document.getElementById("headline");
+	//alert(h2E)//[object HTMLHeadingElement]
+	alert(h2E.nodeName);//h2
+	alert(h2E.nodeValue);//null
+	alert(h2E.firstChild);//[object Text] >> TextNode
+	alert(h2E.firstChild.nodeName);//#text
+	alert(h2E.firstChild.nodeValue);//h2태그에 의해 출력되는 내용
+		
+	h2E.firstChild.nodeValue="h2 태그의 내용 변경"
+	
+	var liList = document.getElementsByTagName("li");
+	alert(liList);//[object HTMLCollection]
+	alert(liList.length);
+	
+	for(i=0;i<liList.length;i++){
+		// NodeList.item(index): NodeList에 저장된 Node(Element) 객체 중 매개변수로 
+		//전달받은 첨자위치의 Node(Element) 객체를 반환하는 메소드 
+		var liE=liList.item(i);
+		alert(liE);//[object HTMLLIElement]
+		alert(liE.firstChild.nodeValue);//li태그 내용 출력
+		
+	}
+	//document.querySelector(selector): document 객체의 자식태그에서 CSS선택자로 태그를 검색하여 
+	//검색된 하나의 태그를 Node객체로 반환하는 메소드
+	var pE=document.querySelector(".text");
+	alert(pE);//[object HTMLParagraphElement]
+	alert(pE.firstChild.nodeValue);
+	
+	var pList=document.querySelectorAll(".text");
+	alert(pList);
+	alert(pList.item(0).firstChild.nodeValue);
+	
+	</script>
+</body>
+</html>

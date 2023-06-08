@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - Element 객체 생성 및 추가</h1>
+	<hr>
+	<div id="imageDiv"></div>
+	<script type="text/javascript">
+	//document.createElement(tagName) : 매개변수로 전달된 태그명의 Element 객체를 생성하여 반환하는 메소드
+	var h2E = document.createElement("h2");
+	alert(h2E);//[object HTMLHeadingElement]
+	
+	var h2T=document.createTextNode("h2 태그 출력되는 내용");
+	alert(h2T);
+	
+	//Node.appendChild(newNode) : 매개변수로 전달받은 Node 객체를 node 객체의 마지막 자식으로 추가하는 메소드
+	h2E.appendChild(h2T);
+	//document.body: document 객체에서 body 태그를 JS 객체로 표현
+	//=> 둠트리에 새로운 태그를 추가하여 저장 >> 출력
+	document.body.appendChild(h2E);
+	
+	var imgE=document.createElement("img");//<img>
+	
+	imgE.src="/web/html/Koala.jpg";
+	imgE.setAttribute("width", "300");
+	
+	var divE=document.getElementById("imageDiv");
+	divE.appendChild(imgE);
+	
+	var hrE=document.createElement("hr");
+	document.body.insertBefore(hrE, h2E);	
+</SCRIPT>	
+</body>
+</html>

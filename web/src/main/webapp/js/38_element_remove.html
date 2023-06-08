@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - Element 객체 삭제</h1>
+	<hr>
+	<h2>엘리먼트 -1 </h2>
+	<h2 id="remove">엘리먼트 -2 </h2>
+	<h2>엘리먼트 -3 </h2>
+	<script type="text/javascript">
+	/*
+	var h2E =document.getElementById("remove");
+	document.body.removeChild(h2E);
+	*/
+	var h2E =document.getElementById("remove");
+	h2E.parentElement.removeChild(h2E);
+	
+	</script>
+</body>
+</html>
