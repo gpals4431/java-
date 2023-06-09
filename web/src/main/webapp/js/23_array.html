@@ -16,43 +16,43 @@
 	var array=new Array();
 	
 	//Array.length : Array 객체에 저장된 요소의 갯수를 저장한 프로퍼티
-	//alert(array.length);//객체의 속성값 출력
+	alert(array.length);//0 - 객체의 속성값 출력
 	
 	//Array.toString() : Array 객체에 저장된 모든 요소값을 문자값으로 반환하는 메소드
-	//alert(array.toString());//객체 메소드를 호출하여 반환되는 값 출력
+	alert(array.toString());//출력값 없음 - 객체 메소드를 호출하여 반환되는 값 출력
 	
 	//Array 객체를 저장한 변수를 출력할 경우 자동으로 toString() 메소드 호출
-	alert(array);
-	*/
+	alert(array);//출력값 없음
+	
 
-	/*
+	
 	//Array(size) : 매개변수로 전달받은 숫자값(정수)의 갯수만큼 요소를 가진 Array 객체 생성
 	// => Array 객체의 요소에는 자동으로 null 저장 
 	var array=new Array(5);
 	//alert(array.length);
-	alert(array);
+	alert(array);// ,,,, - 요소값이 저장되지 않아 빈칸으로 출력
 	
 	
 	//Array(value, value, ...) : 매개변수로 2개 이상의 값을 전달받아 전달값의 갯수만큼 요소를 
 	//가진 Array 객체 생성 - Array 객체의 요소값으로 전달값이 차례대로 저장 
 	var array=new Array(10,20,30);
-	//alert(array.length);
-	//alert(array);
-	//alert("array[0]="+array[0]+", array[1]="+array[1]+", array[2]="+array[2]);
+	alert(array.length);//3
+	alert(array);//10,20,30
+	alert("array[0]="+array[0]+", array[1]="+array[1]+", array[2]="+array[2]);
+	//array[0]=10, array[1]=20, array[2]=30
 	
 	//Array 객체의 요소를 표현하는 첨자가 범위를 벗어난 경우 [undefined] 자료형으로 표현
-	//alert("array[3]="+array[3]);
+	alert("array[3]="+array[3]);//array[3]=undefined
 	
 	//JSON을 이용하여 Array 객체 생성
-	var array=[];//Empty Array
-	alert(array.length);
+	//var array=[];//Empty Array
+	//alert(array.length);//0
 	
-	*/
 	
 	//JSON을 이용하여 Array 객체 생성하고 Array 객체의 요소에 초기값 저장
 	var array=[10,20,30];
 	
-	/*
+	
 	//for 구문을 이용하여 Array 객체 요소에 대한 일괄 처리 가능
 	for(i=0;i<array.length;i++){
 		alert("array["+i+"]="+array[i]);
@@ -67,29 +67,40 @@
 	
 	//of 연산자를 사용한 for 구문을 이용하여 Array 객체의 요소값을 제공받아 일괄처리 가능
 	for(value of array){
-		alert(value);
+		alert(value);//10 > 20 > 30
 	}
-	
-	
-	//Array.forEach(callback(element[, index][, array])) : Array 객체의 요소를 일괄처리하기 위한 기능을 제공하는 메소드
-	//> 메소드 매개변수에 콜백함수를 전달하면 Array객체에 저장된 요소 갯수만큼 반복호출되며 콜백함수의 매개변수로 전달받은 값을 이용하여 array 객체를 콜백함수에서 처리할 수 있음
-	array.forEach(function(elt, i){
-		alert("array["+i+"]="+elt);
-	});
 	*/
 	
-	//alert(array);//10,20,30 -> array에 있는 모든 요소를 문자값으로 출력
+	var array=[10,20,30];
+	//Array.forEach(callback(element[, index][, array])) : Array 객체의 요소를 일괄처리하기 위한 기능을 제공하는 메소드
+	//> 메소드 매개변수에 콜백함수를 전달하면 Array객체에 저장된 요소 갯수만큼 반복호출되며 콜백함수의 매개변수로 전달받은 값을 이용하여 array 객체를 콜백함수에서 처리할 수 있음
+	array.forEach(function(elt/*10,20,30*/, i/*[0],[1],[2] -3번 반복호출*/){
+		alert("array["+i+"]="+elt);
+		//array[0]=10, array[1]=20, array[2]=30
+	});
+
 	
+	alert(array);//10,20,30 -> array에 있는 모든 요소를 문자값으로 출력
+	
+	//Array.push(value) : Array 객체의 마지막 위치에 요소를 추가를 매개변수로 전달받은 값을
+	//요소값으로 저장하는 메소드
 	array.push(40);
-	//alert(array);//10,20,30,40 
+	alert(array);//10,20,30,40
 	
+	//Array.pop() : Array 객체의 마지막 위치에 요소를 삭제하고 삭제된 요소의 값(=40)을 반환하는 메소드
 	var value=array.pop();
-	//alert(array);//10,20,30
-	//alert(value)//40
+	alert(array);//10,20,30
+	alert(value);//40
 	
-	//array.unshift(value);
-	array.shift(value);
-	alert(value);
+	//Array.unshift(value) : Array 객체의 첫번째 위치에 요소를 추가를 매개변수로 전달받은 값을
+	//요소값으로 저장하는 메소드
+	array.unshift(value);
+	alert(array);//40,10,20,30
+	
+	//Array.shift() : Array 객체의 첫번째 위치에 요소를 삭제하고 삭제된 요소의 값을 반환하는 메소드
+	var value=array.shift();
+	//alert(array);//10,20,30
+	alert(value);//40
 	</script>
 </body>
 </html>

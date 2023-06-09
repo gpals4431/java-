@@ -11,15 +11,15 @@
 	
 	var now =new Date();
 	
-	//alert("now.toString = "+ now.toString());
-	//alert("now = "+ now);
-	//alert("now = "+ now.toLocaleString());
-	/*
-	var day=["일","월","화","수","목","금","토"]
+	alert("now.toString = "+ now.toString());// Thu Jun 08 2023 17:59:30 GMT+0900 (한국 표준시)
+	alert("now = "+ now);//Thu Jun 08 2023 17:59:30 GMT+0900 (한국 표준시)
+	//now.toLocaleString() : Date 객체에 저장된 날자와 시간을 클라이언트 플렛폼에 맞는 패턴의 문자값으로 변환하여 반환하는 메소드
+	alert("now = "+ now.toLocaleString());//2023. 6. 8. 오후 5:59:30
+	
+	var day=["일","월","화","수","목","금","토"]//JSON으로 배열 저장하여 요소 일괄처리
 	var today= now.getFullYear()+"년 "+(now.getMonth()+1)+"월 "
 		+now.getDate()+"일 "+day[now.getDay()]+"요일";
 	alert("today="+today);
-	*/
 	
 	//매개변수에 특정 날짜와 시간을 전달하여 Date 객체를 생성하여 변수에 저장
 	var birthday = new Date(2000,0,1);//2000년 1월 1일 0시 0분 0초
