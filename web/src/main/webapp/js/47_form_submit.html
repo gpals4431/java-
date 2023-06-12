@@ -15,6 +15,7 @@
 	설정하고 비정상적인 입력값이 있는 경우 form 태그가 동작되지 않도록 설정하는 것을 권장</p>
 	<hr>
 	<form action="47_form_action.html" method="post" name="loginForm">
+	<!-- checkbox, radio 같은 경우 일부러 name 속성값을 동일하게 설정, 하지만 그 외는 중복되지않게 작성하는 것을 권장 -->
 	<table>
 		<tr>
 			<td>아이디</td>
@@ -30,7 +31,7 @@
 			<!-- => click 이벤트에 의해 제출 이벤트(Submit Event)가 발생되어 form 태그 동작 -->
 			<!-- <td colspan="2"><button type="submit">로그인</button></td> -->
 			
-			<!-- 아무런 이벤트도 발생되지 않는 button 태그 -->
+			<!-- 아무런 이벤트도 발생되지 않는 button 태그 >>> 입력값 검증x -->
 			<td colspan="2"><button type="button" id="loginBtn">로그인</button></td>
 		</tr>
 	</table>		
@@ -69,7 +70,7 @@
 			return;
 		}
 		
-		//form 태그의 속성과 속성값을 자바스크립트로 설정 가능
+		//form 태그의 속성과 속성값을 자바스크립트로 설정 가능 ex) 장바구니 - 선택삭제/전체삭제
 		//loginForm.action="47_form_action.html";
 		//loginForm.method="post";
 		

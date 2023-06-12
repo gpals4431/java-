@@ -27,7 +27,7 @@
 		
 		var newItem=document.createElement("div");//<div></div> 생성
 		newItem.setAttribute("id", "item_"+count);//<div id = "item_XXX"></div>
-		var html="아이템["+count+"]&nbsp;&nbsp;<button type='btn' onclick='removeItem("+count+");'>삭제</button>";
+		var html="아이템["+count+"]&nbsp;&nbsp;<button type='button' onclick='removeItem("+count+");'>삭제</button>";
 		//아직 만들어진 버튼이 아니기때문에 찾기가 불가능함 = 이벤트 처리함수 등록 안됨
 		newItem.innerHTML=html;//<div id = "item_XXX">아이템[XXX][삭제]/div> 태그내용삽입
 		
