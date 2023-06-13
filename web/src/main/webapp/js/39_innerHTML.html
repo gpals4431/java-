@@ -25,6 +25,8 @@
 	
 	var liList=ulList.item(0).getElementsByTagName("li");
 	
+	//- NodeList.item(index): NodeList에 저장된 Node(Element) 객체 중 매개변수로 전달받은
+	//첨자위치의 Node(Element) 객체를 반환하는 메소드 
 	var liE=liList.item(1);//<li>메뉴-2</li>
 	
 	//Text 객체를 이용하여 태그 내용 변경
@@ -42,11 +44,12 @@
 	pE.appendChild(pT);//<p>p 태그에 의해 출력되는 내용</p>
 	divE.appendChild(pE);//<div id="text"><p>p 태그에 의해 출력되는 내용</p></div>
 	*/
-
+	
 	var divE=document.getElementById("text");//<div id="text"></div>
 	//Node.innerHTML : Node(Element) 객체에 자식 태그 또는 태그내용을 저장한 프로퍼티
 	// => Node(Element) 객체의 innerHTML 프로퍼티를 사용하여 하위태그 및 태그내용 변경 가능
 	divE.innerHTML="<p>p 태그에 의해 출력되는 내용</p>";
+	
 	</script>
 </body>
 </html>
