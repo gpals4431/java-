@@ -11,61 +11,11 @@ import java.util.List;
 public class simpleDAOImpl extends JdbcDAO implements simpleDAO {
 	private static simpleDAOImpl _dao;
 
-<<<<<<< HEAD
-	public simpleDAOImpl() {
-		// TODO Auto-generated constructor stub
-=======
-   @Override
-   public int updateAccountBook(simpleDTO account) {
-      Connection con =null;
-      PreparedStatement pstmt = null;
-      int rows =0;
-      
-      try {
-         con = getConnection();
-         
-         String sql = "update account_book set amoney=?, ainout=?, aout=?, ain=? where aname=? and usedate=? ";
-         
-         pstmt = con.prepareStatement(sql);
-         
-         pstmt.setInt(1, account.getAmoney());
-         pstmt.setString(2, account.getAinout());
-         pstmt.setString(3, account.getAout());
-         pstmt.setString(4, account.getAin());
-         pstmt.setString(5, account.getAname());
-         pstmt.setString(6, account.getUsedate());
-         
-         rows = pstmt.executeUpdate();
-      }catch(SQLException e) {
-         System.out.println("[에러]updateAccountBook() 메소드의 SQL오류 발생");
-      }finally {
-         close(con,pstmt);
-      }return rows;
-   }
-
-@Override
-public int deleteAccountBook(simpleDTO account) {
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	int rows = 0;
-
-	try {
-		con = getConnection();
-
-		String sql = "delete from account_book where aname=? and usedate=? ";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, account.getAname());
-		pstmt.setString(2, account.getUsedate());
-
-		rows = pstmt.executeUpdate();
-
-	} catch (SQLException e) {
-		System.out.println("에러 : deleteAccountBook 메소드의 SQL 오류 =" + e.getMessage());// 매핑하여 반환
-	} finally {
-		close(con, pstmt);
->>>>>>> refs/remotes/origin/main
+	private simpleDAOImpl() {
+		
+	
 	}
-
+		
 	static {
 		_dao = new simpleDAOImpl();
 
@@ -74,43 +24,8 @@ public int deleteAccountBook(simpleDTO account) {
 	public static simpleDAOImpl getDao() {
 		return _dao;
 	}
-
-	@Override
-	public int insertAccountBook(simpleDTO account) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		int rows = 0;
-
-<<<<<<< HEAD
-		try {
-			con = getConnection();
-=======
-		String sql = "select aname, amoney, ainout, to_char(usedate,'yyyy-mm-dd') usedate, aout, ain from account_book where aname=? order by usedate";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, aname);
->>>>>>> refs/remotes/origin/main
-
-			String sql = "insert into account_book values(?,?,?,?,?,?)";
-
-			pstmt = con.prepareStatement(sql);
-
-			pstmt.setString(1, account.getAname());
-			pstmt.setInt(2, account.getAmoney());
-			pstmt.setString(3, account.getAinout());
-			pstmt.setString(4, account.getUsedate());
-			pstmt.setString(5, account.getAout());
-			pstmt.setString(6, account.getAin());
-
-			rows = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			System.out.println("[에러]insertAccountBook() 메소드의 SQL오류 발생");
-		} finally {
-			close(con, pstmt);
-		}
-		return rows;
-	}
-
+	
+	// TODO Auto-generated constructor stub
 	@Override
 	public int updateAccountBook(simpleDTO account) {
 		Connection con = null;
@@ -139,6 +54,38 @@ public int deleteAccountBook(simpleDTO account) {
 		}
 		return rows;
 	}
+
+	@Override
+	public int insertAccountBook(simpleDTO account) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int rows = 0;
+
+		try {
+			con = getConnection();
+
+			String sql = "insert into account_book values(?,?,?,?,?,?)";
+
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, account.getAname());
+			pstmt.setInt(2, account.getAmoney());
+			pstmt.setString(3, account.getAinout());
+			pstmt.setString(4, account.getUsedate());
+			pstmt.setString(5, account.getAout());
+			pstmt.setString(6, account.getAin());
+
+			rows = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("[에러]insertAccountBook() 메소드의 SQL오류 발생");
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+
+	
 
 	@Override
 	public int deleteAccountBook(simpleDTO account) {
@@ -237,36 +184,36 @@ public List<simpleDTO> selectAllaccountList() {
 	return accountList;
 }
 
-@Override
-public simpleDTO update_changeAccountBook(String aname, String usedate) {
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	simpleDTO changeaccount = null ;
-	try {
-		con = getConnection();
-		String sql = " select * from account_book where aname=? and usedate =? order by usedate";
+	@Override
+	public simpleDTO update_changeAccountBook(String aname, String usedate) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		simpleDTO changeaccount = null;
+		try {
+			con = getConnection();
+			String sql = " select * from account_book where aname=? and usedate =? order by usedate";
 
-		pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 
-		rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 
-		if (rs.next()) {
-			changeaccount = new simpleDTO();
-			
-			changeaccount.setAmoney(rs.getInt("amoney"));
-			changeaccount.setAinout(rs.getString("ainout"));
-			changeaccount.setAout(rs.getString("aout"));
-			changeaccount.setAin(rs.getString("ain"));
-			changeaccount.setAname(rs.getString("aname"));
-			changeaccount.setUsedate(rs.getString("usedate"));
+			if (rs.next()) {
+				changeaccount = new simpleDTO();
 
+				changeaccount.setAmoney(rs.getInt("amoney"));
+				changeaccount.setAinout(rs.getString("ainout"));
+				changeaccount.setAout(rs.getString("aout"));
+				changeaccount.setAin(rs.getString("ain"));
+				changeaccount.setAname(rs.getString("aname"));
+				changeaccount.setUsedate(rs.getString("usedate"));
+
+			}
+		} catch (SQLException e) {
+			System.out.println("에러 : update_changeAccountBook 메소드의 SQL 오류 =" + e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
 		}
-	}catch(SQLException e) {
-		System.out.println("에러 : update_changeAccountBook 메소드의 SQL 오류 =" + e.getMessage());
-	}finally {
-		close(con, pstmt, rs);
-	}
-	return changeaccount;
+		return changeaccount;
 	}
 }

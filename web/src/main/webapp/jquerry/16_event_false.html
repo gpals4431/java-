@@ -29,14 +29,19 @@ h1{
 	<div>
 		<!-- a 태그는 click 이벤트에 의해 브라우저의 URL 주소를 변경하여 웹프로그램을 요청하고
 		실행 경과를 응답받아 출력 - a 태그는 click 이벤트에 대한 페이지 이동 명령 실행 - 이벤트 기본 명령 -->
+		
 		<a href="http://www.daum.net"> 다 음 </a>
 	</div>
 	
 	<script type="text/javascript">
+	//이벤트실행 > 부모태그 : 버블링- 자식이벤트 실행시 타겟태그의 이벤트호출되는게 아니고 부모의 이벤트가 호출 > window 객체 > 이벤트 종료
+	
 	$("div").click(function() {
 		$(this).css("background","aqua");
 		$(this).find("a").css("background","white");
 	});
+		
+		
 		
 	$("div").find("a").click(function() {
 		$(this).css("background","yellow");
@@ -45,9 +50,10 @@ h1{
 		//-> 다음 클릭시 다음의 배경색이 안바뀌고 div의 배경색이 바뀜 > 버블링
 		event.stopPropagation();//태그의 이벤트 전달 중지
 		*/
-		return false;//이벤트 처리 함수에서 false 를 반환하면 태그의 기본 이벤트 명령 제거 및 이벤트 전달 중지되며 이벤트 처리 함수 종료
+		return false;//(중요!)기본이벤트 취소, 이벤트 전달 중단하고 싶으면 위의 이벤트 메소드를 호출하는 것보다 false 반환이 편함.
+		//이벤트 처리 함수에서 false를 반환하면 태그의 기본 이벤트 명령 제거 및 이벤트 전달 중지되며 이벤트 처리 함수 종료
+
 	});
-	
 	
 	</script>
 </body>

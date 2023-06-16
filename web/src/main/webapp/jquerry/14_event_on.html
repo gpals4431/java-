@@ -53,8 +53,9 @@ h1{
 	//on() 메소드를 이용하는 것을 권장
 	// => on()메소드 매개변수에 JSON 형식으로 표현된 Object 객체를 전달하여 속성명으로
 	//이벤트명을 전달하고 속성값으로 이벤트 처리 함수를 등록
-	$("div").on({"click":function() {
-		$(this).css("color","red");
+	$("div").on({
+		"click":function() {
+			$(this).css("color","red");
 		}, 
 		"mouseover":function() {
 			$(this).css("background","yellow");
