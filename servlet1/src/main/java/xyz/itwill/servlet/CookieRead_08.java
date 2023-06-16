@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 // => 클라이언트가 서버에 접속하여 웹프로그램을 요청할 때 서버 정보로 저장된 모든 쿠키를 리퀘스트 
 //메세지에 담아 제공
 @WebServlet("/read.itwill")
-public class CookieRead extends HttpServlet {
+public class CookieRead_08 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	

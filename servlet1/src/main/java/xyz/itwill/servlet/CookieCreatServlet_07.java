@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 // 쿠키를 클라이언트에게 전달하는 서블릿 = > 클라이언트는 쿠키를 응답받아 저장
 //
 @WebServlet("/creat.itwill")
-public class CookieCreatServlet extends HttpServlet {
+public class CookieCreatServlet_07 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

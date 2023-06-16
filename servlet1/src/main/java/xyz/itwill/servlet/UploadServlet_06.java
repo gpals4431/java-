@@ -34,7 +34,7 @@ public class UploadServlet_06 extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		if(request.getMethod().equals("GET")) {//get방식(비정상적 요청)으로 요청하면 다시 filupload페이지로 이동  
-			response.sendRedirect("fileuplad.html");
+			response.sendRedirect("fileupload.html");
 			return;
 		}
 		//몸체부에 저장된 multipart/form-data를 가져올 수 있는 입력스트림 >> 임시파일로 multipart/form-data를 저장 

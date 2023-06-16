@@ -44,7 +44,8 @@ public class LifeCycleServlet_04 extends HttpServlet {
 		//[web.xml] 파일의 context-param 엘리먼트로 제공되는 값 반환 
 		//ServletConfig.getServletContext() : ServletContext 객체를 반환하는 메소드
 		//ServletContext.getInitParameter(String name): [web.xml]파일에서 제공되는 값을 얻어와 반환하는 메소드
- 		name=config.getServletContext().getInitParameter("name");
+		name=config.getServletContext().getInitParameter("name");
+
  		
  		//[web.xml] 파일의 init-param 엘리먼트로 제공되는 값을 ServletConfig 객체의
  		//getInitParameter 메소드를 얻어와 반환 
@@ -55,9 +56,9 @@ public class LifeCycleServlet_04 extends HttpServlet {
 	//=> 객체 소멸 전 실행될 마무리 명령 작성 - 마무리 처리(별로 중요하지 않음)
 	@Override
 	public void destroy() {
-		System.out.println("### LifeCycleServlet 클래스의 destroy()메소드 호출 ###");
+		System.out.println("### LifeCycleSessrvlet 클래스의 destroy()메소드 호출 ###");
 	}
-	
+
 		
 	//클라이언트가 요청할때마다 WAS 프로그램에 의해 서블릿 객체로 반복 호출되는 메소드
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
