@@ -23,7 +23,7 @@ import java.util.List;
 public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 	private static StudentDAOImpl _dao;
 
-	// 싱글톤 사용 하여 하나의 객체만 받을 수 있도록
+	// 싱글톤 사용하여 하나의 객체만 받을 수 있도록
 	public StudentDAOImpl() {
 		// TODO Auto-generated constructor stub
 	}
