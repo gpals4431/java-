@@ -236,6 +236,11 @@ public class ProtectedAnimalsDAOImpl extends JdbcDAO implements ProtectedAnimals
       }
       return animalList;
    }
+
+public List<ProtectedAnimalsDTO> selectAllAnimalsList() {
+	// TODO Auto-generated method stub
+	return null;
+}
    
    
 }

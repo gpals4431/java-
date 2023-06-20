@@ -38,7 +38,7 @@ public class JndiServlet_13 extends HttpServlet {
 			// => 매개변수로 전달받아 이름의 객체가 없는 경우 NamingException 발생 - 예외처리
 			DataSource dataSource=(DataSource)new InitialContext().lookup("java:comp/env/jdbc/oracle");
 			
-			Connection con=dataSource.getConnection();
+			Connection con=dataSource.getConnection();//컨넥션 객체 중 하나를 반환하는 메소드
 
 			out.println("<!DOCTYPE html>");
 			out.println("<html>");
