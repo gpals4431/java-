@@ -12,7 +12,6 @@ import xyz.itwill.dto.GuestDTO;
 
 //방명록 게시글을 전달받아 GUEST 테이블에 행을 삽입하고 방명록 게시글 목록페이지
 //(/guest/list.itwill)로 이동하기 위한 URL 주소를 클라이언트에게 전달하여 응답하는 서블릿
-//-> form 태그로 url로 응답하기 때문에 response.setContentType("text/html;charset=utf-8"), PrintWriter out=response.getWriter();필요x
 // => 방명록 게시글 입력페이지(guest/writeForm.itwill)에서 form 태그를 사용해 post 방식으로 요청하는 서블릿
 @WebServlet("/guest/write.itwill")
 public class GuestInsertServlet extends HttpServlet {
@@ -42,7 +41,7 @@ public class GuestInsertServlet extends HttpServlet {
 		//DTO 객체를 전달받아 GUEST 테이블에 행을 삽입하는 DAO 클래스의 메소드 호출
 		GuestDAO.getDAO().insertGuest(guest);
 		
-		//클라이언트에게 URL 주소를 전달하여 응답 처리
+		//클라이언트에게 URL 주소를 전달하여 응답 처리- 페이지 요청
 		// => 클라이언트는 전달받은 URL 주소의 서블릿을 요청하여 실행결과를 응답받아 출력 - 리다이렉트 이동
 		response.sendRedirect("list.itwill");
 	}

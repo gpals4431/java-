@@ -22,11 +22,11 @@ public class GuestSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=utf-8");//문자값으로 응답
-		PrintWriter out=response.getWriter();//출력스트림 만들어서 html 문서 만들어 태그 전달
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
 		
 		//GUEST 테이블에 저장된 모든 행을 검색하여 List 객체로 반환하는 DAO 클래스의 메소드 호출
-		List<GuestDTO> guestList=GuestDAO.getDAO().selectGuestList();
+		List<GuestDTO> guestList=GuestDAO.getDAO().selectGuestList();//클라이언트에게 방명록 게시글의 html문서를 다시 제공
 		
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
@@ -40,7 +40,6 @@ public class GuestSelectServlet extends HttpServlet {
 		out.println("<table width='1000'>");
 		out.println("<tr>");
 		out.println("<td align='right'>");
-		//a 태그는 클릭이벤트가 발생하지만 코드가 길어짐, 버튼태그로 클릭이벤트 > form태그 사용해야함 => onclick 이벤트 이용
 		out.println("<button type='button' onclick='location.href=\"writeForm.itwill\";'>글쓰기</button>");
 		out.println("</td>");
 		out.println("</tr>");

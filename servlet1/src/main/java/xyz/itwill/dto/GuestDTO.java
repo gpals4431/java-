@@ -37,7 +37,7 @@ public class GuestDTO {
 		this.content = content;
 		this.regdate = regdate;
 	}
-	
+
 	public int getNum() {
 		return num;
 	}
