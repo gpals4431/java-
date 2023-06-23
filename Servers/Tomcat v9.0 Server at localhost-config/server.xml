@@ -163,7 +163,7 @@
       <Context docBase="jsp" path="/jsp" reloadable="true" source="org.eclipse.jst.jee.server:jsp"/>
       <Context docBase="servlet1" path="/servlet1" reloadable="true" source="org.eclipse.jst.jee.server:servlet1"/>
     
- <Context docBase="web" path="/web" reloadable="true" source="org.eclipse.jst.jee.server:web"/></Host>
+ <Context docBase="web" path="/web" reloadable="true" source="org.eclipse.jst.jee.server:web"/><Context docBase="example" path="/example" reloadable="true" source="org.eclipse.jst.jee.server:example"/></Host>
     </Engine>
   </Service>
 </Server>

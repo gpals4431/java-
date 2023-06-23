@@ -382,7 +382,7 @@ public class simpleGUIApp extends JFrame implements ActionListener {
 		String in = in_TF.getText();
 		if (!in.equals("") && !(in.equals("급여")) && !(in.equals("용돈")) && !(in.equals("사업수익"))
 				&& !(in.equals("금융수익"))) {
-			JOptionPane.showMessageDialog(this, " 수입 내역은 급여, 용돈, 사업수익, 금융수익" + "중 하나를 선택하여 입력해주세요.");
+			JOptionPane.showMessageDialog(this, " 수입 내역은 급여, 용돈, outea싟사업수익, 금융수익" + "중 하나를 선택하여 입력해주세요.");
 			in_TF.requestFocus();
 			return false;
 

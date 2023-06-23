@@ -1,15 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 사용자로부터 로그인 처리에 필요한 인증정보(id, pw)를 입력받기 위한 JSP 문서 
-=> 로그인 태그를 클릭한 경우 로그인 처리페이지(login_action.jsp) 문서 요청 - 입력값(인증정보) 전달 -->
+<!--
+비로그인 상태의 사용자로부터 로그인 처리에 필요한 인증정보(id, pw)를 입력받기 위한 JSP 문서 
+=> 로그인 태그를 클릭한 경우 로그인 처리페이지(login_action.jsp) 문서 요청 - 입력값(인증정보) 전달
+=> 로그인 상태의 사용자인 경우 환영메세지를 전달하여 응답하는 jsp문서
+ -->
 <%
-/*
+//바인딩된 세션에서 권한 관련 정보가 저장된 객체를 반환받아 저장
+	String loginId=(String)session.getAttribute("loginId");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP</title>
+</head>
+<body>
+	<% if(loginId==null){//비로그인상태의 사용자인 경우  %>
+	
+	<%
+	/*
 	//전달된 에러메세지를 반환받아 저장
 	String message=request.getParameter("message");
 	if(message==null){//전달값이 없는 경우
 		message="";//null 문자 출력 방지
 	}
-*/
+	*/
 
 	//바인딩된 세션에 저장된 에러메세지를 반환받아 저장 
 	String message=(String)session.getAttribute("message");
@@ -21,32 +37,21 @@
 		// => 다른 jsp문서에서 세션에 저장된 에러메세지를 사용할 수 없도록 삭제	처리 필요
 		session.removeAttribute("message");
 	}
-	
 	String id=(String)session.getAttribute("id");
 	if(id==null){
 		id="";
 	}else{
-		//session.removeAttribute(String attributeName) : 클라이언트 정보로 바인딩된 세션에 속성값을 삭제하는 메소드
-		//해주는 이유? 바인딩된 세션에 저장된 객체는 소멸전까지는 유지, 하지만 message는 다른곳에 쓸 필요없음
-		// => 다른 jsp문서에서 세션에 저장된 에러메세지를 사용할 수 없도록 삭제	처리 필요
 		session.removeAttribute("id");
 	}
-
-%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>JSP</title>
-</head>
-<body>
+	 %>
+	 
 	<h1>로그인</h1>
 	<hr>
 	<form action="login_action.jsp" method="post" name="loginForm">
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="id" value=<%=id %>></td>
+			<td><input type="text" name="id" value=<%= id %>></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
@@ -81,6 +86,14 @@
 	
 	</script>
 	
-		
+	<% }else {//로그인 상태의 사용자인 경우%>	
+	<h1>메인페이지</h1>
+	<hr>
+	<p>
+		<p><%=loginId %>님, 환영합니다.&nbsp;&nbsp;
+		<a href="logout_action.jsp">[로그아웃]</a>&nbsp;&nbsp;
+		<a href="login_form.jsp">[마이페이지]]</a>&nbsp;&nbsp;
+	</p>
+	<% } %>
 </body>
 </html>
