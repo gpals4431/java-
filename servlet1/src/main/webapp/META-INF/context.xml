@@ -14,7 +14,7 @@
 	<!-- => factory 속성 대신 class 속성을 사용하여 객체 생성 가능 -->
 	<!-- type 속성 : 객체의 자료형을 속성값으로 설정 - 객체를 반환받기 위한 자료형(클래스 or 인터페이스) -->
 	<!-- 객체의 필드값 관련 정보를 속성(필드명)과 속성값(필드값)을 이용하여 설정 - 필드값 변경 -->
-	<Resource name="jdbc/oracle" author="Container" 
+	<Resource name="jdbc/oracle" auth="Container" 
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 		type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
 		url="jdbc:oracle:thin:@localhost:1521:xe" username="scott" password="tiger"
