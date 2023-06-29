@@ -90,6 +90,8 @@ public class ReviewDAO extends JdbcDAO {
 						+ " where "+search+" like '%'||?||'%' and status <> 0"
 						+ " order by ref desc, restep) temp) where rn between ? and ?";
 					pstmt=con.prepareStatement(sql);
+					
+					
 					pstmt.setString(1, keyword);
 					pstmt.setInt(2, startRow);
 					pstmt.setInt(3, endRow);
