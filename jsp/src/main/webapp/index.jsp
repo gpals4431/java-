@@ -6,7 +6,10 @@
 => 템플릿 페이지의 웹문서 몸체부에는 클라이언트 요청에의한 전달값을 이용하여 JSP문서의 실행
 결과를 제공받아 포함
  --%>
-<%	//1.경로가 null일 경우 내가 지정하고자하는 경로 지정
+<%
+	request.setCharacterEncoding("utf-8");
+
+	//1.경로가 null일 경우 내가 지정하고자하는 경로 지정
 	String group = request.getParameter("group");
 	if(group==null) group="main";
 	

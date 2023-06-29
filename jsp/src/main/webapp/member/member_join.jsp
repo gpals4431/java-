@@ -249,7 +249,7 @@ $("#id").change(function() {
 	/* 아이디 중복검사 > 사용가능> 변경 후 입력창에서 아이디를 또 변경하였을때 val값을 0으로 바꿔서 중복검사가 미실시된것으로 변경처리 
 	0 : 아이디 중복 검사 미실행 또는 아이디 중복 - 아이디 사용 불가능으로 변경*/
 });  
-
+//우편번호 다음에서 코드 복사해서 사용
 $("#postSearch").click(function() {
     new daum.Postcode({
         oncomplete: function(data) {
