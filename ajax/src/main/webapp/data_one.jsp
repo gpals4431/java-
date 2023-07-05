@@ -26,7 +26,7 @@
 	</div>
 	
 	<script type="text/javascript">
-	//[get 방식의 요청] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	//[get 방식의 요청] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 - 대부분 검색처리에 사용
 	document.getElementById("getBtn").onclick= function() {
 		//입력태그의 입력값을 반환받아 저장
 		var name=document.getElementById("name").value;
@@ -67,7 +67,7 @@
 		
 	}
 	
-	//[post 방식의 요청]태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	//[post 방식의 요청]태그를 클릭한 경우 호출되는 이벤트 처리 함수 - url로 표현못하는 문서거나, 전달값이 많을 경우 post권장
 	document.getElementById("postBtn").onclick= function() {
 		//입력태그의 입력값을 반환받아 저장
 		var name=document.getElementById("name").value;
@@ -103,7 +103,7 @@
 		
 		//XMLHttpRequest.setRequestHeader(header, value) :XMLHttpRequest 객체를 이용하여 웹프로그램 요청시 리퀘스트
 		//메세지의 헤어 정보를 변경하는 메소드
-		//=> 리퀘스트 메세지 몸체부에 저장된 값이 문자데이터로 표현되도록 변경 설정
+		//=> 리퀘스트 메세지 몸체부에 저장된 값이 문자데이터로 표현되도록 변경 설정 - 기본값 multipart???
 		//=> 반드시 open()메소드 호출 후 사용 가능
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		

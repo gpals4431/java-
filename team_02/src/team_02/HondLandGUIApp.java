@@ -38,6 +38,7 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
    private JTable page7_table;
    private JTable page8_table;
    private JTable page9_table;
+   
 
    // JButton 선언
    JButton page3_regno_btn, page3_size_btn, page3_gender_btn, page4_gender_btn1, page4_gender_btn2, page4_gender_btn3,
@@ -74,6 +75,8 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
    private JTextField page9_adopt_text;
    private JTextField page9_regno_text;
    private JTextField page9_case_text;
+   
+   
 
    /**
     * Launch the application.
@@ -95,6 +98,9 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
    /**
     * Create the frame.
     */
+   
+   
+   
    public HondLandGUIApp() {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setBounds(100, 100, 1082, 656);
@@ -1011,8 +1017,10 @@ public class HondLandGUIApp extends JFrame implements ActionListener {
          }
 
       });
-
+      
    }
+   
+   
 
    // page3 JTextfiled 컴포넌트 초기화
    public void clear3() {

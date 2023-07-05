@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- [csv_two.jsp] 문서를 AJAX 기능으로 요청하여 CSV 형식 데이타로 응답받아 태그를 변경하여
-클라이언트에게 전달하여 응답하는 JSP 문서, 파일저장시 [파일명.csv]로 저장 --%>
-<%-- => CSV 형식 데이타를 제공받아 HTML 태그로 변환하여 페이지 변경 - 파싱(Parsing) 처리 --%>
-<%-- CSV(Comma Separated Values) : 콤마(,)를 사용하여 값을 구분하여 제공하는 비구조적인 데이타 표현 방식 --%>     
+<%-- [json_two.jsp] 문서를 AJAX 기능으로 요청하여 JSON 형식 데이타로 응답받아 태그를 변경하여
+클라이언트에게 전달하여 응답하는 JSP 문서 --%>
+<%-- => JSON 형식 데이타를 제공받아 HTML 태그로 변환하여 페이지 변경 - 파싱(Parsing) 처리 --%>
+<%-- JSON(JavaScrip Object Notation) : 자바스트립트의 객체 표현 방식을 사용하여 값을 구분하는 구조적인 데이타 표현 방식 --%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,28 +51,29 @@
 	<script type="text/javascript">
 	document.getElementById("newsList").onmouseover=function() {
 		var xhr=new XMLHttpRequest();
+		
 		xhr.onreadystatechange=function() {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
 					//document.getElementById("newsContents").innerHTML=xhr.responseText;
 					
-					//CSV 형식의 데이타를 제공받아 변수에 저장
-					var csv=xhr.responseText;
+					//eval(text) : 매개변수로 전달받은 문자값을 자바스트립트 명령을 실행하는 함수
+					// => JSON 형식의 데이타를 전달받아 자바스크립트 객체로 변환
+					//var result=eval("("+xhr.responseText+")");
 					
-					//CSV 형식의 데이타를 행(뉴스) 단위로 분리하여 Array 객체의 요소에 저장
-					var newsArray=csv.split("*");
-					//alert(newsArray.length);
+					//JSON.parse(json) : 매개변수로 전달받은 JSON 형식의 데이타를 전달받아 자바스크립트 객체로 변환하여 반환하는 메소드
+					var result=JSON.parse(xhr.responseText);
+					
+					//alert(result);//[object Object],[object Object],[object Object],[object Object],[object Object] - Array 객체
 					
 					var html="<ol>";
-					for(i=0;i<newsArray.length;i++) {
-						//행(뉴스)을 열(값 - 뉴스제목과 언론사) 단위로 분리하여 Array 객체의 요소에 저장
-						var news=newsArray[i].split("|");
-						var title=news[0].trim();//Array 객체(news)의 0번째 요소값 - 뉴스제목
-						var publisher=news[1].trim();//Array 객체(news)의 1번째 요소값 - 언론사
+					for(i=0;i<result.length;i++) {
+						var title=result[i].title;
+						var publisher=result[i].publisher;
 						html+="<li>"+title+"["+publisher+"]</li>";
 					}
 					html+="</ol>";
-					
+
 					document.getElementById("newsContents").innerHTML=html;
 					
 					document.getElementById("newsContents").style="display: block;";
@@ -82,7 +83,7 @@
 			}
 		}
 		
-		xhr.open("get", "csv_two.jsp");
+		xhr.open("get", "json_two.jsp");
 		xhr.send(null);
 	}
 	

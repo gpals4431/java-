@@ -64,7 +64,7 @@
 		xhr.open("get", "hello_two.jsp", true);//비동기식 요청과 응답 - 요청에 의한 응답 기다림 미발생(다른 작업 가능)
 		//xhr.open("get", "hello_two.jsp", false);//동기식 요청과 응답 - 요청에 의한 응답 기다림 발생(다른 작업 불가능)
 		
-		//3.XMLHttpRequest 객체로 send() 메소드 호출 - 준비상태가 [2]로 자동 변경
+		//4.XMLHttpRequest 객체로 send() 메소드 호출 - 준비상태가 [2]로 자동 변경
 		//XMLHttpRequest.send(data) : XMLHttpRequest 객체로 웹프로그램을 요청하기 위한 메소드
 		// => data : 웹프로그램 요청시 전달값을 [이름=값&이름=값&...] 형식으로 전달
 		// => 리퀘스트 메세지 몸체부에 값을 저장하여 전달 - POST 방식으로 요청
@@ -80,7 +80,7 @@
 			alert("요청 설정 상태");
 		} else if(xhr.readyState==2) {
 			alert("요청 상태");
-		} else if(xhr.readyState==3) {
+		} else if(xhr.readySwjdtate==3) {
 			alert("응답 대기 상태");
 		} else if(xhr.readyState==4) {
 			alert("응답 완료 상태");

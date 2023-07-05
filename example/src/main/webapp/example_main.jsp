@@ -20,11 +20,10 @@
 		keyword="";
 	}
 
-	int searchTotal = ExampleDAO.getDao().searchAcoountList(search, keyword);
-	//String date=request.getParameter("usedate");	
-
+	int totalCount=ExampleDAO.getDao().searchAccountCount(search, keyword);
+			
 	//Account 테이블에 저장된 모든 정보를 검색하여 List 객체로 반환하는 dao 클래스 호출
-	List<ExampleDTO> accountList=ExampleDAO.getDao().selecctAccountList();
+	List<ExampleDTO> accountList=ExampleDAO.getDao().searchAccountList(search, keyword);
 	
 	String aout=(String)session.getAttribute("aout");
 	String ain=(String)session.getAttribute("ain");
@@ -121,8 +120,13 @@ select{
 		<th>입금내역</th>
 		<th  width="60">&nbsp;삭&nbsp;제&nbsp;</th>
 	</tr>
-	<tr>
+	<% if(totalCount==0){ %>
+			<tr>
+				<td colspan="5">검색된 게시글이 없습니다.</td>
+			</tr>
+	<% } else { %>
 	<% for(ExampleDTO account :accountList) {%>
+	<tr>
 		<td><%= account.getAname() %></td>
 		<td><%= account.getAmoney() %></td>
 		<td><%= account.getAinout() %></td>
@@ -131,6 +135,7 @@ select{
 		<td><%= account.getAin()%></td>
 		<td><input type="button" value="삭제" onclick="removeAccount(<%=account.getNum()%>)"></td>
 	</tr>
+	<%} %>
 	<%} %>
 </table>
 	<hr>

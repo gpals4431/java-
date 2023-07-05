@@ -181,7 +181,6 @@ public class ReviewDAO extends JdbcDAO {
 	
 	}
 	
-<<<<<<< HEAD
 	//부모글 관련 정보를 전달받아 REVIEW 테이블에 저장된 게시글에서 부모글의 글그룹과 같은
 		//게시글 중 부모글의 글순서보다 큰 게시글의 RESTEP 컬럼값을 1 증가되도록 변경하고 
 		//변경행의 갯수를 반환하는 메소드 
@@ -304,31 +303,5 @@ public class ReviewDAO extends JdbcDAO {
 		return rows;
 		
 	}
-=======
-	/*
-	부모글 관련 정보를 전달받아 REVIEW 테이블에 저장된 게시글에서 부모글의 글그룹과 같은
-	게시글 중 부모글의 글 순서보다 큰 게시글의 RESTEP 컬럼값을 +1증가되도록 변경하고 변경행의 갯수를 반환하는 메소드
-	 */
-	public int updateRestep(int ref, int restep) {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		int rows=0;
-		try {
-			con=getConnection();
-			//최신글이 맨 위로 올라오려면 where ref=? and restep(=글순서)>? 넣어줘야함
-			String sql="update review set restep=restep+1 where ref=? and restep>?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1,ref);
-			pstmt.setInt(2,restep);
-			
-			rows=pstmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("[에러]insertReview() 메소드의 SQL 오류 = "+e.getMessage());
-		} finally {
-			close(con, pstmt);
-		}
-		return rows;	
-	}
-		
->>>>>>> refs/remotes/origin/main
+
 }
