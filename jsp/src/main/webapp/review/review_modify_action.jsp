@@ -1,7 +1,7 @@
 <%@page import="xyz.itwill.dto.ReviewDTO"%>
 <%@page import="java.io.File"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
-<%@page import="xyz.itwill.utill.Utility"%>
+<%@page import="xyz.itwill.util.Utility"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -38,9 +38,9 @@
 	String reviewimg=multipartRequest.getFilesystemName("reviewimg");
 	if(reviewimg!=null) {//파일이 전달되어 업로드 처리된 경우	
 		//REVIEW 테이블에 저장된 게시글의 리뷰이미지 파일명을 반환받아 저장 
-		String removeImg=ReviewDAO.getDao().selectReview(num).getReviewimg();
+		String removeImg=ReviewDAO.getDAO().selectReview(num).getReviewimg();
 		if(removeImg!=null) {//리뷰이미지 파일이 존재하는 경우 -  기존 리뷰이미지가 존재할 경우
-			//기존 리뷰이미지 파일을 삭제 처리 
+			//기존 리뷰이미지 파일을 업로드 디렉토리에서 삭제 처리 
 			new File(saveDirectory, removeImg).delete();
 		}
 	}
@@ -54,7 +54,7 @@
 	review.setStatus(status);
 	
 	//게시글을 전달받아 REVIEW 테이블에 저장된 게시글을 변경하는 DAO 클래스의 메소드 호출
-	ReviewDAO.getDao().updateReview(review);
+	ReviewDAO.getDAO().updateReview(review);
 	
 	//페이지 이동
 	response.sendRedirect(request.getContextPath()+"/index.jsp?group=review&worker=review_detail"

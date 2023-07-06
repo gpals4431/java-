@@ -52,9 +52,8 @@ legend {
 	color: white;
 }
 </style>
-<!-- request.getContextPath(): 배포하였을때 사용자가 요청한 경로 -->
-<form id="join" action="<%=request.getContextPath()%>/member/member_join_action.jsp" method="post">
-<%-- 아이디 중복 검삭 결과를 저장하기 위한 입력태그 --%>
+<form id="join" action="<%=request.getContextPath() %>/member/member_join_action.jsp" method="post">
+<%-- 아이디 중복 검사 결과를 저장하기 위한 입력태그 --%>
 <%-- => 0 : 아이디 중복 검사 미실행 또는 아이디 중복 - 아이디 사용 불가능 --%>
 <%-- => 1 : 아이디 중복 검사 실행 및 아이디 미중복 - 아이디 사용 가능 --%>
 <input type="hidden" id="idCheckResult" value="0">
@@ -129,28 +128,14 @@ legend {
 	<button type="reset">다시입력</button>
 </div>
 </form>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 다음의 우편번호 검색 팝업 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-$("#id").focus();/* 아이디 입력창 */
+$("#id").focus();
 
-$("#join").submit(function() {/* form 태그 submit이벤트 함수*/
+$("#join").submit(function() {
 	var submitResult=true;
 	
- 	$(".error").css("display","none");//에러 발생 전까지 보이지 않도록 요소 숨김처리 
-	/*
-	display: none;
-
-	화면에서 사라집니다. 크기 자체도 차지하지 않습니다!
-
- 
-	display: block;
-
-	일반적으로 설정하지 않아도 div가 갖게되는 기본값입니다. (태그에 따라 기본값이 다를 수 있습니다.)
-	
-	기본적으로 width 가 자신의 컨테이너의 100% 가 되게끔 합니다. 쉽게 말하자면, 가로 한 줄을 다 차지하게 됩니다.
-
- 
- 	*/
+	$(".error").css("display","none");
 
 	var idReg=/^[a-zA-Z]\w{5,19}$/g;
 	if($("#id").val()=="") {
@@ -161,6 +146,7 @@ $("#join").submit(function() {/* form 태그 submit이벤트 함수*/
 		submitResult=false;
 	} else if($("#idCheckResult").val()=="0") {
 		$("#idCheckMsg").css("display","block");
+		submitResult=false;
 	}
 		
 	var passwdReg=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{6,20}$/g;
@@ -217,7 +203,7 @@ $("#join").submit(function() {/* form 태그 submit이벤트 함수*/
 	if($("#address2").val()=="") {
 		$("#address2Msg").css("display","block");
 		submitResult=false;
-	} 
+	}
 	
 	return submitResult;
 });
@@ -236,20 +222,17 @@ $("#idCheck").click(function() {
 		return;
 	}
 	
-	//팝업창을 실행하여 [id_check.jsp] 문서 요청 - 사용자로부터 받은 id값
-	//.val(): 양식(form)의 값을 가져오거나 설정하는 메소드 - 밑에 메소드는 #id 값을 가져옴
+	//팝업창을 실행하여 [id_check.jsp] 문서 요청
 	window.open("<%=request.getContextPath()%>/member/id_check.jsp?id="+$("#id").val()
-			,"idCheck"/*[name= 창이름]*/, "width=450, height=130, left=700, top=400");
+			,"idCheck", "width=450, height=130, left=700, top=400");
 });
 
 //입력태그(아이디)의 입력값이 변경된 경우 호출되는 이벤트 처리 함수 등록
 $("#id").change(function() {
 	//아이디 중복 검사 결과값을 저장한 입력태그의 입력값 변경 - 아이디 중복 검사 미실행
 	$("#idCheckResult").val("0");
-	/* 아이디 중복검사 > 사용가능> 변경 후 입력창에서 아이디를 또 변경하였을때 val값을 0으로 바꿔서 중복검사가 미실시된것으로 변경처리 
-	0 : 아이디 중복 검사 미실행 또는 아이디 중복 - 아이디 사용 불가능으로 변경*/
-});  
-//우편번호 다음에서 코드 복사해서 사용
+});
+
 $("#postSearch").click(function() {
     new daum.Postcode({
         oncomplete: function(data) {

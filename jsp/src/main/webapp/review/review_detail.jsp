@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 <%@page import="xyz.itwill.dto.MemberDTO"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@page import="xyz.itwill.dto.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 글번호를 전달받아 REVIEW 테이블에 저장된 게시글을 검색하여 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
-<%-- => 전달된 페이지번호, 검색대상, 검색단어는 반환받아 [review_list.jsp] 문서를 요청할 때 전달 --%>
+<%-- => 전달된 페이지번호, 검색대상, 검색단어는 반환받아 [review/review_list.jsp] 문서를 요청할 때 전달 --%>
 <%-- => [글변경] 태그를 클릭한 경우 [review/review_modify.jsp] 문서 요청 - 글번호, 페이지번호, 검색대상, 검색단어 전달 --%>
 <%-- => [글삭제] 태그를 클릭한 경우 [review/review_remove_action.jsp] 문서 요청 - 글번호 전달 --%>
 <%-- => [답글쓰기] 태그를 클릭한 경우 [review/review_write.jsp] 문서 요청 - 답글번호, 답글순서, 답글깊이, 페이지번호 전달 --%>
@@ -27,7 +26,7 @@
 	String keyword=request.getParameter("keyword");
 	
 	//글번호를 전달받아 REVIEW 테이블에 저장된 게시글을 검색하여 DTO 객체로 반환하는 DAO 클래스의 메소드 호출
-	ReviewDTO review=ReviewDAO.getDao().selectReview(num);
+	ReviewDTO review=ReviewDAO.getDAO().selectReview(num);
 	
 	if(review==null) {//검색된 게시글이 없는 경우 - 비정상적인 요청
 		out.println("<script type='text/javascript'>");
@@ -53,7 +52,7 @@
 	}
 	
 	//글번호를 전달받아 REVIEW 테이블에 저장된 게시글의 조회수를 1 증가되도록 변경하는 DAO 클래스의 메소드 호출
-	ReviewDAO.getDao().updateReadcount(num);
+	ReviewDAO.getDAO().updateReadcount(num);
 %>
 <style type="text/css">
 #review_detail {
@@ -174,9 +173,3 @@ $("#listBtn").click(function() {
 		+"&pageNum=<%=pageNum%>&search=<%=search%>&keyword=<%=keyword%>";
 });
 </script>
-=======
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%-- �۹�ȣ�� ��������ȣ, �˻����, �˻��ܾ ���޹޾� review ���̺��� ����� �Խñ��� �˻��Ͽ� Ŭ���̾�Ʈ���� �����ϴ� jsp����
-=> ��������ȣ, �˻����, �˻��ܾ�� ��ȯ�޾� [review_list.jsp] ������ ��û�� �� ����--%>
->>>>>>> refs/remotes/origin/main

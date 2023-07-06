@@ -1,4 +1,4 @@
-<%@page import="xyz.itwill.utill.Utility"%>
+<%@page import="xyz.itwill.util.Utility"%>
 <%@page import="xyz.itwill.dto.ReviewDTO"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
@@ -52,7 +52,7 @@
 	//REVIEW_SEQ 시퀸스의 다음값을 검색하여 반환하는 DAO 클래스의 메소드 호출
 	// => 게시글의 글번호(NUM 컬럼값)로 저장
 	// => 새글인 경우에는 게시글의 글그룹(REF 컬럼값)의 값으로 저장
-	int num=ReviewDAO.getDao().selectNextNum();
+	int num=ReviewDAO.getDAO().selectNextNum();
 	
 	//게시글을 작성한 클라이언트의 IP 주소를 반환받아 저장
 	//request.getRemoteAddr() : JSP 문서를 요청한 클라이언트의 IP 주소를 반환하는 메소드
@@ -76,7 +76,7 @@
 		//되도록 변경 처리
 		// => 새로운 답글이 기존 답글보다 먼저 검색되도록 기존 답글의 순서를 증가
 		// => REVIEW 테이블에 저장된 게시글의 RESTEP 컬럼값을 변경하는 DAO 클래스의 호출
-		ReviewDAO.getDao().updateRestep(ref, restep);
+		ReviewDAO.getDAO().updateRestep(ref, restep);
 		
 		//REVIEW 테이블의 REF 컬럼값에는 ref 변수값(부모글)을 저장하고 RESTEP 컬럼과 RELEVEL
 		//컬럼에는 restep 변수값(부모글)과 relevel 변수값(부모글)을 1 증가하여 저장
@@ -98,7 +98,7 @@
 	review.setStatus(status);
 	
 	//게시글을 전달받아 REVIEW 테이블에 삽입하는 DAO 클래스의 메소드 호출
-	ReviewDAO.getDao().insertReview(review);
+	ReviewDAO.getDAO().insertReview(review);
 	
 	//페이지 이동
 	response.sendRedirect(request.getContextPath()+"/index.jsp?group=review&worker=review_list&pageNum="+pageNum);

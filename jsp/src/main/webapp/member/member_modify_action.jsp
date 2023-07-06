@@ -1,5 +1,5 @@
 <%@page import="xyz.itwill.dao.MemberDAO"%>
-<%@page import="xyz.itwill.utill.Utility"%>
+<%@page import="xyz.itwill.util.Utility"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 회원정보를 전달받아 MEMBER 테이블에 저장된 회원정보를 변경하고 [member/member_mypage.jsp]

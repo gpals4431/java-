@@ -19,7 +19,7 @@
 	int num=Integer.parseInt(request.getParameter("num"));
 	
 	//글번호를 전달받아 REVIEW 테이블에 저장된 게시글을 검색하여 DTO 객체로 반환하는 DAO 클래스의 메소드 호출
-	ReviewDTO review=ReviewDAO.getDao().selectReview(num);
+	ReviewDTO review=ReviewDAO.getDAO().selectReview(num);
 	
 	if(review==null) {//검색된 게시글이 없는 경우 - 비정상적인 요청
 		out.println("<script type='text/javascript'>");
@@ -40,7 +40,7 @@
 	review.setStatus(0);
 	
 	//게시글을 전달받아 REVIEW 테이블에 저장된 해당 게시글을 변경하는 DAO 클래스의 메소드 호출
-	ReviewDAO.getDao().updateReview(review);
+	ReviewDAO.getDAO().updateReview(review);
 	/*
 	if(review.getReviewimg()!=null) {
 		//리뷰 이미지 파일을 업로드 디렉토리에서 삭제 처리

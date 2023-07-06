@@ -36,7 +36,7 @@
 	
 	//게시글 검색 관련 정보를 전달받아 REVIEW 테이블에 저장된 게시글 중 검색 처리된 전체   
 	//게시글의 갯수를 검색하여 반환하는 DAO 클래스의 메소드 호출
-	int totalReview=ReviewDAO.getDao().selectReviewCount(search, keyword);
+	int totalReview=ReviewDAO.getDAO().selectReviewCount(search, keyword);
 	
 	//전체 페이지의 갯수를 계산하여 저장
 	//int totalPage=totalReview/pageSize+totalReview%pageSize==0?0:1;
@@ -62,8 +62,7 @@
 	
 	//페이징 처리 관련 정보와 게시글 검색 기능 관련 정보를 전달하여 REVIEW 테이블에 저장된 
 	//게시글 목록을 검색하여 List 객체로 반환하는 DAO 클래스의 메소드 호출
-	List<ReviewDTO> reviewList=ReviewDAO.getDao().selectReviewList(startRow, endRow, search, keyword);
-
+	List<ReviewDTO> reviewList=ReviewDAO.getDAO().selectReviewList(startRow, endRow, search, keyword);
 	
 	//세션에 저장된 권한 관련 속성값을 객체로 반환받아 저장
 	// => 로그인 상태의 사용자에게만 글쓰기 권한 제공
@@ -186,7 +185,7 @@ td {
 						<span class="subject_hidden">비밀글</span>
 						<%-- 로그인 상태의 사용자가 게시글 작성자이거나 관리자인 경우 --%>
 						<% if(loginMember!=null && (loginMember.getId().equals(review.getReviewid()) || loginMember.getMemberStatus()==9)) { %>
-							<a href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_detail&num=<%=review.getNum()%>&pageNum=<%=pageNum%>&search=<%=search%>&keyword=<%=keyword%>">"><%=review.getSubject()%></a>					
+							<a href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_detail&num=<%=review.getNum()%>&pageNum=<%=pageNum%>&search=<%=search%>&keyword=<%=keyword%>"><%=review.getSubject()%></a>					
 						<% } else { %>
 							게시글 작성자 또는 관리자만 확인 가능합니다.
 						<% } %>
@@ -263,7 +262,7 @@ td {
 	
 	<%-- 사용자로부터 검색어를 입력받아 게시글 검색 기능 구현 --%>
 	<form action="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list" method="post">
-		<%-- select 태그를 사용하여 검색대상을 선택해 컬럼명을 전달 --%>
+		<%-- select 태그를 사용하여 검 색대상을 선택해 컬럼명을 전달 --%>
 		<select name="search">
 			<option value="name" selected="selected">&nbsp;작성자&nbsp;</option>
 			<option value="subject">&nbsp;제목&nbsp;</option>

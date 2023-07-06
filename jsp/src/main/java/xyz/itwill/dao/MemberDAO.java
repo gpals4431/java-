@@ -177,7 +177,7 @@ public class MemberDAO extends JdbcDAO {
 			
 			if(rs.next()) {
 				//id=rs.getString("id");
-				id=rs.getString(1);//이름으로 검색된 id를 반환
+				id=rs.getString(1);
 			}
 		} catch (SQLException e) {
 			System.out.println("[에러]selectMemberId() 메소드의 SQL 오류 = "+e.getMessage());

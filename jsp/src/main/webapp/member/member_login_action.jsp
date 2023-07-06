@@ -1,7 +1,7 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="xyz.itwill.dao.MemberDAO"%>
 <%@page import="xyz.itwill.dto.MemberDTO"%>
-<%@page import="xyz.itwill.utill.Utility"%>
+<%@page import="xyz.itwill.util.Utility"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 로그인정보를 전달받아 MEMBER 테이블에 저장된 회원정보와 비교하여 로그인 처리하고 

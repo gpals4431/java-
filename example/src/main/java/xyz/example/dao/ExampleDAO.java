@@ -111,15 +111,17 @@ public class ExampleDAO extends JdbcDAO{
 			con=getConnection();
 			if(keyword.equals("")) {
 				
-				String sql="select * from account_book order by usedate";
+				String sql="select * from account_book order by usedate desc";
 				pstmt=con.prepareStatement(sql);
 				
 						
 			}else {
-				String sql="select * from account_book where"+search+" like '%'||?||'%'";
-
+				String sql="select * from account_book where "+search+" like '%'||?||'%' order by usedate desc";
+					
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
+				
+				System.out.println(sql);
 			}
 			
 			rs=pstmt.executeQuery();
@@ -161,10 +163,12 @@ public class ExampleDAO extends JdbcDAO{
 				pstmt=con.prepareStatement(sql);
 				
 			}else {//게시글 검색 기능을 사용한 경우
-				String sql="select count(*) from account_book where"+search+" like '%'||?||'%'";
-
+			
+				String sql="select count(*) from account_book where "+search+" like '%'||?||'%'";
+			
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
+				
 			}
 			rs=pstmt.executeQuery();
 			
