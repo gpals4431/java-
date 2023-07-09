@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+</head>
+<body>
+	<h1>선택자(Selector)-3</h1>
+	<hr>
+	<div id="subject">
+		<p>JAVA 과정</p>
+		<div>
+			<p>JAVA 기분문법</p>
+			<p>JAVA OPP</p>
+			<p>JAVA API</p>
+		</div>
+		<p>JSP 과정</p>
+		<div>
+			<p>JSP 요소</p>
+			<p>JSP 지시어</p>
+			<p>표준 액션 태그</p>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	//자식 선택자 : 검색된 부모태그에서 첫번째 깊이의 자식태그를 검색하여 제공	
+	//$("#subject > p").css({"font-size":"25px","font-weight":"bold"});
+
+	//$(Selector).children([selector]): 선택자로 검색된 부모태그에서 첫번째 깊이의 자식태그를 검색하는 메소드
+	//=> children() 메소드의 매개변수에 선택자를 전달하지 않은 경우 모든 첫번째 깊이의 자식태그를 jQuery 객체로 반환	
+	//$("#subject").children("p").css({"font-size":"25px","font-weight":"bold","color":"red"});
+	//$("#subject").contents().css({"font-size":"25px","font-weight":"bold"});//contents는 무조건 모든 자식
+	
+	
+	//후손 선택자 : 검색된 부모태그에서 모든 깊이의 후손태그를 검색하여 제공
+	//$("#subject  p").css("color","green");
+	
+	//$("#subject").find(selector-생략불가) : 선택자로 검색된 부모태그에서 모든 깊이의 후손태그를 검색하여
+	//jQuery 객체로 반환하는 메소드
+	$("#subject").find("p").css("color","green");
+	</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+table{
+	border: 1px solid black;/*border 자식한테 상속안됨.*/
+	/* border-collapse: 박스모델의 외곽선 중첩 관련 스타일 속성
+	=> 속성값 : separate( 중첩된 외곽선 구분 - 기본), collapse(중첩된 외곽선 병합 ) */
+	border-collapse: collapse;
+	
+	table-layout: fixed;
+	
+}
+th, td{
+	border: 1px solid black;
+	
+	/* width : 모든 셀의 폭이 일정하게 변경  */
+	/* width: 200px; */
+	
+	height: 30px;
+}
+td{
+	text-align: center;
+}
+/* 셀마다 폭을 다르게 설정 */ 
+.num{width: 100px;}
+.name{width: 150px;}
+.address{
+	width: 200px;
+	text-align: left;
+	padding-left: 5px;
+}
+</style>
+</head>
+<body>
+	<h1>테이블 관련 스타일 속성</h1>
+	<hr>
+	<table>
+		<tr>
+			<!-- 셀의 폭은 태그 내용에 의해 자동으로 설정 -->
+			<th >번호</th><th >이름</th><th >주소</th>
+		</tr>
+		<tr>
+			<td class="num">1000</td><td class="name">홍길동</td><td class="address">서울시 강남구</td>
+		</tr>
+		<tr>
+			<td class="num">2000</td><td class="name">임꺽정</td><td class="address">서울시 관악구</td>
+		</tr>
+		<tr>
+			<td class="num">3000</td><td class="name">전우치</td><td class="address">서울시 도봉구</td>
+		</tr>
+		<tr>
+			<td class="num">4000</td><td class="name">일지매</td><td class="address">서울시 광진구</td>
+		</tr>
+		<tr>
+			<td class="num">5000</td><td class="name">장길산</td><td class="address">서울시 송파구</td>
+		</tr>
+	</table>
+</body>
+</html>

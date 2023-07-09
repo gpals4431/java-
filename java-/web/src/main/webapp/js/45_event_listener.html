@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div {
+	border: 1px solid black;
+	padding: 30px;
+	text-align: center;
+}
+
+#red {
+	background: red;
+}
+
+#green {
+	background: green;
+}
+</style>
+</head>
+<body>
+	<h1>이벤트(Event) - 이벤트 전달(Event Propagation)</h1>
+	<hr>
+	<!-- 태그의 이벤트 리스너 속성값으로 다수의 이벤트 처리 함수 호출 가능 -->
+	<button type="button" onclick="eventHandleOne(); eventHandleTwo();">이벤트
+		버튼 -1</button>
+	<button type="button" id="btn2">이벤트 버튼 -2</button>
+	<button type="button" id="btn3">이벤트 버튼 -3</button>
+	<hr>
+	<div id="red">
+		<div id="green"></div>
+	</div>
+
+	<script type="text/javascript">
+		function eventHandleOne() {
+			alert("eventHandleOne 함수의 명령 실행");
+		}
+		function eventHandleTwo() {
+			alert("eventHandleTwo 함수의 명령 실행");
+		}
+		//Node 객체의 이벤트 리스너 속성에 이벤트 처리 함수 등록
+		// > Node 객체의 이벤트 리스너 속성에는 하나의 이벤트 처리 함수만 등록 가능 
+		// > 간단히 처리하기위해 위의 코드 사용 단점으로 하나만 저장 >> 그래서 밑에 addEventListener 사용하여 다수 처리
+		document.getElementById("btn2").onclick = eventHandleOne;//btn누르면 eventHandleOne 함수 호출
+		document.getElementById("btn2").onclick = eventHandleTwo;//일종의 프로퍼티 값 저장과 동일 - 값 하나만 저장 가능
+
+		//Node 객체로 addEventListener() 메소드를 호출하여 이벤트 처리 함수 등록 - 정석 
+		// > Node 객체의 addEventListener()메소드를 사용하면 다수의 이벤트 처리 함수만 등록 가능 
+		document.getElementById("btn2").addEventListener("click",
+				eventHandleOne);
+		document.getElementById("btn2").addEventListener("click",
+				eventHandleTwo);
+
+		// Node.addEventListener(eventName, callback,[, useCapture])를 이용하여 이벤트 처리 함수 등록
+		// >> addEventListener() 메소드를 호출할 때 useCapture 매개변수를이용하면 캐쳐링 또는 버블링 
+		//단계에서 콜백함수를 호출하여 이벤트 처리 명령 실행 가능
+		// >> useCapture 매개변수에 [false]를 전달하면 버블링 단계에서 콜백함수를 호출하여 이벤트 처리 명령을
+		//실행하고 true를 전달하면 캡처링단계에서 콜백함수를 호출하여 이벤트 처리
+		document.getElementById("red").addEventListener(
+				"click",
+				function() {
+					//event.currentTarget : 이벤트가 발생된 태그에 대한 Element 객체를 저장한 프로퍼티
+					var tag = event.currentTarget.tagName;
+					var id = event.currentTarget.getAttribute("id");
+					//event.type : 태그에서 발생된 이벤트를 저장한 프로퍼티
+					alert("캡쳐링 단계 = " + tag + " 태그(" + id + ")에서 " + event.type
+							+ " 이벤트 발생");
+				}, true);
+
+		document.getElementById("green").addEventListener(
+				"click",
+				function() {
+					var tag = event.currentTarget.tagName;
+					var id = event.currentTarget.getAttribute("id");
+					alert("버블링 단계 = " + tag + " 태그(" + id + ")에서 " + event.type
+							+ " 이벤트 발생");
+					//event.stopPropagation();
+				}, false);
+
+		document.getElementById("red").addEventListener(
+				"click",
+				function() {
+					var tag = event.currentTarget.tagName;
+					var id = event.currentTarget.getAttribute("id");
+					alert("버블링 단계 = " + tag + " 태그(" + id + ")에서 " + event.type
+							+ " 이벤트 발생");
+				}, false);
+		//green 클릭 > 빨간색 이벤트가 발생..>캡처링으로 그린이벤트 > 버블링에의해 빨간이벤트
+	</script>
+</body>
+</html>
