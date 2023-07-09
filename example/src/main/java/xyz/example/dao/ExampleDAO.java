@@ -102,7 +102,7 @@ public class ExampleDAO extends JdbcDAO{
 		return rows;
 	}
 
-	public List<ExampleDTO> searchAcoountList(String search, String keyword){
+	public List<ExampleDTO> searchAccountList(String search, String keyword){
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -111,15 +111,17 @@ public class ExampleDAO extends JdbcDAO{
 			con=getConnection();
 			if(keyword.equals("")) {
 				
-				String sql="select * from account_book order by usedate";
+				String sql="select * from account_book order by usedate desc";
 				pstmt=con.prepareStatement(sql);
 				
 						
 			}else {
-				String sql="select * from account_book "
-						+ "where"+search+"like  like '%'||?||'%' order by usedate";
+				String sql="select * from account_book where "+search+" like '%'||?||'%' order by usedate desc";
+					
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
+				
+				System.out.println(sql);
 			}
 			
 			rs=pstmt.executeQuery();
@@ -142,5 +144,43 @@ public class ExampleDAO extends JdbcDAO{
 		}
 		return accountList;
 		
+	}
+	
+	public int searchAccountCount(String search, String keyword) {
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count =0;
+		
+		try {
+			con=getConnection();
+			
+			//매개변수에 저장된 값을 비교하여 DBMS 서버에 다른 SQL명령을 전달하여 실행
+			//=> 동적 SQL(Dynamic SQL) 기능  
+			if(keyword.equals("")) {//검색 기능을 사용하지 않은 경우
+				//REVIEW 테이블에 저장된 전체 게시글의 갯수를 검색
+				String sql="select count(*) from account_book";
+				pstmt=con.prepareStatement(sql);
+				
+			}else {//게시글 검색 기능을 사용한 경우
+			
+				String sql="select count(*) from account_book where "+search+" like '%'||?||'%'";
+			
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, keyword);
+				
+			}
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
+			
+		}catch(SQLException e) {
+			System.out.println("[에러]searchAccountCount()메소드에 의한 SQL오류"+e.getMessage());
+		}finally {
+			close(con, pstmt, rs);
+		}
+		return count;
 	}
 }

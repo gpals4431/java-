@@ -15,12 +15,15 @@ public interface ProtectedAnimalsDAO {
    int deleteProtectedAnimals(String animal_name);
    
    //등록번호를 전달받아 PROTECTED_ANIMALS 테이블에 저장된 해당 동물의 동물정보를 검색하여 반환하는 메소드
-   ProtectedAnimalsDTO selectRegNoAnimalsList(String reg_no);
+   ProtectedAnimalsDTO selectRegNoAnimals(String reg_no);
    
    //크기를 전달받아 PROTECTED_ANIMALS 테이블에 저장된 해당 동물의 동물정보를 검색하여 반환하는 메소드
    List<ProtectedAnimalsDTO> selectSizeAnimalsList(String animal_size);
    
    //성별을 전달받아 PROTECTED_ANIMALS 테이블에 저장된 해당 동물의 동물정보를 검색하여 반환하는 메소드
    List<ProtectedAnimalsDTO> selectGenderAnimalsList(String gender);
+   
+   //ProtectedAnimals 테이블에 저장된 모든 학생정보를 검색하여 반환하는 메소드
+   List<ProtectedAnimalsDTO> selectAllAnimalsList();
    
 }
