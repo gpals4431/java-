@@ -181,7 +181,7 @@ td {
 			
 				<%--제목 출력 : REVIEW 테이블의 글번호가 아닌 게시글 제목으로 응답처리 --%>
 				<td class="subject">
-					<%-- 게시글이 답글인 경우에 대한 응답처리 --%>
+					<%-- 게시글이 답글인 경우에 대한 응답처리 : getRestep : 답글 순서--%>
 					<% if(review.getRestep()!=0){//검색된 게시글이 답글인 경우 %>
 						<%-- 게시글의 깊이를 제공받아 왼쪽 여백 설정 --%>
 						<span style="margin-left: <%=review.getRelevel()*20 %>px;">└[답글]</span>
@@ -192,7 +192,7 @@ td {
 					<% } else if(review.getStatus()==2){//비밀 게시글인 경우 %>
 						<span class="subject_hidden">비밀글</span>
 						<%-- 로그인 상태의 사용자가 게시글 작성자이거나 관리자인 경우 --%>
-						<% if(loginMember!=null&&loginMember.getId().equals(review.getId()) || loginMember.getMemberStatus()==9 ){ %>
+						<% if(loginMember!=null&&loginMember.getId().equals(review.getReviewid()) || loginMember.getMemberStatus()==9 ){ %>
 							<a href="#"><%=review.getSubject()%></a>
 						<% }else{ %>
 							게시글 작성자 또는 관리자만 확인 가능합니다.
