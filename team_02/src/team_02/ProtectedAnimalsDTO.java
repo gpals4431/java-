@@ -131,4 +131,6 @@ public class ProtectedAnimalsDTO {
    public void setReg_no(String reg_no) {
       this.reg_no = reg_no;
    }
+   
+   
 }

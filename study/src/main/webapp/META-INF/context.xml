@@ -17,7 +17,11 @@
 	<Resource name="jdbc/oracle" auth="Container" 
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 		type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
+<<<<<<< HEAD
 		url="jdbc:oracle:thin:@118.36.189.74:1521:xe" username="scott" password="tiger"
+=======
+		url="jdbc:oracle:thin:@localhost:1521:xe" username="scott" password="tiger"
+>>>>>>> refs/remotes/origin/main
 		initialSize="10" maxIdle="10" maxTotal="15"/>
 </Context>
 

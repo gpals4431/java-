@@ -7,6 +7,7 @@
 
 	if(request.getMethod().equals("GET")){
 		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+<<<<<<< HEAD
 		return;
 	}
 	
@@ -23,5 +24,21 @@
 		session.setAttribute("message", "아이디와 비번 불일치");
 	}
 	
+=======
+		response.sendRedirect("login.jsp");
+		return;
+	}
+	
+	String id=request.getParameter("id");
+	String password=request.getParameter("password");
+	
+	joinDTO join=new joinDTO();
+	join.setId(id);
+	join.setPassword(password);
+	
+	joinDAO.getDAO().selectJoin(id);
+	
+	response.sendRedirect("main.jsp");
+>>>>>>> refs/remotes/origin/main
 
 %>

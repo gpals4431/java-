@@ -1,6 +1,10 @@
 package study.dto;
 /*
+<<<<<<< HEAD
  create table login (id varchar2(100) primary key, password varchar2(100), name varchar2(200));
+=======
+ create table login values(id varchar2(100) primary key, password varchar2(100), name varchar2(200));
+>>>>>>> refs/remotes/origin/main
  */
 
 public class joinDTO {

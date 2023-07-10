@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
+<<<<<<< HEAD
   <runtime name="apache-tomcat-9.0.71"/>
   <fixed facet="jst.web"/>
   <fixed facet="wst.jsdt.web"/>
+=======
+  <fixed facet="wst.jsdt.web"/>
+  <fixed facet="jst.web"/>
+>>>>>>> refs/remotes/origin/main
   <fixed facet="java"/>
   <installed facet="java" version="17"/>
   <installed facet="jst.web" version="4.0"/>

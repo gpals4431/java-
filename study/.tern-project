@@ -10,6 +10,7 @@
     "browser-extension": {
       
     },
+<<<<<<< HEAD
     "jquery-ui1-12": {
       
     },
@@ -17,6 +18,9 @@
       
     },
     "jquery-mobile1.5": {
+=======
+    "jquery-extension": {
+>>>>>>> refs/remotes/origin/main
       
     }
   },

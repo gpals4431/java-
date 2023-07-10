@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<h1 align="center">예약하기</h1>
+<hr>
+<body>
+	<form action="room2.html" method="get" enctype="application/x-www-form-urlencoded">
+		<p align="center">방 선택:
+			<label><input type="radio" name="room" value="방1" required="required">
+			<img title="방1" alt="방1" src="images/방1.jpeg" width="100"></label>
+			<label><input type="radio" name="room" value="방2" required="required">
+			<img title="방2" alt="방2" src="images/방2.jpeg" width="100"></label>
+			<label><input type="radio" name="room" value="방3" required="required">
+			<img title="방3" alt="방3" src="images/방3.jpeg" width="100"></label>
+		<p align="center">예약 희망 날짜: <input type="date" name="date" required="required"></p>
+		<p align="center">이름: <input type="text" name="name" required="required"></p>
+		<p align="center">전화번호: <input type="tel" name="phone" required="required"></p>
+		<p align="center">이메일: <input type="email" name="email"></p>
+		<p align="center">인원수: <input type="number" name="cmt" min="1" max="6" required="required"></p>
+		
+		<p align="center"><button type="submit">예약하기</button></p>
+	</form>
+</body>
+</html>

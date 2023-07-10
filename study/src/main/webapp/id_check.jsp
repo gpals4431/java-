@@ -53,7 +53,10 @@
 			return;
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> refs/remotes/origin/main
 	</script>
 	<%} %>
 	</form>

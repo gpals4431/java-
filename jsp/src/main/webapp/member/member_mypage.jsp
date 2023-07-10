@@ -6,7 +6,6 @@
 <%-- => [회원정보변경] 태그를 클릭한 경우 [member/password_confirm.jsp] 문서 요청 - 페이지 이동 관련 정보 전달 --%>
 <%-- => [회원탈퇴] 태그를 클릭한 경우 [member/password_confirm.jsp] 문서 요청 - 페이지 이동 관련 정보 전달 --%>
 <%--
-	<자주 사용하는 코드이므로 외부파일로 만들어서 include로 src가져다가 사용하기위해서>
 	//바인딩된 세션에서 권한 관련 정보의 속성값을 객체(로그인 상태의 사용자정보)로 반환받아 저장
 	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
 
@@ -14,7 +13,6 @@
 	if(loginMember==null) {
 		//템플릿 페이지 몸체부에 포함되는 JSP 문서에서는 에러코드 및 URL 주소로 응답 처리 불가능
 		//response.sendRedirect(request.getContextPath()+"/index.jsp?group=error&worker=error_400");
-		//템플릿 페이지 몸체부에 포함되는 JSP 문서는 request.serchar못씀
 		
 		//자바스트립트를 이용하여 응답 처리
 		out.println("<script type='text/javascript'>");
@@ -51,7 +49,7 @@
 	<p>마지막로그인 날짜 = <%=loginMember.getLastLogin() %></p>
 </div>
 
-<div id="link"><!--같은 페이지로 이동하되 action값에 따라 비밀번호 입력후 다른곳으로 이동하도록  -->
+<div id="link">
 	<a href="<%=request.getContextPath() %>/index.jsp?group=member&worker=password_confirm&action=modify">[회원정보변경]</a>&nbsp;&nbsp;
 	<a href="<%=request.getContextPath() %>/index.jsp?group=member&worker=password_confirm&action=remove">[회원탈퇴]</a>&nbsp;&nbsp;
 </div>
