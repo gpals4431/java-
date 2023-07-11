@@ -1,23 +1,22 @@
-﻿<%@page import="xyz.itwill.dao.UserinfoModelOneDAO"%>
-<%@page import="xyz.itwill.dto.UserinfoDTO"%>
+﻿<%@page import="xyz.itwill.dto.UserinfoDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- request 객체의 속성값으로 저장된 모든 회원정보를 검색하여 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
-<%-- => 회원정보에서 [회원이름] 태그를 클릭한 경우 [view.do] 문서 요청 - 아이디 전달 --%>
-<%-- => [회원등록] 태그를 클릭한 경우 [writeForm.do] 문서 요청 - 관리자에게만 링크 제공 --%>
-<%-- => [로그아웃] 태그를 클릭한 경우 [logout.do] 문서 요청 --%>
+<%-- request 객체의 속성값으로 저장된 회원목록을 반환받아 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
+<%-- => 회원정보에서 [회원이름] 태그를 클릭한 경우 [view.do] 페이지 요청 - 아이디 전달 --%>
+<%-- => [회원등록] 태그를 클릭한 경우 [writeform.do] 페이지 요청 - 관리자에게만 링크 제공 --%>
+<%-- => [로그아웃] 태그를 클릭한 경우 [logout.do] 페이지 요청 --%>
 <%
 	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
 
-	List<UserinfoDTO> userinfoList=(List<UserinfoDTO>)request.getAttribute("userinfoList");
+List<UserinfoDTO> userinfoList=(List<UserinfoDTO>)request.getAttribute("userinfoList");
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>MVC</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel=stylesheet href="<%=request.getContextPath() %>/user.css type="text/css">
+<link rel=stylesheet href="<%=request.getContextPath() %>/model_two/css/user.css" type="text/css">
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
 <br>
@@ -45,7 +44,7 @@
 					<%=userinfo.getUserid() %>
 				</td>
 				<td width=200 align=center bgcolor="ffffff">
-					<a href="<%=request.getContextPath() %>/view.do<%=userinfo.getUserid() %>" class="user">
+					<a href="<%=request.getContextPath() %>/view.do?userid=<%=userinfo.getUserid() %>" class="user">
 						<%=userinfo.getName() %>
 					</a>
 				</td>
@@ -65,9 +64,9 @@
 			<tr>
 				<td align="right">
 					<% if(loginUserinfo.getStatus()==9) { %>
-					<input type="button" value="회원등록" onclick="location.href=<%=request.getContextPath() %>/writeform.do;"/>
+					<input type="button" value="회원등록" onclick="location.href='<%=request.getContextPath() %>/writeform.do';"/>
 					<% } %>
-					<input type="button" value="로그아웃" onclick="location.href=<%=request.getContextPath() %>/logout.do;;"/>
+					<input type="button" value="로그아웃" onclick="location.href='<%=request.getContextPath() %>/logout.do';"/>
 				</td>
 			</tr>
 		</table>		

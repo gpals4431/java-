@@ -19,6 +19,9 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 .error {
 	display: none;
 }
+p{
+	color: red;
+}
 </style>
 </head>
 <body>
@@ -30,7 +33,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 				<label for="id">아이디</label>
 				<input type="text" name="id" id="id">
 				<span><button type="button" id="idCheckBtn">아이디 중복 검사</button></span><br>
-				<p id="messageid>"></p>
+				<p id="messageid"></p>
 			</div>	
 			<div id="pw-box">
 				<label for="password">비밀번호</label>
@@ -56,7 +59,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 		
 		if (id =="") {
 			document.querySelector('#messageid').innerHTML="아이디를 입력해주세요";
-			e.prevenDefault();		
+			e.preventDefault();		
 		}else{
 			document.querySelector('#messageid').innerHTML="";
 		}
@@ -70,7 +73,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 		
 		if (password == "") {
 			document.querySelector('#messagepw').innerHTML="비밀번호를 입력해주세요";
-			e.prevenDefault();
+			e.preventDefault();
 			
 		}else{
 			document.querySelector('#messagepw').innerHTML="";
@@ -84,7 +87,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
  */		
 		if (name =="") {
 			document.querySelector('#messagename').innerHTML="이름을 입력해주세요";
-			e.prevenDefault();
+			e.preventDefault();
 			
 		}else{
 			document.querySelector('#messagename').innerHTML="";

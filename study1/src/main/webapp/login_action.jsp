@@ -13,13 +13,16 @@
 	String id=request.getParameter("id");
 	String password=request.getParameter("password");
 	
-	joinDTO loginMember=joinDAO.getDAO().selectJoin(id);
+	joinDTO member =joinDAO.getDAO().selectJoin(id);
 	
-	if(loginMember.getPassword().equals(password)){
-		response.sendRedirect("main.jsp");
-		session.setAttribute("loginMember", loginMember);
-	}else{
+	if(member==null||!member.getPassword().equals(password)){
+		session.setAttribute("message", "아이디와 비밀번호가 일치하지않습니다.");
+		session.setAttribute("id", id);
 		response.sendRedirect("login.jsp");
-		session.setAttribute("message", "아이디와 비번 불일치");
+		return;
 	}
+	
+	session.setAttribute("loginMember", joinDAO.getDAO().selectJoin(id));
+	
+	
 %>

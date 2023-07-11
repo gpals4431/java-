@@ -55,7 +55,7 @@ public class joinDAO extends JdbcDAO{
 		try {
 			con=getConnection();
 			
-			String sql ="select * from join where id =?";
+			String sql ="select * from login where id =?";
 			pstmt=con.prepareStatement(sql);
 			
 			pstmt.setString(1, id);
