@@ -172,13 +172,8 @@ td {
 				
 				<%-- 제목 --%>
 				<td class="subject">
-<<<<<<< HEAD
-					<%-- 게시글이 답글인 경우에 대한 응답처리 : getRestep : 답글 순서--%>
-					<% if(review.getRestep()!=0){//검색된 게시글이 답글인 경우 %>
-=======
 					<%-- 게시글이 답글인 경우에 대한 응답 처리 --%>
 					<% if(review.getRestep()!=0) {//검색된 게시글이 답글인 경우 %>
->>>>>>> refs/remotes/origin/main
 						<%-- 게시글의 깊이를 제공받아 왼쪽 여백 설정 --%>
 						<span style="margin-left: <%=review.getRelevel()*20%>px;">└[답글]</span>
 					<% } %>
@@ -189,15 +184,9 @@ td {
 					<% } else if(review.getStatus()==2) {//비밀 게시글인 경우 %>
 						<span class="subject_hidden">비밀글</span>
 						<%-- 로그인 상태의 사용자가 게시글 작성자이거나 관리자인 경우 --%>
-<<<<<<< HEAD
-						<% if(loginMember!=null&&loginMember.getId().equals(review.getReviewid()) || loginMember.getMemberStatus()==9 ){ %>
-							<a href="#"><%=review.getSubject()%></a>
-						<% }else{ %>
-=======
 						<% if(loginMember!=null && (loginMember.getId().equals(review.getReviewid()) || loginMember.getMemberStatus()==9)) { %>
 							<a href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_detail&num=<%=review.getNum()%>&pageNum=<%=pageNum%>&search=<%=search%>&keyword=<%=keyword%>"><%=review.getSubject()%></a>					
 						<% } else { %>
->>>>>>> refs/remotes/origin/main
 							게시글 작성자 또는 관리자만 확인 가능합니다.
 						<% } %>
 					<% } else if(review.getStatus()==0) {//삭제 게시글인 경우 %>
@@ -273,7 +262,7 @@ td {
 	
 	<%-- 사용자로부터 검색어를 입력받아 게시글 검색 기능 구현 --%>
 	<form action="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list" method="post">
-		<%-- select 태그를 사용하여 검 색대상을 선택해 컬럼명을 전달 --%>
+		<%-- select 태그를 사용하여 검색대상을 선택해 컬럼명을 전달 --%>
 		<select name="search">
 			<option value="name" selected="selected">&nbsp;작성자&nbsp;</option>
 			<option value="subject">&nbsp;제목&nbsp;</option>
