@@ -11,7 +11,6 @@
 		response.sendRedirect(request.getContextPath()+"/index.jsp?group=error&worker=error_400");
 		return;
 	}
-
 	//POST 방식으로 요청하여 전달된 값에 대한 캐릭터셋 변경
 	request.setCharacterEncoding("utf-8");
 	

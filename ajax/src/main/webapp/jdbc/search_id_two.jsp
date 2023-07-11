@@ -15,7 +15,7 @@
 	String name=request.getParameter("name");
 	String email=request.getParameter("email");
 	
-	//String id=AjaxMemberDAO.getDAO().selectAjaxMemberId(name, email);
+	//String id=AjaxMemberDAO.getDAO().selectAjaxMemberId(name, email);//값을 여러개보다 한개도 전달하는것이 효율적
 	
 	AjaxMemberDTO ajaxMember = new AjaxMemberDTO();
 	ajaxMember.setName("name");

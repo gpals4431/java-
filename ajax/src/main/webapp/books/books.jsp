@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 책정보를 XML 형식의 데이터로 제공하는 JSP 문서 --%>
-    
 <books>
 	<book>
 		<title>Java의 정석</title>

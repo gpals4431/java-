@@ -53,11 +53,11 @@
 		$.ajax({
 			type: "post",
 			url: "search_id_two.jsp",
-			//data: "name="+name+"&email="+email,
+			//data: "name="+name+"&email="+email // {}로 전달해도 실제로는 이렇게 처리됨
 			data: {"name":name,"email":email}
 			dateType: "xml",
 			success: function(xmlDoc) {
-				var code=$(xmlDoc).find("code").text();
+				var code=$(xmlDoc).find("code").text();//code엘리먼트의 값을 찾아서 반환받아 처리
 				if(code=="success") {
 					var id=$(xmlDoc).find("id").text();
 					$("#result").html(name+"님의 아이디는 ["+id+"]입니다.");
