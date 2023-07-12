@@ -7,9 +7,11 @@
 <%-- => [회원등록] 태그를 클릭한 경우 [writeform.do] 페이지 요청 - 관리자에게만 링크 제공 --%>
 <%-- => [로그아웃] 태그를 클릭한 경우 [logout.do] 페이지 요청 --%>
 <%
+
 	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
 
-List<UserinfoDTO> userinfoList=(List<UserinfoDTO>)request.getAttribute("userinfoList");
+	List<UserinfoDTO> userinfoList=(List<UserinfoDTO>)request.getAttribute("userinfoList");
+	
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
