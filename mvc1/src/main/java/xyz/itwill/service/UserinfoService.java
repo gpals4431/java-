@@ -1,4 +1,3 @@
-/* 수업 순서 : dao클래스 -> 예외처리 => 서비스*/
 package xyz.itwill.service;
 
 import java.sql.SQLException;

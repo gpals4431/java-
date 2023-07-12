@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//모든 모델 역활의 클래스가 반드시 상속 받아야 되는 인터페이스
+//모든 모델 역할의 클래스가 반드시 상속 받아야 되는 인터페이스
 // => 모델 역활의 클래스에 요청 처리 메소드에 대한 작성 규칙 제공
 // => 컨트롤러 역활의 서블릿에서 모델 객체로 요청 처리 메소드를 쉽게 호출할 수 있으며 유지보수의 효율성 증가
 
