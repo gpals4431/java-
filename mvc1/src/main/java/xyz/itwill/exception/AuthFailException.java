@@ -12,3 +12,5 @@ public class AuthFailException extends Exception {
 		super(message);
 	}
 }
+
+

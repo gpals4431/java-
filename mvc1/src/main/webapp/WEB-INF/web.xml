@@ -12,7 +12,6 @@
   <servlet>
   	<servlet-name>controller</servlet-name>
   	<servlet-class>xyz.itwill.mvc.ControllerServlet</servlet-class>
-  
   	<!-- init-param : 서블릿 클래스에 필요한 값을 제공하기 위한 엘리먼트 -->
   	<init-param>
   		<param-name>configFile</param-name>
