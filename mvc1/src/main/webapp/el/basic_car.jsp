@@ -22,7 +22,7 @@
 		//속성명에 대한 속성값이 없는 경우 [null]를 반환받아 저장
 		//Car car=(Car)pageContext.getAttribute("pageCar");
 	%>
-	<p>자동차 = <%=car %></p>
+	<p>자동차 = <%=car %></p>/<!-- 주소값 출력 -->
 	<%-- 객체의 필드값을 반환받아 JSP 표현식으로 출력 처리 --%>
 	<%-- => [null]이 저장된 참조변수로 메소드를 호출할 경우 NullPointerException 발생 --%>
 	<p>자동차 모델명 = <%=car.getModelName() %></p>

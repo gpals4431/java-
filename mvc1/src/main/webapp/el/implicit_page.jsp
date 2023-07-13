@@ -7,7 +7,7 @@
 <title>MVC</title>
 </head>
 <body>
-	<h1>EL 내장객체 - PageContext</h1>
+	<h1>EL 내장객체 - PageContext 자바 객체</h1>
 	<hr>
 	<h2>EL 미사용</h2>
 	<%-- request 내장객체 - HttpServletRequest 객체 : 요청정보를 저장한 객체 --%>
