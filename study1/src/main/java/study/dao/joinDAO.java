@@ -64,9 +64,9 @@ public class joinDAO extends JdbcDAO{
 			
 			if(rs.next()) {
 				join=new joinDTO();
-				join.getId();
-				join.getName();
-				join.getPassword();
+				join.setId(rs.getString("id"));
+				join.setName(rs.getString("name"));
+				join.setPassword(rs.getString("password"));
 			}
 			
 		}catch (SQLException e) {

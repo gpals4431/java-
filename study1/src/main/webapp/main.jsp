@@ -21,6 +21,7 @@
 	<button type="button" id="join_btn" onclick="location.href='join.jsp'">회원가입</button>
 	<% } else {//로그인 상태의 사용자인 경우 %>
 		<%=loginMember.getName() %>님, 환영합니다.&nbsp;&nbsp;
+		<br>
 		<button type="button" id="login_btn" onclick="location.href='logout.jsp'">로그아웃</button>
 		<% } %>
 </body>
