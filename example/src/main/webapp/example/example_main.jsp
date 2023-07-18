@@ -63,6 +63,7 @@
 					<th width="150">사용날짜</th>
 					<th>출금내역</th>
 					<th>입금내역</th>
+					<th width="60">&nbsp;변&nbsp;경&nbsp;</th>
 					<th width="60">&nbsp;삭&nbsp;제&nbsp;</th>
 					<%
 					if (totalCount == 0) {
@@ -84,8 +85,8 @@
 					<td><%=account.getUsedate().substring(0, 10)%></td>
 					<td><%=account.getAout()%></td>
 					<td><%=account.getAin()%></td>
-					<td><input type="button" value="삭제"
-						onclick="removeAccount(<%=account.getNum()%>)"></td>
+					<td><input type="button" value="변경" onclick="updateAccount()"></td>
+					<td><input type="button" value="삭제" onclick="removeAccount(<%=account.getNo()%>"></td>
 				</tr>
 				<%} %>
 				<%} %>
@@ -100,10 +101,9 @@
 <script type="text/javascript">
 function removeAccount(no) {//deletestudent의 request 매개변수값으로 전달 -> deletestudent.jsp에서 삭제처리
 	if(confirm("계좌정보를 정말로 삭제 하시겠습니까?")) {
-		location.href="deleteAccount.jsp?no="+no;
+		location.href="example_delete.jsp?no="+no;
 	}
-
 }
-</script>
+</script>s
 </body>
 </html>

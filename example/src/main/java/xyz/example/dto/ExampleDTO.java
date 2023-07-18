@@ -4,12 +4,12 @@ package xyz.example.dto;
 이름      널?       유형           
 ------- -------- ------------ 
 ANAME   NOT NULL VARCHAR2(20) 
-AMONEY  NOT NULL NUMBER(10)   
+AMONEY  NOT NULL noBER(10)   
 AINOUT  NOT NULL VARCHAR2(10) 
 USEDATE NOT NULL DATE         
 AOUT             VARCHAR2(20) 
 AIN              VARCHAR2(20) 
-NUM    NOT NULL NUMBER    
+NO    NOT NULL noBER    
 
  */
 public class ExampleDTO{
@@ -19,13 +19,13 @@ public class ExampleDTO{
 	private String usedate;
 	private String aout;
 	private String ain;
-	private int num;
+	private int no;
 	
 	public ExampleDTO() {
 	
 	}
 
-	public ExampleDTO(String aname, int amoney, String ainout, String usedate, String aout, String ain, int num) {
+	public ExampleDTO(String aname, int amoney, String ainout, String usedate, String aout, String ain, int no) {
 		super();
 		this.aname = aname;
 		this.amoney = amoney;
@@ -33,7 +33,7 @@ public class ExampleDTO{
 		this.usedate = usedate;
 		this.aout = aout;
 		this.ain = ain;
-		this.num = num;
+		this.no = no;
 	}
 
 	public String getAname() {
@@ -84,12 +84,12 @@ public class ExampleDTO{
 		this.ain = ain;
 	}
 
-	public int getNum() {
-		return num;
+	public int getNo() {
+		return no;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setNo(int no) {
+		this.no = no;
 	}
 	
 	

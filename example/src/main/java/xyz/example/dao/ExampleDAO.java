@@ -10,15 +10,15 @@ import java.util.List;
 import xyz.example.dto.ExampleDTO;
 
 /*
-이름      널?       유형           
-------- -------- ------------ 
-ANAME   NOT NULL VARCHAR2(20) 
-AMONEY  NOT NULL NUMBER(10)   
-AINOUT  NOT NULL VARCHAR2(10) 
-USEDATE NOT NULL DATE         
-AOUT             VARCHAR2(20) 
-AIN              VARCHAR2(20) 
-    
+이름       널?       유형           
+-------- -------- ------------ 
+NO       NOT NULL NUMBER       
+ANAME    NOT NULL VARCHAR2(20) 
+AMONEY   NOT NULL NUMBER(10)   
+AINOUT   NOT NULL VARCHAR2(10) 
+USERDATE NOT NULL DATE         
+AOUT              VARCHAR2(20) 
+AIN               VARCHAR2(20)   
 */
   
 
@@ -81,7 +81,7 @@ public class ExampleDAO extends JdbcDAO{
 		try {
 			con=getConnection();
 			
-			String sql = "insert into account_book values(?,?,"+search+",?,?,?)";
+			String sql = "insert into account_book values(no_seq.nextval,?,?,"+search+",?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, account.getAname());
 			pstmt.setInt(2, account.getAmoney());
@@ -181,5 +181,27 @@ public class ExampleDAO extends JdbcDAO{
 			close(con, pstmt, rs);
 		}
 		return count;
+	}
+	
+	public int deleteAccount(int no) {
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		int rows =0;
+		try {
+			con=getConnection();
+			
+			String sql ="delete from account_book where no =?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, no );
+			
+			rows=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			System.out.println("[에러]deleteAccount()메소드에 의한 SQL오류"+e.getMessage());
+		}finally {
+			close(con, pstmt);
+		}
+		return rows;
+		
 	}
 }
