@@ -13,6 +13,7 @@
  --%>
 
 
+<%@page import="xyz.example.dao.ExampleDAO"%>
 <%@page import="xyz.example.dto.ExampleDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -31,65 +32,54 @@ if (account != null) {
 
 	String aout = "";
 	String ain = "";
+	
+	String search=request.getParameter("search");
+	if(search==null){
+		search="";
+	}
+	
+	//입/출금 버튼의 값과 DTO를 가져와 삽입행의 갯수를 반환하는 DAO 메소드 호출
+	int insertaccount=ExampleDAO.getDao().insertAccount(account, search);
+			
 
 }
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/example_write.css">
 <meta charset="UTF-8">
 <title>입력창</title>
-<style type="text/css">
-/* Style The Dropdown Button */
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
+<script type="text/javascript">
+function submit(e) {
+	writeForm.aname.focus();
+		var aname=document.querySelector( '#aname').value;
+		var amoney=document.querySelector( '#amoney').value;
+		var usedate=document.querySelector('#usedate').value;
+		
+		if (aname=="") {
+			document.querySelector('#message').innerHTML="사용처를 입력해주세요."
+			writeForm.aname.focus();
+			e.preventDefault();
+		}
+		
+		else if (amoney=="") {
+			document.querySelector('#message').innerHTML="금액을 입력해주세요."
+			writeForm.amoney.focus();
+			e.preventDefault();
+		}
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
-</style>
+		else if (usedate=="") {
+			document.querySelector('#message').innerHTML="사용날짜를 입력해주세요."
+			writeForm.usedate.focus();
+			e.preventDefault();
+		}
+		
+		location.href="example_main.jsp";
+	}
+</script>
 </head>
 <body>
 	<form name="writeForm" action="example_write_action.jsp" method="post">
@@ -103,52 +93,59 @@ if (account != null) {
 			<tr>
 				<!--0이하면 0원으로 초기화  -->
 				<th>금액</th>
-				<td><input type="number" name="amoney" id="amoney">
+				<td><input type="number" name="amoney" id="amoney" min="0">
 			</tr>
 			<tr>
 				<th>사용날짜</th>
 				<td><input type="date" name="usedate" id="usedate">
 			</tr>
 		</table>
-		<div class="select-box">
-			<button type="button" id="inBtn" name="ain" value="ain">입금</button>
-			<button type="button" id="outBtn" name="aout" value="aout">출금</button>
-		</div>
+	
+	<!-- 	<div class="select-box">
+			<input type="checkbox" id="inBtn" name="search" value="ain">입금
+			<input type="checkbox" id="outBtn" name="search" value="aout">출금
+		</div> 
+ -->
 
+		<!-- 버튼을 선택하면 search에 값이 저장 -->
 		<div class="dropdown">
-			<button class="dropbtn" id="aoutlistbtn">출금 카테고리</button>
-			<div class="dropdown-content" id="aoutlist">
-				<a href="#">식사</a>
-				<a href="#">교통비</a>
-			    <a href="#">생활</a>
-			    <a href="#">의료/건강</a>
-				<a href="#">문화/여가</a>
-				<a href="#">주거/통신</a>
-				<a href="#">저금/투자</a>
+			<button type="button" class="dropbtn" id="aoutlistbtn" name ="search" value="출금">출금</button>
+			<div class="dropdown-content" id="aoutlist">출금
+				<select id="aoutList" name="aout">
+					<option value="식사">식사</option>
+					<option value="교통비">교통비</option>
+					<option value="생활">생활</option>
+					<option value="의료/건강">의료/건강</option>
+					<option value="문화/여가">문화/여가</option>
+					<option value="주거/통신">주거/통신</option>
+					<option value="저금/투자">저금/투자</option>
+				</select>
 			</div>
 		</div>
 		<div class="dropdown">
-			<button class="dropbtn" id="ainlistbtn">입금 카테고리</button>
-			<div class="dropdown-content" id="ainlist">
-				<a href="#">급여</a> 
-				<a href="#">용돈</a> 
-				<a href="#">생활</a> 
-				<a href="#">사업수익</a> 
-				<a href="#">금융수익</a>
+			<button type="button" class="dropbtn" id="ainlistbtn" name="search" value="입금">입금</button>
+			<div class="dropdown-content" id="ainlist">입금
+				<select id="ainList" name="ain">
+					<option value="급여">급여</option>
+					<option value="용돈">용돈</option>
+					<option value="사업수익">사업수익</option>
+					<option value="금융수익">금융수익</option>
+				</select>
 			</div>
 		</div>
 		<p id="message" style="color: red"><%=message%></p>
 		<br>
 		<hr>
 		<div class="clickbtn">
-			<button type="button" id="insertBtn">&nbsp;삽&nbsp;입&nbsp;</button>
+			<button type="button" id="insertBtn" onclick="submit()">&nbsp;삽&nbsp;입&nbsp;</button>
 			<button type="reset">다시작성</button>
 			<button type="button" id="updateBtn">&nbsp;변&nbsp;경&nbsp;</button>
 		</div>
 	</form>
 
 	<script type="text/javascript">
-	console.log(document.querySelectorAll("#aoutlist a"));
+
+	/* console.log(document.querySelectorAll("#aoutlist a"));
 	
 	let outlist = '식사';
 	let inlist = '급여';
@@ -174,42 +171,11 @@ if (account != null) {
 		console.log("inlist 는 ",inlist);
 		
 	}));
-	</script>
 	
-	<script type="text/javascript">
-	document.getElementById("insertBtn").onclick=function(e) {
-
-		writeForm.aname.focus();
-			var aname=document.querySelector( '#aname').value;
-			var amoney=document.querySelector( '#amoney').value;
-			var amoneyReg=/[0-9]{100}/g;
-			var usedate=document.querySelector('#usedate').value;
-			
-			if (aname=="") {
-				document.querySelector('#message').innerHTML="사용처를 입력해주세요."
-				writeForm.aname.focus();
-				e.preventDefault();
-			}
-			
-			else if (amoney=="") {
-				document.querySelector('#message').innerHTML="금액을 입력해주세요."
-				writeForm.amoney.focus();
-				e.preventDefault();
-			}
-
-			else if	(!amoneyReg.test(amoney)) {
-				document.querySelector('#message').innerHTML="금액은 양수로만 입력해주세요."
-				writeForm.amoney.focus();
-				e.preventDefault();
-			}
-
-			else if (usedate=="") {
-				document.querySelector('#message').innerHTML="사용날짜를 입력해주세요."
-				writeForm.usedate.focus();
-				e.preventDefault();
-			}
-		}
 	 */
+	 
+	 
+	
 	
 	</script>
 </body>

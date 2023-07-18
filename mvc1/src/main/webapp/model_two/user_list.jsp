@@ -1,8 +1,8 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-<%-- request 객체의 속성값으로 저장된 회원목록을 반환받아 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
-<%-- => 회원정보에서 [회원이름] 태그를 클릭한 경우 [view.do] 페이지 요청 - 아이디 전달 --%>
+<%-- request 객체의 속성값으로 저장된 회원목록을 반환받아 클라이언트에게 전달하여 응답하는 JSP  --%>
+<%-- => 회원정보에서 [회원이름] 태그를 클릭한 경우 [view.do] 페이지 요청 - 아이디 전달 --%>문서
 <%-- => [회원등록] 태그를 클릭한 경우 [writeform.do] 페이지 요청 - 관리자에게만 링크 제공 --%>
 <%-- => [로그아웃] 태그를 클릭한 경우 [logout.do] 페이지 요청 --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

@@ -73,7 +73,7 @@ public class ExampleDAO extends JdbcDAO{
 	
 	
 	//삽입하고 삽입행의 갯수 반환
-	public int insertAccount(ExampleDTO account) {
+	public int insertAccount(ExampleDTO account, String search) {
 		Connection con = null;
 		PreparedStatement pstmt=null;
 		int rows=0;
@@ -81,14 +81,13 @@ public class ExampleDAO extends JdbcDAO{
 		try {
 			con=getConnection();
 			
-			String sql = "insert into account_book values(?,?,?,?,?,?)";
+			String sql = "insert into account_book values(?,?,"+search+",?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, account.getAname());
 			pstmt.setInt(2, account.getAmoney());
-			pstmt.setString(3, account.getAinout());
-			pstmt.setString(4, account.getUsedate());
-			pstmt.setString(5, account.getAout());
-			pstmt.setString(6, account.getAin());
+			pstmt.setString(3, account.getUsedate());
+			pstmt.setString(4, account.getAout());
+			pstmt.setString(5, account.getAin());
 			
 			rows=pstmt.executeUpdate();
 			
