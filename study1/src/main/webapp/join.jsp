@@ -7,6 +7,8 @@
 	}else{
 		session.removeAttribute("message");
 	}
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -32,7 +34,6 @@ p{
 			<div id="id-box">
 				<label for="id">아이디</label>
 				<input type="text" name="id" id="id">
-				<span><button type="button" id="idCheckBtn">아이디 중복 검사</button></span><br>
 				<p id="messageid"></p>
 			</div>	
 			<div id="pw-box">
@@ -46,7 +47,7 @@ p{
 		<button type="submit" id="joinbtn">회원가입</button>
 		<button type="reset">다시작성</button>
 	</form>
-	<div id="message"><%=message %></div>
+	<div id="message" style="color:red"><%=message %></div>
 	<script type="text/javascript">
 	joinForm.id.focus();
  	document.getElementById("joinbtn").onclick= function (e) {

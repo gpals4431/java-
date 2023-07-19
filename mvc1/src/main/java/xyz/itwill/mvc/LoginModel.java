@@ -46,7 +46,7 @@ public class LoginModel implements Action {
 			// => 웹브라우저가 종료되면 클라이언트의 정보로 바인딩 세션은 자동으로 삭제 처리
 			session.setAttribute("loginUserinfo", UserinfoService.getService().getUserinfo(userid));
 			
-			actionForward.setForward(false);
+			actionForward.setForward(false);//리다이렉트 이동 - XXX.do 로 이동
 			actionForward.setPath(request.getContextPath()+"/loginform.do");
 		} catch (AuthFailException e) {
 			//인증 실패시 발생되는 예외에 대한 명령 작성

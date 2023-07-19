@@ -1,3 +1,4 @@
+<%@page import="java.io.Console"%>
 <%@page import="study.dao.joinDAO"%>
 <%@page import="study.dto.joinDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -22,10 +23,13 @@
 	
 	int rows =joinDAO.getDAO().insertJoin(join);
 	
-	if(rows>0){
-	response.sendRedirect("main_join.jsp");
+	
+	if(rows>0){//회원가입 성공시 메인페이지로 이동
+		System.out.print("회원가입 성공");
+		response.sendRedirect("main.jsp");
 		
-	}else{
+	}else{//아이디 중복체크가 안됨........
+		System.out.print(rows);
 	 	response.sendRedirect("join.jsp");
 		session.setAttribute("message", "아이디 중복, 다른아이디 사용해주세요.");	
 	}

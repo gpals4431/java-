@@ -17,23 +17,23 @@
 	//전달값을 반환받아 변수에 저장
 	String aname = request.getParameter("aname");
 	int amoney=Integer.parseInt(request.getParameter("amoney"));
-	String ainout = request.getParameter("ainout");
 	String usedate = request.getParameter("usedate");
 	String aout = request.getParameter("aout");
 	String ain = request.getParameter("ain");
-	int num=Integer.parseInt(request.getParameter("num"));
 	
 	ExampleDTO account = new ExampleDTO();
 	account.setAname(aname);
 	account.setAmoney(amoney);
-	account.setAinout(ainout);
 	account.setUsedate(usedate);
 	account.setAout(aout);
 	account.setAin(ain);
-	account.setNum(num);
 	
+	String search=request.getParameter("search");
+	if(search==null){
+		search="";
+	}
 			
-	ExampleDAO.getDao().insertAccount(account);
+	ExampleDAO.getDao().insertAccount(account, search);
 	
 	response.sendRedirect("example_write.jsp");
 %>

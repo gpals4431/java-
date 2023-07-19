@@ -163,7 +163,7 @@
       
       
     
- <Context docBase="servlet1" path="/servlet1" reloadable="true" source="org.eclipse.jst.jee.server:servlet1"/><Context docBase="ajax" path="/ajax" reloadable="true" source="org.eclipse.jst.jee.server:ajax"/><Context docBase="web" path="/web" reloadable="true" source="org.eclipse.jst.jee.server:web"/><Context docBase="example" path="/example" reloadable="true" source="org.eclipse.jst.jee.server:example"/><Context docBase="study1" path="/study1" reloadable="true" source="org.eclipse.jst.jee.server:study1"/><Context docBase="jsp" path="/jsp" reloadable="true" source="org.eclipse.jst.jee.server:jsp"/><Context docBase="mvc1" path="/mvc1" reloadable="true" source="org.eclipse.jst.jee.server:mvc1"/></Host>
+ <Context docBase="servlet1" path="/servlet1" reloadable="true" source="org.eclipse.jst.jee.server:servlet1"/><Context docBase="ajax" path="/ajax" reloadable="true" source="org.eclipse.jst.jee.server:ajax"/><Context docBase="web" path="/web" reloadable="true" source="org.eclipse.jst.jee.server:web"/><Context docBase="study1" path="/study1" reloadable="true" source="org.eclipse.jst.jee.server:study1"/><Context docBase="jsp" path="/jsp" reloadable="true" source="org.eclipse.jst.jee.server:jsp"/><Context docBase="mvc1" path="/mvc1" reloadable="true" source="org.eclipse.jst.jee.server:mvc1"/><Context docBase="example_account_jsp" path="/example_account_jsp" reloadable="true" source="org.eclipse.jst.jee.server:example_account_jsp"/><Context docBase="mybatis" path="/mybatis" reloadable="true" source="org.eclipse.jst.jee.server:mybatis"/></Host>
     </Engine>
   </Service>
 </Server>
