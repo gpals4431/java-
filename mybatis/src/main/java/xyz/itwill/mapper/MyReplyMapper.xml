@@ -78,7 +78,8 @@
 		select user_id, user_name from myuser where user_id=#{userId}
 	</select>	
 	<!-- 마이바티스의 기능 : 조인 쓰지 않고 셀렉트 명령을 여러번 사용하여 정보를 받음
-	테이블 조인 명령을 사용하지않고 resultMap 엘리먼트의 매핑정보를 제공받아 -->
+	테이블 조인 명령을 사용하지않고 resultMap 엘리먼트의 매핑정보를 이용하여 2개 이상의 테이블에
+	대한 검색결과를 제공받아 사용 가능 -->
 	<select id="selectReplyUserList2" resultMap="myReplyUserResultMap2">
 		select reply_no, reply_id, reply_content, reply_date, reply_comment_no from myreply order by reply_no desc
 	</select>

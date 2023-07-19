@@ -126,7 +126,7 @@
 			<result column="comment_date" property="commentDate"/>
 		</association>
 		<association property="user" javaType="MyUser">
-			<id column="user_id" property="userId"/>
+			<id column="user_id" property="userId"/>  
 			<result column="user_name" property="userName"/>
 		</association>
 	</resultMap>
@@ -135,4 +135,16 @@
 		select comment_no , comment_id , comment_content ,comment_date,  user_id,  user_name,
 		  from mycomment join myuser on comment_id=user_id order by comment_no desc
 	</select>
+	
+	<!-- 게시글 번호를 전달받아 MYCOMMENT 테이블에 저장된 게시글정보를 검색하여 MyComment1 객체로 제공하는 엘리먼트 - 검색행 :1개 -->
+	<select id="selectComment" parameterType="int" resultType="MyComment1">
+		select comment_nom, comment_id, comment_content, comment_date from mycomment where commet_no=1
+	</select>
+	
+	<!-- 게시글번호를 전달받아 MYREPLY -->
+	<select id="selectCommentNoReplyList" parameterType="int" resultType="MyReply">
+		select reply_no, reply_id, reply_content, reply_date, reply_comment_no
+			from myreply where reply_comment_no=1 order by reply_no desc
+	</select>
+
 </mapper>
