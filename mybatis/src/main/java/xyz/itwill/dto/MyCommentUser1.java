@@ -64,4 +64,5 @@ public class MyCommentUser1 {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
 }

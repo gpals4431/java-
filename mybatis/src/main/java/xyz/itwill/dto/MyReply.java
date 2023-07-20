@@ -1,6 +1,5 @@
 package xyz.itwill.dto;
 
-
 /*
 MYREPLY 테이블 : 게시글에 대한 댓글을 저장하기 위한 테이블 
 create table myreply(reply_no number primary key, reply_id varchar2(50)
@@ -69,13 +68,3 @@ public class MyReply {
 		this.replyCommentNo = replyCommentNo;
 	}
 }
-
-
-
-
-
-
-
-
-
-

@@ -16,5 +16,7 @@ public interface MyHewonMapper {
 	//설정하고 맵값은 [Object]클래스로 설정하여 사용
 	String selectMapHewonId(Map<String, Object> map);
 	int insertMapHewon(Map<String, Object> map);
+	List<Map<String, Object> selectMapHewonList();
+
 	
 }
