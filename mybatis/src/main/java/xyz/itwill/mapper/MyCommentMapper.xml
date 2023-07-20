@@ -34,7 +34,7 @@
 	</select>
 	-->
 
-	<!--해결법: 검색행의 컬럼명을 resultType 속성값으로 설정된 클래스의 필드명과 같도록 ColumnAlias
+	<!--해결법 -1: 검색행의 컬럼명을 resultType 속성값으로 설정된 클래스의 필드명과 같도록 ColumnAlias
 	기능을 사용하여 검색 - 식별자로 사용하기 부적절한 단어는 " " 기호를 사용하여 표현   -->	
 	<!--  
 	<select id="selectCommentList2" resultType="MyComment2">
@@ -43,10 +43,10 @@
 	</select>
 	-->
 
-	<!-- resultMap 엘리먼트를 이용하여 검색행의 컬럼값을 객체 필드에 저장되도록 설정하여 검색행을 Java 객체로 제공 -->	
+	<!-- 해결법 -2: resultMap 엘리먼트를 이용하여 검색행의 컬럼값을 객체 필드에 저장되도록 설정하여 검색행을 Java 객체로 제공 -->	
 	<!-- => type 속성값으로 설정된 클래스의 기본 생성자를 이용하여 객체를 생성하고 id 엘리먼트 또는 
 	result 엘리먼트를 사용하여 객체의 Setter 메소드를 호출하여 검색행의 컬럼값으로 필드값 변경 -->
-	<!-- => resultMap 엘리먼트의 하위 엘리먼트로 id 엘리먼트 또는 result 엘리먼트는 0개 이상 작성 가능 -->
+	<!-- => resultMap 엘리먼트의 하위 엘리먼트로 id 엘리먼트(=pk제약조건) 또는 result 엘리먼트는 0개 이상 작성 가능 -->
 	<resultMap type="MyComment2" id="myComment2ResultMap">
 		<id column="comment_no" property="no"/>
 		<result column="comment_id" property="id"/>
@@ -266,4 +266,6 @@
 			mycomment join myuser on comment_id=user_id left join myreply on 
 			comment_no=reply_comment_no where comment_no=#{commentNo} order by reply_no desc
 	</select> 
+	
+	
 </mapper>
