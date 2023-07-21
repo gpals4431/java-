@@ -12,11 +12,7 @@
 	
 	String id="";
 	if(name!=null && email!=null) {
-		Map<String, Object> map=new HashMap<>();
-		map.put("name", name);
-		map.put("email", email);
-		
-		id=MyHewonDAO.getDAO().selectMapHewonId(map);
+		id=MyHewonDAO.getDAO().selectParamHewonId(name, email);
 	}
 %>    
 <!DOCTYPE html>

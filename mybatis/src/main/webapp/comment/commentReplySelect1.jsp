@@ -14,10 +14,10 @@
 	//전달값(게시글번호)을 반환받아 저장
 	int commentNo=Integer.parseInt(request.getParameter("commentNo"));
 	
-	//게시글번호를 이용하여 MYCOMMENT 테이블에 저장된 게시글을 검색하여 DTO 객체로 반환하는 DAO 클래스의 메소드 호출
+	//게시글번호를 전달받아 MYCOMMENT 테이블에 저장된 게시글을 검색하여 DTO 객체로 반환하는 DAO 클래스의 메소드 호출
 	MyComment1 comment=MyCommentDAO.getDAO().selectComment(commentNo);
 	
-	//게시글번호를 이용하여 MYREPLY 테이블에 저장된 댓글목록을 검색하여 List 객체로 반환하는 DAO 클래스의 메소드 호출
+	//게시글번호를 전달받아 MYREPLY 테이블에 저장된 댓글목록을 검색하여 List 객체로 반환하는 DAO 클래스의 메소드 호출
 	List<MyReply> replyList=MyCommentDAO.getDAO().selectCommentNoReplyList(commentNo);
 %>    
 <!DOCTYPE html>
@@ -95,3 +95,4 @@ td {
 	</table>
 </body>
 </html>
+

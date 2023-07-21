@@ -111,10 +111,12 @@
 			from mycomment join myuser on comment_id=user_id order by comment_no desc
 	</select>
 	
+	<!-- 컬럼명 = 필드명 - 자동매핑 처리 -->
 	<select id="selectCommentUserList1" resultType="MyCommentUser1">
 		select comment_no, comment_id, comment_content, comment_date, user_id, user_name 
 			from mycomment join myuser on comment_id=user_id order by comment_no desc
 	</select>
+	<!-- 여기까지 -->
 	
 	<resultMap type="MyCommentUser2" id="myCommentUser2ResultMap">
 		<!-- association : 1:1 관계의 테이블 조인에서 1개의 검색행을 Java 객체로 생성하여

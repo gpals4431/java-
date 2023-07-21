@@ -1,10 +1,10 @@
 <%@page import="xyz.itwill.dao.MyReplyDAO"%>
-<%@page import="xyz.itwill.dto.MyReply"%>
+<%@page import="xyz.itwill.dto.MyReplyUser"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<MyReply> replyList=MyReplyDAO.getDAO().selectCountReplyList();
+	List<MyReplyUser> replyUserList=MyReplyDAO.getDAO().selectReplyUserList2();
 %>    
 <!DOCTYPE html>
 <html>
@@ -41,13 +41,13 @@ td {
 			<td class="date">댓글작성일</td>
 			<td class="comment">게시글번호</td>
 		</tr>
-		<% for(MyReply reply : replyList) { %>
+		<% for(MyReplyUser replyUser : replyUserList) { %>
 		<tr>
-			<td><%=reply.getReplyNo() %></td>
-			<td><%=reply.getReplyId() %></td>
-			<td><%=reply.getReplyContent() %></td>
-			<td><%=reply.getReplyDate() %></td>
-			<td><%=reply.getReplyCommentNo() %></td>
+			<td><%=replyUser.getReply().getReplyNo() %></td>
+			<td><%=replyUser.getUser().getUserName() %>[<%=replyUser.getReply().getReplyId() %>]</td>
+			<td><%=replyUser.getReply().getReplyContent() %></td>
+			<td><%=replyUser.getReply().getReplyDate() %></td>
+			<td><%=replyUser.getReply().getReplyCommentNo() %></td>
 		</tr>
 		<% } %>
 	</table>

@@ -1,7 +1,5 @@
-<%@page import="xyz.itwill.dto.MyCommentUser1"%>
-<%@page import="xyz.itwill.dto.MyComment3"%>
 <%@page import="xyz.itwill.dao.MyCommentDAO"%>
-<%@page import="xyz.itwill.dto.MyComment2"%>
+<%@page import="xyz.itwill.dto.MyCommentUser1"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -41,12 +39,11 @@ td {
 			<td class="content">게시글내용</td>
 			<td class="date">게시글작성일</td>
 		</tr>
-		<tr>
 		<% for(MyCommentUser1 commentUser : commentUserList) { %>
-			<td><%=commentUser.getCommentNo()%></td>
-			<%--<td><%=commentUser.getUserName()%>[<%=commentUser.getCommentId() %>]</td> --%>
+		<tr>
+			<td><%=commentUser.getCommentNo() %></td>
+			<%-- <td><%=commentUser.getUserName()%>[<%=commentUser.getCommentId() %>]</td> --%>
 			<td><%=commentUser.getUserName()%>[<%=commentUser.getUserId() %>]</td>
-			<td><%=commentUser.getCommentContent() %></td>
 			<td><%=commentUser.getCommentContent() %></td>
 			<td><%=commentUser.getCommentDate() %></td>
 		</tr>
@@ -54,6 +51,7 @@ td {
 	</table>
 </body>
 </html>
+
 
 
 

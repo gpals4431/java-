@@ -1,12 +1,10 @@
-<%@page import="xyz.itwill.dao.MyHewonDAO"%>
 <%@page import="xyz.itwill.dto.MyHewon"%>
-<%@page import="xyz.itwill.dao.MyCommentDAO"%>
-<%@page import="xyz.itwill.dto.MyComment1"%>
+<%@page import="xyz.itwill.dao.MyHewonDAO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<MyHewon> heownList=MyHewonDAO.getDAO().selectHewonList();
+	List<MyHewon> hewonList=MyHewonDAO.getDAO().selectHewonList();
 %>    
 <!DOCTYPE html>
 <html>
@@ -25,36 +23,39 @@ td {
 	padding: 3px;
 }
 
-.no { width: 100px; }
+.id { width: 150px; }
 .name { width: 150px; }
-.content { width: 250px; }
-.date { width: 200px; }
+.phone { width: 200px; }
+.email { width: 200px; }
+.status { width: 100px; }
 </style>
 </head>
 <body>
-	<h1>게시글 목록</h1>
+	<h1>회원목록</h1>
 	<hr>
 	<table>
 		<tr>
-			<td class="no">아이디</td>
+			<td class="id">아이디</td>
 			<td class="name">이름</td>
-			<td class="content">전화번호</td>
-			<td class="date">이메일</td>
-			<td class="date">공개범위</td>
+			<td class="phone">전화번호</td>
+			<td class="email">이메일</td>
+			<td class="status">공개범위</td>
 		</tr>
-		<% for(MyHewon hewon : heownList) { %>
-		<tr>
-			<td><%=hewon.getId() %></td>
-			<td><%=hewon.getName() %></td>
-			<td><%=hewon.getPhone() %></td>
-			<td><%=hewon.getEmail() %></td>
-			<td><%=hewon.getStatus() %></td>
-		</tr>
+		<% if(hewonList.isEmpty()) { %>
+			<tr>
+				<td colspan="5">검색된 회원정보가 없습니다.</td>
+			</tr>
+		<% } else { %>
+			<% for(MyHewon hewon : hewonList) { %>
+			<tr>
+				<td><%=hewon.getId() %></td>
+				<td><%=hewon.getName() %></td>
+				<td><%=hewon.getPhone() %></td>
+				<td><%=hewon.getEmail() %></td>
+				<td><%=hewon.getStatus() %></td>
+			</tr>
+			<% } %>
 		<% } %>
 	</table>
 </body>
 </html>
-
-
-
-

@@ -1,19 +1,27 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="xyz.itwill.dto.MyHewon"%>
 <%@page import="xyz.itwill.dao.MyHewonDAO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	int status=0;
-	if(request.getParameter("status")!=null) {
-		status=Integer.parseInt(request.getParameter("status"));
-	}
+	request.setCharacterEncoding("utf-8");
+
+	String searchColumn = request.getParameter("searchColumn");
+	String searchKeyword = request.getParameter("searchKeyword");
 	
 	List<MyHewon> hewonList=null;
-	if(status==0) {
+	
+	if(searchKeyword==null||searchKeyword.equals("")){
 		hewonList=MyHewonDAO.getDAO().selectHewonList();//전체 검색
-	} else {
-		hewonList=MyHewonDAO.getDAO().selectStatusHewonList(status);//조건 검색
+	}else{
+		Map<String, Object> map =new HashMap<>();
+		map.put("searchColumn",searchColumn);
+		map.put("searchKeyword",searchKeyword);
+		
+		hewonList=MyHewonDAO.getDAO().selectSearchHewonList(map);
+		
 	}
 %>    
 <!DOCTYPE html>
@@ -67,17 +75,17 @@ td {
 			<% } %>
 		<% } %>
 	</table>
-	<br>
 	
 	<form method="post">
-		회원검색(공객범위) :
-		<select name="status">
-			<option value="0" selected="selected">전체</option>
-			<option value="1">&nbsp;1&nbsp;</option>
-			<option value="2">&nbsp;2&nbsp;</option>
-			<option value="3">&nbsp;3&nbsp;</option>
-			<option value="4">&nbsp;4&nbsp;</option>
-		</select>	
+		<!-- 검색대상 입력(선택) : 전달값을 반드시 테이블의 컬럼명과 같도록 작성 -->
+		<select name="searchColumn">
+			<option value="hewon_id" selected="selected">아이디</option>
+			<option value="hewon_name">이름</option>
+			<option value="hewon_phone">전화번호</option>
+			<option value="hewon_email">이메일</option>
+		</select>
+		<!-- 검색단어 입력 -->
+		<input type="text" name="searchKeyword">
 		<button type="submit">검색</button>
 	</form>
 </body>

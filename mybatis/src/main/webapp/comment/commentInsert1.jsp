@@ -3,26 +3,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	MyComment1 comment1 = new MyComment1();
-	comment1.setCommentId("abc");/* myuser테이블에 삽입된 아이디를 써야함 */
-	comment1.setCommentContent("첫번쨰 게시글");
+	MyComment1 comment1=new MyComment1();
+	comment1.setCommentId("abc");
+	comment1.setCommentContent("첫번째 게시글입니다.");
 	MyCommentDAO.getDAO().insertComment1(comment1);
 	
-	MyComment1 comment2 = new MyComment1();
-	comment2.setCommentId("qwe");/* myuser테이블에 삽입된 아이디를 써야함 */
-	comment2.setCommentContent("두번쨰 게시글");
+	MyComment1 comment2=new MyComment1();
+	comment2.setCommentId("xyz");
+	comment2.setCommentContent("두번째 게시글입니다.");
 	MyCommentDAO.getDAO().insertComment1(comment2);
-	
-	
-%><!DOCTYPE html>
+%>    
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MYBATIS</title>
 </head>
 <body>
 	<h1>게시글 등록</h1>
 	<hr>
-	<h3>게시글을 성공적으로 삽입</h3>
+	<h3>게시글이 성공적으로 삽입 되었습니다.</h3>
 </body>
 </html>

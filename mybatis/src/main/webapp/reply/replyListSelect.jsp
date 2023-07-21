@@ -1,13 +1,16 @@
-<<<<<<< HEAD
 <%@page import="xyz.itwill.dao.MyReplyDAO"%>
 <%@page import="xyz.itwill.dto.MyReply"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<% List<MyReply> replyList = MyReplyDAO.getDAO().selectReplyList();%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	List<MyReply> replyList=MyReplyDAO.getDAO().selectReplyList();
+%>    
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>MYBATIS</title>
 <style type="text/css">
 table {
 	border: 1px solid black;
@@ -24,23 +27,21 @@ td {
 .name { width: 150px; }
 .content { width: 300px; }
 .date { width: 200px; }
-.comment{width: 100px;}
+.comment { width: 100px; }
 </style>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
 </head>
 <body>
-	<h1>´ñ±Û¸ñ·Ï</h1>
+	<h1>ëŒ“ê¸€ëª©ë¡</h1>
 	<hr>
 	<table>
 		<tr>
-			<td class="no"> ´ñ±Û¹øÈ£</td>
-			<td class="name"> ´ñ±ÛÀÛ¼ºÀÚ</td>
-			<td class="content"> ´ñ±Û³»¿ë</td>
-			<td class="date"> ´ñ±ÛÀÛ¼ºÀÏ</td>
-			<td class="comment"> °Ô½Ã±Û ¹øÈ£</td>
+			<td class="no">ëŒ“ê¸€ë²ˆí˜¸</td>
+			<td class="name">ëŒ“ê¸€ì‘ì„±ì</td>
+			<td class="content">ëŒ“ê¸€ë‚´ìš©</td>
+			<td class="date">ëŒ“ê¸€ì‘ì„±ì¼</td>
+			<td class="comment">ê²Œì‹œê¸€ë²ˆí˜¸</td>
 		</tr>
-		<%for(MyReply reply: replyList) {%>
+		<% for(MyReply reply : replyList) { %>
 		<tr>
 			<td><%=reply.getReplyNo() %></td>
 			<td><%=reply.getReplyId() %></td>
@@ -48,61 +49,7 @@ td {
 			<td><%=reply.getReplyDate() %></td>
 			<td><%=reply.getReplyCommentNo() %></td>
 		</tr>
-		<%} %>
+		<% } %>
 	</table>
 </body>
-=======
-<%@page import="xyz.itwill.dao.MyReplyDAO"%>
-<%@page import="xyz.itwill.dto.MyReply"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<% List<MyReply> replyList = MyReplyDAO.getDAO().selectReplyList();%>
-<!DOCTYPE html>
-<html>
-<head>
-<style type="text/css">
-table {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-
-td {
-	border: 1px solid black;
-	text-align: center;
-	padding: 3px;
-}
-
-.no { width: 100px; }
-.name { width: 150px; }
-.content { width: 300px; }
-.date { width: 200px; }
-.comment{width: 100px;}
-</style>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1>´ñ±Û¸ñ·Ï</h1>
-	<hr>
-	<table>
-		<tr>
-			<td class="no"> ´ñ±Û¹øÈ£</td>
-			<td class="name"> ´ñ±ÛÀÛ¼ºÀÚ</td>
-			<td class="content"> ´ñ±Û³»¿ë</td>
-			<td class="date"> ´ñ±ÛÀÛ¼ºÀÏ</td>
-			<td class="comment"> °Ô½Ã±Û ¹øÈ£</td>
-		</tr>
-		<%for(MyReply reply: replyList) {%>
-		<tr>
-			<td><%=reply.getReplyNo() %></td>
-			<td><%=reply.getReplyId() %></td>
-			<td><%=reply.getReplyContent() %></td>
-			<td><%=reply.getReplyDate() %></td>
-			<td><%=reply.getReplyCommentNo() %></td>
-		</tr>
-		<%} %>
-	</table>
-</body>
->>>>>>> refs/remotes/origin/main
 </html>

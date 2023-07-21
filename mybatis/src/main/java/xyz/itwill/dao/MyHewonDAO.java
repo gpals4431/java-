@@ -67,6 +67,7 @@ public class MyHewonDAO extends AbstractSession {
 			sqlSession.close();
 		}
 	}
+	
 	public String selectMapHewonId(Map<String, Object> map) {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
 		try {
@@ -89,8 +90,26 @@ public class MyHewonDAO extends AbstractSession {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
 		try {
 			return sqlSession.getMapper(MyHewonMapper.class).selectMapHewonList();
-		} finally {ss
+		} finally {
 			sqlSession.close();
 		}
 	}
+	
+	public String selectParamHewonId(String name, String email) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).selectParamHewonId(name, email);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	public List<MyHewon> selectSearchHewonList(Map<String, Object> map) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).selectSearchHewonList(map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
 }
