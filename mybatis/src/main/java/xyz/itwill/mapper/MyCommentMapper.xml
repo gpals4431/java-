@@ -250,6 +250,7 @@
 	
 	<!-- autoMapping 속성 : false 또는 true 중 하나를 속성값으로 설정
 	=> ture: 검색행의 컬럼과 필드명이 같은 경우 자동 매핑 처리 - 조건 : 컬럼명과 필드명이 동일
+	resultMap은 수동 매핑인데 일부러 컬러명이랑 필드명을 동일하게 쓴경우 id,result값을 쓰기엔 비효율적이므로 autoMapping속성을 통해 자동 매핑 처리함
 	 -->
 	<resultMap type="MyCommentReplyUser" id="myCommentReplyUserResultMap" autoMapping="true">
 		<id column="comment_no" property="commentNo"/>
