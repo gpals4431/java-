@@ -3,24 +3,19 @@ package example;
 public class Example1 {
 	public static void main(String[] args) {
 
-	for(int i=1;i<=4;i++){
-		for (int j=1; j<=4; j++){
-			if(i+j>=5) {
-				System.out.print("*");
-			}
-			else {
-				System.out.println();
-			}
-		}
-		System.out.println();
-	}
-	
-	int a=8;
-	if(a==7) {
-		System.out.println(true);
+		int[] absolutes =null ;
+		boolean[] signs =null; 	       
+		int answer = 123456789;
+		      
+	        	for(int i=0; i<absolutes.length; i++) {
+	        		if(absolutes[i]>=0) {
+	        			signs[i]=true;
+	        			System.out.println(absolutes[i]);
+	        			System.out.println(signs[i]);
 	}
 	}
-	
+	}
 }
+	
 	
 	

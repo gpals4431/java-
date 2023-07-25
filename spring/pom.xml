@@ -33,7 +33,8 @@
 	
 	<!-- dependencies : dependency 엘리먼트를 등록하기 위한 엘리먼트 --> 
 	<dependencies>
-		<!-- Spring -->
+		<!-- Spring
+		=> spring 프레임워크를 이용하여 프로그램을 작성하기 위해 필요한 라이브러리 -->
 		<!-- dependency : 라이브러리 파일을 제공받아 프로젝트에 빌드 처리하기 위한 엘리먼트 -->
 		<!-- => 라이브러리 의존 관계에 의해 다른 라이브러리 파일을 프로젝트에 자동으로 빌드 처리 - 의존 전이(Transitive Dependencies) -->
 		<dependency>
@@ -60,6 +61,7 @@
 		</dependency>
 				
 		<!-- AspectJ -->
+		<!-- => spring AOP 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
@@ -67,6 +69,7 @@
 		</dependency>	
 		
 		<!-- Logging -->
+		<!-- => Logging(기록) 로그 구현체 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -110,24 +113,26 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- @Inject -->
+		<!-- @Inject
+		=> 의존성 주입 기능을 제공하는 라이브러리 -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
 				
-		<!-- Servlet -->
+		<!-- Servlet
+		=> 웹프로그램 작성에 필요한 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
-  			  <groupId>javax.servlet</groupId>
-  			  <artifactId>javax.servlet-api</artifactId>
-  			  <version>4.0.1</version>
-   		      <scope>provided</scope>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>4.0.1</version>
+		    <scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>2.3.3</version>
+		    <artifactId>javax.servlet.jsp-api</artifactId>
+   			<version>2.3.3</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -136,13 +141,23 @@
 			<version>1.2</version>
 		</dependency>
 	
-		<!-- Test -->
+		<!-- Test
+		=> 테스트 기능을 제공하기 위한 라이브러리 -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.13.2</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/xerces/xercesImpl -->
+		<!-- => 로그 구현체가 환경설정파일(log4j.xml)을 읽어 실행할 때 파일 경로에 인식할 수 없는 문자가
+		존재하면 예외 발생 - 파일 경로를 부호화 처리하는 기능을 제공하는 라이브러리 -->
+		<dependency>
+		    <groupId>xerces</groupId>
+		    <artifactId>xercesImpl</artifactId>
+		    <version>2.12.2</version>
+		</dependency>
 	</dependencies>
 	
     <build>

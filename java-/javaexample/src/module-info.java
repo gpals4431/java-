@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author itwill
- *
- */
-module javaexample {
-}
