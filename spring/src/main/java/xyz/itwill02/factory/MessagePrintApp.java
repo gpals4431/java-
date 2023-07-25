@@ -1,9 +1,8 @@
-package xyz.itwill01.old;
+package xyz.itwill02.factory;
 
 public class MessagePrintApp {
 	public static void main(String[] args) {
 		MessagePrint print = new MessagePrint();
-		//print.helloMessagePrint();
-		print.hiMessagePrint();
+		print.messagePrint();
 	}
 }
