@@ -14,5 +14,4 @@
 	<!--<property name="object" ref="helloMessageObject"/> -->
 		<property name="object" ref="hiMessageObject"/>
 	</bean>
-
 </beans>
