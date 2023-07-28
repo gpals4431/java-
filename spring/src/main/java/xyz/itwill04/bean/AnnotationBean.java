@@ -2,10 +2,10 @@ package xyz.itwill04.bean;
 
 public class AnnotationBean {
 	public AnnotationBean() {
-		System.out.println("### AnnotationBean 클래스의 기본 생성자 호출 ###");
+		System.out.println("### AnnotationBean ?겢?옒?뒪?쓽 湲곕낯 ?깮?꽦?옄 ?샇異? ###");
 	}
+	
 	public void display() {
-		System.out.println("### AnnotationBean 클래스의 display메소드 호출 ###");
-
+		System.out.println("*** AnnotationBean ?겢?옒?뒪?쓽 display() 硫붿냼?뱶 ?샇異? ***");
 	}
 }

@@ -2,6 +2,6 @@ package xyz.itwill04.bean;
 
 public class ScopeBean {
 	public ScopeBean() {
-		System.out.println("### ScopeBean Å¬·¡½ºÀÇ ±âº» »ı¼ºÀÚ È£Ãâ ###");
+		System.out.println("### ScopeBean ?´?˜?Š¤?˜ ê¸°ë³¸ ?ƒ?„±? ?˜¸ì¶? ###");
 	}
 }

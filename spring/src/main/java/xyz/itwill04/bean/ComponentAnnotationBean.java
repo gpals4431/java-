@@ -2,16 +2,16 @@ package xyz.itwill04.bean;
 
 import org.springframework.stereotype.Component;
 
-//@Component : 클래스를 스프링 컨테이너가 관리하는 객체(Spring Bean)으로 등록하는 어노테이션
-// => 클래스의 이름을 Spring Bean을 구분하는 식별자(beanName)로 사용 - 첫번째 문자는 소문자로 변환
-// => @Component 어노테이션의 value 속성을 사용하여 식별자(beanName) 변경 가능 - value 속성만 존재할 경우 속성값만 설정 가능
+//@Component : ?겢?옒?뒪瑜? ?뒪?봽留? 而⑦뀒?씠?꼫媛? 愿?由ы븯?뒗 媛앹껜(Spring Bean)?쑝濡? ?벑濡앺븯?뒗 ?뼱?끂?뀒?씠?뀡
+// => ?겢?옒?뒪?쓽 ?씠由꾩쓣 Spring Bean?쓣 援щ텇?븯?뒗 ?떇蹂꾩옄(beanName)濡? ?궗?슜 - 泥ル쾲吏? 臾몄옄?뒗 ?냼臾몄옄濡? 蹂??솚
+// => @Component ?뼱?끂?뀒?씠?뀡?쓽 value ?냽?꽦?쓣 ?궗?슜?븯?뿬 ?떇蹂꾩옄(beanName) 蹂?寃? 媛??뒫 - value ?냽?꽦留? 議댁옱?븷 寃쎌슦 ?냽?꽦媛믩쭔 ?꽕?젙 媛??뒫
 @Component("bean")
 public class ComponentAnnotationBean {
 	public ComponentAnnotationBean() {
-		System.out.println("### ComponentAnnotationBean 클래스의 기본 생성자 호출 ###");
+		System.out.println("### ComponentAnnotationBean ?겢?옒?뒪?쓽 湲곕낯 ?깮?꽦?옄 ?샇異? ###");
 	}
 	
 	public void display() {
-		System.out.println("*** ComponentAnnotationBean 클래스의 display() 메소드 호출 ***");
+		System.out.println("*** ComponentAnnotationBean ?겢?옒?뒪?쓽 display() 硫붿냼?뱶 ?샇異? ***");
 	}	
 }

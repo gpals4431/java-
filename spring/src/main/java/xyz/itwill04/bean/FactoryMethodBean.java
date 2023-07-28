@@ -6,7 +6,7 @@ public class FactoryMethodBean {
 	private static FactoryMethodBean _bean;
 	
 	private FactoryMethodBean() {
-		System.out.println("### FactoryMehodBean 클래스의 기본 생성자 호출 ###");
+		System.out.println("### FactoryMethodBean 클래스의 기본 생성자 호출 ###");
 	}
 	
 	static {

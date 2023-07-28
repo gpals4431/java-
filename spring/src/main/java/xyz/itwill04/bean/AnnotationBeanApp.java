@@ -5,14 +5,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class AnnotationBeanApp {
 	public static void main(String[] args) {
-		
-	System.out.println("=============== Spring Container 초기화 전 ===============");
-	ApplicationContext context=new ClassPathXmlApplicationContext("04-3_beanAnnotation.xml");
-	System.out.println("=============== Spring Container 초기화 후 ===============");
-	AnnotationBean bean=context.getBean("Bean", AnnotationBean.class);
-	bean.display();
-	System.out.println("==========================================================");
-	((ClassPathXmlApplicationContext)context).close();
-
+		System.out.println("=============== Spring Container 珥덇린?솕 ?쟾 ===============");
+		ApplicationContext context=new ClassPathXmlApplicationContext("04-3_beanAnnotation.xml");
+		System.out.println("=============== Spring Container 珥덇린?솕 ?썑 ===============");
+		AnnotationBean bean=context.getBean("annotationBean", AnnotationBean.class);
+		bean.display();
+		System.out.println("==========================================================");
+		((ClassPathXmlApplicationContext)context).close();
 	}
 }

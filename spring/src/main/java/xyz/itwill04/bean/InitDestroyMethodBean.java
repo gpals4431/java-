@@ -2,20 +2,18 @@ package xyz.itwill04.bean;
 
 public class InitDestroyMethodBean {
 	public InitDestroyMethodBean() {
-		System.out.println("### InitDestroyMethodBean 기본 생성자 호출 ###");
-		
-	}
-	public void init() {
-		System.out.println("*** InitDestroyMethodBean클래스의 Init() 메소드 호출 ***");
-		
-	}
-	public void destroy() {
-		System.out.println("*** InitDestroyMethodBean클래스의 destroy() 메소드 호출 ***");
-		
-	}
-	public void display() {
-		System.out.println("*** InitDestroyMethodBean클래스의 display() 메소드 호출 ***");
-		
+		System.out.println("### InitDestroyMethodBean ?겢?옒?뒪?쓽 湲곕낯 ?깮?꽦?옄 ?샇異? ###");
 	}
 	
+	public void init() {
+		System.out.println("*** InitDestroyMethodBean ?겢?옒?뒪?쓽 init() 硫붿냼?뱶 ?샇異? ***");
+	}
+	
+	public void destroy() {
+		System.out.println("*** InitDestroyMethodBean ?겢?옒?뒪?쓽 destroy() 硫붿냼?뱶 ?샇異? ***");
+	}
+	
+	public void display() {
+		System.out.println("*** InitDestroyMethodBean ?겢?옒?뒪?쓽 display() 硫붿냼?뱶 ?샇異? ***");
+	}
 }
