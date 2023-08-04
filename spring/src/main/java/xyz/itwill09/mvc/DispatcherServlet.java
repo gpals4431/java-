@@ -49,7 +49,7 @@ public class DispatcherServlet extends HttpServlet {
 		
 		//요청 처리 클래스의 메소드를 호출하여 클라이언트의 요청을 처리하고 응답 처리할 JSP
 		//문서의 이름(ViewName)을 반환받아 저장
-		String viewName=controller.handleRequest(request, response);
+		String viewName=(String) controller.handleRequest(request, response);
 		
 		//3.JSP 문서로 포워드 이동하여 클라이언트에게 처리결과가 응답되도록 처리
 		// => 요청 처리 메소드의 반환값(ViewName)을 이용하여 JSP 문서의 경로를 완성하여 포워드 이동
