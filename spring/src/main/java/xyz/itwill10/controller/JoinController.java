@@ -46,12 +46,14 @@ public class JoinController {
 	 * "join_display"; }
 	 */
 	/*
+	전달값을 제공받는 가장 중요한 방법!
 	 * @RequestMapping(value="/join", method = RequestMethod.POST) public String
 	 * join(@ModelAttribute("mem") Member member, Model model ) {
 	 * if(member.getId().equals("abc123")) {
 	 * model.addAttribute("message","이미 사용중인 아이디"); return "join_form"; } return
 	 * "join_display";
 	 * 
+	 * map으로 전달할때는 requestparam
 	 * }
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(@RequestParam Map<String, String> map, Model model) {
