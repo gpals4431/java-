@@ -1,6 +1,6 @@
 <%@page import="xyz.itwill.dto.MyReply"%>
 <%@page import="java.util.List"%>
-<%@page import="xyz.itwill.dao.MyCommentDAO"%>
+<%@page import="xyz.itwill10.dao.MyCommentDAO"%>
 <%@page import="xyz.itwill.dto.MyComment1"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

@@ -1,4 +1,4 @@
-<%@page import="xyz.itwill.dao.MyReplyDAO"%>
+<%@page import="xyz.itwill10.dao.MyReplyDAO"%>
 <%@page import="xyz.itwill.dto.MyReply"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

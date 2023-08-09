@@ -1,4 +1,4 @@
-<%@page import="xyz.itwill.dao.StudentDAO"%>
+<%@page import="xyz.itwill10.dao.StudentDAO"%>
 <%@page import="xyz.itwill.dto.Student"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

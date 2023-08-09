@@ -1,6 +1,6 @@
-﻿<%@page import="xyz.itwill.dao.MyMemberDAO"%>
-<%@page import="xyz.itwill.dao.MyMemberInterfaceDAO"%>
-<%@page import="xyz.itwill.dao.MyMemberXMLDAO"%>
+<%@page import="xyz.itwill10.dao.MyMemberDAO"%>
+<%@page import="xyz.itwill10.dao.MyMemberInterfaceDAO"%>
+<%@page import="xyz.itwill10.dao.MyMemberXMLDAO"%>
 <%@page import="xyz.itwill.dto.MyMember"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
