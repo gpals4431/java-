@@ -33,7 +33,8 @@ import xyz.itwill10.mapper.StudentMapper;
 @Repository
 //final 제한자로 작성된 필드만 초기화 처리하는 생성자를 만들어주는 어노테이션
 // => 생성자가 하나만 작성된 경우 생성자에 @Autowired 어노테이션 생략 가능
-@RequiredArgsConstructor
+@RequiredArgsConstructor // 초기화 되지않은 final 필드나, @NonNull 이 붙은 필드에 대해 생성자를 생성해 줍니다.
+//새로운 필드를 추가할 때 다시 생성자를 만들어서 관리해야하는 번거로움을 없애준다. (@Autowired를 사용하지 않고 의존성 주입)
 public class StudentDAOImpl implements StudentDAO {
 	//Mybatis 프레임워크를 사용하여 DAO 클래스를 작성할 경우 매퍼에 등록된 SQL 명령을 제공받아
 	//전달하여 실행하고 실행결과를 Java 객체(값)으로 반환받기 위해 SqlSession 객체 필요

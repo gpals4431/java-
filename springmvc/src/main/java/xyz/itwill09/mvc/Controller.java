@@ -1,0 +1,16 @@
+package xyz.itwill09.mvc;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+//ëª¨ë¸ ê¸°ëŠ¥?„ ? œê³µí•˜?Š” ?´?˜?Š¤ê°? ë°˜ë“œ?‹œ ?ƒ?†ë°›ì•„?•¼ ?˜?Š” ?¸?„°?˜?´?Š¤
+// => ëª¨ë“  ëª¨ë¸ ?´?˜?Š¤?— ?™?¼?•œ ë©”ì†Œ?“œê°? ?‘?„±?˜?„ë¡? ê·œì¹™ ? œê³?
+// => ì»¨íŠ¸ë¡¤ëŸ¬?—?„œ ëª¨ë¸ ?´?˜?Š¤?˜ ê°ì²´ë¡? ?š”ì²? ì²˜ë¦¬ ë©”ì†Œ?“œë¥? ?‰½ê²? ?˜¸ì¶œí•˜ê¸? ?œ„?•´ ?¸?„°?˜?´?Š¤ ?•„?š”
+public interface Controller {
+	//ëª¨ë“  ëª¨ë¸ ?´?˜?Š¤?—?„œ ë°˜ë“œ?‹œ ?‘?„±?•  ?š”ì²? ì²˜ë¦¬ ë©”ì†Œ?“œë¥? ì¶”ìƒë©”ì†Œ?“œë¡? ?„ ?–¸
+	String handleRequest(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException;
+}
