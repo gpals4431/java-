@@ -8,7 +8,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import xyz.itwill10.dto.Userinfo;
-import xyz.itwill10.exception.BadRequestException;
+
 
 //Interceptor 클래스 : 요청 처리 메소드가 호출되기 전 또는 후에 삽입되어 실행될 기능을 제공하는 클래스
 // => Interceptor 클래스는 반드시 HandlerInterceptor 인터페이스를 상속받아 작성 - 필요한 메소드만 오버라이드 선언하여 사용
@@ -36,7 +36,6 @@ public class AdminAuthInterceptor implements HandlerInterceptor {
 			//request.getRequestDispatcher("userinfo/user_error.jsp").forward(request, response);
 			//return false;
 			
-			throw new BadRequestException("비정상적인 요청입니다.");
 		}
 		
 		return true;//요청 처리 메소드 호출
